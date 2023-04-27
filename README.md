@@ -1,4 +1,4 @@
-# Spree Starter
+# Mall
 
 This a dockerized [Spree Commerce](https://spreecommerce.org) application template ready to for local development and deployment to cloud providers.
 
@@ -6,29 +6,6 @@ This a dockerized [Spree Commerce](https://spreecommerce.org) application templa
 
 ### Using Heroku
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
-
-### Using Render
-<a href="https://render.com/deploy?repo=https://github.com/spree/spree_starter/tree/main">
-  <img src="https://render.com/images/deploy-to-render-button.svg" alt="Deploy to Render" height=32>
-</a>
-
-Note that sample data does not automatically get loaded when deploying to Render with the default configuration. In order to add sample data, run the following commands in the web service shell:
-```shell
-bundle exec rails db:seed
-bundle exec rake spree_sample:load
-```
-
-#### Deploying to Render with Spree Legacy Frontend
-To deploy to render with the Spree Legacy Frontend, first follow the instructions in the [legacy frontend ReadMe](https://github.com/spree/spree_legacy_frontend#installation) on adding the appropriate gems to your gemfile, and update the web service build command to use `bin/render-build-legacy-frontend.sh`, like so:
-```yaml
-services:
-  - type: web
-    name: spree
-    env: ruby
-    buildCommand: "./bin/render-build-legacy-frontend.sh"
-```
-
-After that, you'll be ready to deploy to render.
 
 ## Local Installation
 
@@ -104,13 +81,6 @@ bin/start-hybrid
 ```bash
 bin/setup-no-docker
 ```
-
-## Adding Storefront
-
-Spree is a [headless e-commerce platform](https://dev-docs.spreecommerce.org/getting-started/headless-commerce) which you can use with any storefront you like. We have pre-built integrations with:
-
-* [Next.js Commerce](https://dev-docs.spreecommerce.org/storefronts/next.js-commerce)
-* [Vue Storefront](https://dev-docs.spreecommerce.org/storefronts/vue-storefront)
 
 ## Updating
 
@@ -188,7 +158,7 @@ If you notice that the 'Add to Cart' button is disabled on product pages, try th
 
 If upgrading your spree app to Rails 7, you may run into the following error:
 ```shell
-/lib/spree/core/preferences/store.rb:96:in `should_persist?': 
+/lib/spree/core/preferences/store.rb:96:in `should_persist?':
 uninitialized constant Spree::Preference (NameError)
 ```
 To fix this error, you'll need to update your spree config initializer. In `config/initializers/spree.rb`, wrap the `Spree.config` block in a `Rails.application.config.after_initialize` block, like so:
