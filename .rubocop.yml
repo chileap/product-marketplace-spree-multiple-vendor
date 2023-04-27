@@ -1,0 +1,287 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  # Default formatter will be used if no `-f/--format` option is given.
+  DefaultFormatter: progress
+
+  # Enables the result cache if `true`. Can be overridden by the `--cache` command
+  # line option.
+  UseCache: true
+
+  TargetRubyVersion: 2.7
+
+  Exclude:
+    - db/schema.rb
+    - db/migrate/**/*
+    - vendor/bundle/**/*
+    - app/javascript/**/*
+    - node_modules/**/*
+    - config/**/*
+    - bin/**/*
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+ParameterAlignment:
+  Enabled: false
+
+ClassLength:
+  CountComments: false
+  Max: 1000
+
+ModuleLength:
+  CountComments: false
+  Max: 1000
+
+Documentation:
+  Enabled: false
+
+LineLength:
+  Max: 1000
+
+MethodLength:
+  CountComments: false
+  Max: 1000
+
+BlockLength:
+  CountComments: false
+  Max: 1000
+  Exclude:
+    - '**/spec/**/*'
+    - '**/*.rake'
+    - '**/*_spec.rb'
+    - 'spec/factories/**/*'
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Performance/RegexpMatch:
+  Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/AndOr:
+  Exclude:
+    - '**/*controller.rb'
+
+Rails:
+  Enabled: true
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Lint/UselessMethodDefinition:
+  Enabled: false
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 50
+  Exclude:
+    - '**/spec/**/*'
+    - '**/*.rake'
+    - '**/factories/**/*'
+    - '**/config/routes.rb'
+
+Style/HashAsLastArrayItem:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'api/spec/integration/**/*.rb'
+    - 'api/lib/spree/api/testing_support/v2/platform_contexts.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SymbolProc:
+  Exclude:
+    - '**/app/serializers/**/*'
+
+Style/GuardClause:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Max: 100
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/AndOr:
+  Exclude:
+    - '**/*controller.rb'
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
+
+Style/NumericLiterals:
+  Enabled: false
+
+Style/SoleNestedConditional:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/FilePath:
+  Exclude:
+    - '**/spec/**/*'
+    - '**/lib/**/*'
+
+Style/ExpandPathArguments:
+  Enabled: false
+
+Lint/NonDeterministicRequireOrder:
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Style/RedundantBegin:
+  Enabled: false
+
+Rails/Presence:
+  Enabled: false
+
+Performance/StringReplacement:
+  Enabled: false
+
+Style/KeywordParametersOrder:
+  Enabled: false
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 100
+
+Style/BlockDelimiters:
+  Enabled: false
+
+Layout/ExtraSpacing:
+  Enabled: false
