@@ -138,22 +138,6 @@ docker compose restart
 | MEMCACHED_POOL_SIZE | memcache connection pool | 5 |
 | SENDGRID_API_KEY | API key to interface Sendgrid API | |
 
-## Troubleshooting
-
-### libvips error
-
-If you are building the application using the latest code, you may encounter the following libvips error:
-```
-LoadError: Could not open library 'vips.so.42'
-```
-This error is usually an indication that you do not have libvips installed locally on your machine. Check that libvips is installed with `vips -v`, and if it is not installed, follow [installation instructions here](https://www.libvips.org/install.html).
-
-### disabled 'Add to Cart' button
-
-This issue is specific to running with [spree_legacy_frontend](https://github.com/spree/spree_legacy_frontend).
-
-If you notice that the 'Add to Cart' button is disabled on product pages, try the [troubleshooting instructions](https://github.com/spree/spree_legacy_frontend#disabled-add-to-cart-button-issue) found in the spree_legacy_frontend ReadMe.
-
 ### uninitialized constant Spree::Preference (NameError)
 
 If upgrading your spree app to Rails 7, you may run into the following error:
@@ -169,22 +153,3 @@ Rails.application.config.after_initialize do
   end
 end
 ```
-
-## License
-
-Spree Starter (formerly Spark Starter Kit) is copyright © 2015-2021
-[Spark Solutions Sp. z o.o.][spark]. It is free software,
-and may be redistributed under the terms specified in the
-[LICENSE](LICENSE.md) file.
-
-## About Spark Solutions
-
-[![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
-
-Spree Starter is maintained and funded by [Spark Solutions Sp. z o.o.](http://sparksolutions.co?utm_source=github)
-The names and logos are trademarks of Spark Solutions Sp. z o.o.
-
-We are passionate about open source software.
-We are [available for hire][spark].
-
-[spark]:http://sparksolutions.co?utm_source=github
