@@ -605,8 +605,6 @@ GEM
       sprockets (>= 4.0)
     spree_extension (0.1.0)
       activerecord (>= 4.2)
-      spree_core
-    spree_frontend (4.5.0)
       babel-transpiler (~> 0.7)
       bootstrap (~> 4.0)
       canonical-rails (~> 0.2, >= 0.2.10)
@@ -617,6 +615,7 @@ GEM
       responders
       sass-rails (>= 5)
       spree_api (>= 4.5.0)
+      spree_core
       spree_core (>= 4.5.0)
       sprockets (~> 4.0)
       turbo-rails
@@ -755,7 +754,6 @@ DEPENDENCIES
   spree_backend (~> 4.5)
   spree_dev_tools
   spree_emails (~> 4.5)
-  spree_frontend
   spree_gateway (~> 3.10)
   spree_i18n (~> 5.1)
   spree_multi_vendor (~> 2.4.0)
