@@ -1,25 +1,19 @@
 {
-  "name": "Spree Commerce Demo",
-  "description": "Spree is a is a headless open source e-commerce platform for global brands",
+  "name": "Product Mall",
+  "description": "product mall is a marketplace for products",
   "keywords": [
-    "spree commerce",
-    "spree",
-    "ecommerce",
-    "headless commerce",
-    "global commerce"
+    "marketplace",
+    "product mall"
   ],
-  "logo": "https://spreecommerce.org/wp-content/uploads/2019/09/spree-60x60@2x.png",
-  "website": "https://spreecommerce.org",
-  "repository": "https://github.com/spree/spree_starter",
   "success_url": "/admin",
   "env": {
     "ADMIN_EMAIL": {
       "description": "We will create an admin user with this email.",
-      "value": "spree@example.com"
+      "value": "admin@admin.com"
     },
     "ADMIN_PASSWORD": {
       "description": "We will create an admin user with this password.",
-      "value": "spree123"
+      "value": "productmall123"
     }
   },
   "formation": {
