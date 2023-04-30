@@ -47,6 +47,7 @@ group :development do
   gem 'web-console', '~> 4.0'
 
   gem 'letter_opener'
+  gem 'pry'
 end
 
 group :test do
@@ -91,11 +92,11 @@ gem 'sprockets', '~> 4.0'
 gem 'spree', '~> 4.5'
 gem 'spree_sample', '~> 4.5'
 gem 'spree_emails', '~> 4.5'
-gem 'spree_multi_vendor', '~> 2.4.0'
 gem 'spree_backend', '~> 4.5'
 gem 'spree_gateway', '~> 3.10'
 gem 'spree_auth_devise', '~> 4.5'
 gem 'spree_i18n', '~> 5.1'
+gem 'spree_multi_vendor', '~> 2.4.0'
 gem 'spree_dev_tools', require: false, group: %w[test development]
 
 # Sentry Client
