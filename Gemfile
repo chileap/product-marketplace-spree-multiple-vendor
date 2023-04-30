@@ -48,6 +48,7 @@ group :development do
 
   gem 'letter_opener'
   gem 'pry'
+  gem 'annotate'
 end
 
 group :test do

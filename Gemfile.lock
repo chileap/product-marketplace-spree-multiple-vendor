@@ -88,6 +88,9 @@ GEM
       activerecord (>= 4.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     appraisal (2.4.1)
       bundler
       rake
@@ -696,6 +699,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-nulldb-adapter
+  annotate
   awesome_print
   aws-sdk-s3
   babel-transpiler (~> 0.7)
