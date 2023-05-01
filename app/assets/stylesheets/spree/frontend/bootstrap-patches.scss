@@ -9,3 +9,7 @@
   // TODO: Remove this overwrite and use $container-padding-x after upgrading to Bootstrap 5.
   @include make-container-padding-x($container-padding);
 }
+
+.page-item.active .page-link {
+  z-index: 1;
+}

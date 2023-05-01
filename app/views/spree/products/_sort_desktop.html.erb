@@ -1,4 +1,4 @@
-<div class="container dropdown d-none d-lg-flex justify-content-end mt-5 pr-4 pb-3 plp-sort">
+<div class="container-fluid px-5 dropdown d-none d-lg-flex justify-content-end pb-3 plp-sort">
   <a data-toggle="dropdown" class="plp-sort-header" href="#" role="button" aria-haspopup="true" aria-expanded="false">
     <%= Spree.t("plp.#{ params[:sort_by].blank? ? 'sort_by': params[:sort_by].gsub('-', '_') }") %>
     <%= icon(name: 'arrow-right',
