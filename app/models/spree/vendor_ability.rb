@@ -5,6 +5,7 @@ class Spree::VendorAbility
     @vendor_ids = user.vendors.active.ids
 
     if @vendor_ids.any?
+      apply_dashboard_permissions
       apply_classifications_permissions
       apply_order_permissions
       apply_image_permissions
@@ -29,6 +30,10 @@ class Spree::VendorAbility
   end
 
   protected
+
+  def apply_dashboard_permissions
+    can %i[admin show], :dashboard
+  end
 
   def apply_classifications_permissions
     can :manage, Spree::Classification, product: { vendor_id: @vendor_ids }
@@ -136,6 +141,7 @@ class Spree::VendorAbility
 
   def apply_vendor_permissions
     can :manage, Spree::Vendor, id: @vendor_ids
+    cannot :index, Spree::Vendor
     cannot :create, Spree::Vendor
   end
 

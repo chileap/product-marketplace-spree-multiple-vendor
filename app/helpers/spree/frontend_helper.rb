@@ -20,13 +20,17 @@ module Spree
                      elsif logo_attachment&.attached? && logo_attachment&.image?
                        main_app.cdn_image_url(current_store.logo)
                      else
-                       asset_path('logo/spree_50.png')
+                       nil
                      end
 
       path = spree.respond_to?(:root_path) ? spree.root_path : main_app.root_path
 
       link_to path, 'aria-label': current_store.name, method: options[:method] do
-        image_tag image_path, alt: current_store.name, title: current_store.name
+        if image_path.present?
+          image_tag image_path, alt: current_store.name, title: current_store.name
+        else
+          content_tag(:span, "Product Mall", class: 'navbar-brand')
+        end
       end
     end
 

@@ -1,7 +1,7 @@
 <% cache spree_menu_cache_key('footer') do %>
   <footer id="footer" class="pt-2 mx-auto border-top footer-spree">
     <div class="container">
-      <div class="row d-xl-flex justify-content-xl-around pb-xl-5">
+      <div class="row d-xl-flex justify-content-xl-between pb-xl-5">
         <div class="d-flex d-xl-block flex-xl-grow-0 col-xl-4">
           <figure class="logo mx-auto mx-xl-0 pt-xl-2 pb-xl-1">
             <%= logo %>
@@ -12,27 +12,13 @@
             </div>
           <% end %>
         </div>
-        <div class="d-block flex-nowrap py-2 order-xl-last col-xl-3 offset-xl-1">
-          <% unless current_store.facebook.blank? && current_store.twitter.blank? && current_store.instagram.blank? %>
-            <div class="d-none d-xl-block pt-4 pb-3 pl-2 footer-spree-label">
-              <%= Spree.t(:follow_us) %>
-            </div>
-          <% end %>
-          <div class="d-flex d-xl-block justify-content-center mx-auto">
-            <div class="d-flex">
-              <%= spree_social_link('facebook') %>
-              <%= spree_social_link('twitter') %>
-              <%= spree_social_link('instagram') %>
-            </div>
-          </div>
-        </div>
         <div class="py-xl-2 col-xl-3 offset-xl-1">
-          <div class="d-none d-xl-block pt-4 pb-3 footer-spree-label">
+          <div class="d-none d-xl-block py-3 footer-spree-label">
             <%= Spree.t(:contact_us) %>
           </div>
           <div class="d-flex flex-column align-items-center align-items-xl-start pb-3 flex-grow-2 footer-spree-contact-note">
             <div>
-              <strong><%= current_store.name %></strong>
+              <strong>Product Mall</strong>
               <br>
               <% if current_store.address %>
                 <%= current_store.address.html_safe %>

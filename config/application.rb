@@ -53,7 +53,7 @@ module ProductMall
     config.active_job.queue_adapter = :sidekiq
 
     # adds support for Services
-    config.autoload_paths += %W(#{config.root}/services #{config.root}/app/services/concerns #{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/services #{config.root}/app/services/concerns)
 
     if Rails.env.production?
       # CloudFlare middleware for proper visitors IP addresses
