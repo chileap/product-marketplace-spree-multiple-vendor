@@ -19,8 +19,6 @@ module Spree
                        main_app.cdn_image_url(logo_attachment.variant(resize: '244x104>'))
                      elsif logo_attachment&.attached? && logo_attachment&.image?
                        main_app.cdn_image_url(current_store.logo)
-                     else
-                       nil
                      end
 
       path = spree.respond_to?(:root_path) ? spree.root_path : main_app.root_path
@@ -29,7 +27,7 @@ module Spree
         if image_path.present?
           image_tag image_path, alt: current_store.name, title: current_store.name
         else
-          content_tag(:span, "Product Mall", class: 'navbar-brand')
+          content_tag(:span, 'Product Mall', class: 'navbar-brand')
         end
       end
     end
