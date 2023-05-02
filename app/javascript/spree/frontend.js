@@ -1,7 +1,5 @@
 import jquery from 'jquery';
 window.$ = window.jQuery = jquery;
-import "popper.js";
-import "bootstrap";
 
 import "./vendors/cleave"
 import "./frontend/main"
