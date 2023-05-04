@@ -49,6 +49,11 @@
     width: 350px;
     height: 234px;
 
+    @include media-breakpoint-up(md) {
+      width: 200px;
+      height: 185px;
+    }
+
     img {
       object-fit: contain;
     }

@@ -1,6 +1,9 @@
 import jquery from 'jquery';
 window.$ = window.jQuery = jquery;
 
+import * as bootstrap from "bootstrap"
+window.bootstrap = bootstrap;
+
 import "./vendors/cleave"
 import "./frontend/main"
 import "./vendors/polyfill.min"
@@ -9,9 +12,7 @@ import "./frontend/api/main"
 import "./lazysizes.config"
 import "./vendors/lazysizes.min"
 import "./vendors/accounting.min"
-import "./frontend/account"
 import "./frontend/api_tokens"
-import "./frontend/carousel-noconflict"
 import "./frontend/cart"
 import "./frontend/locale"
 import "./frontend/currency"

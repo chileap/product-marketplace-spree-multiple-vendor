@@ -29,11 +29,25 @@
       }
     }
   }
+  .quantity-select {
+    width: 100%;
+  }
   .quantity-select button {
     background: $input-background;
     color: color-yiq($input-background);
     touch-action: manipulation;
   }
+
+  .quantity-select-decrease {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .quantity-select-increase {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
   @include media-breakpoint-up(md) {
     &-price {
       font-size: font-px-to-rem(28px);
@@ -259,6 +273,7 @@
 .add-to-cart-button {
   padding: 6px 12px;
   font-size: font-px-to-rem(17px);
+  border-radius: 10px;
   @include media-breakpoint-up(sm) {
     padding: 12px;
     font-size: font-px-to-rem(30px);

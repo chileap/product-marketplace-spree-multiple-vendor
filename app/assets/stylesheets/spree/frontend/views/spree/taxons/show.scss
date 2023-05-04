@@ -12,7 +12,6 @@
   &-title {
     font-size: font-px-to-rem(20px);
     font-weight: 500;
-    margin-bottom: 10px;
     @include media-breakpoint-up(md) {
       font-size: font-px-to-rem(32px);
     }

@@ -17,21 +17,15 @@
       </div>
     <% elsif not @taxon %>
       <div id="no-taxon-banner">
-        <div class="container-fluid px-6">
-          <%= lazy_image(
-            src: asset_path('homepage/products.jpg'),
-            alt: 'products-banner',
-            width: 1110,
-            height: 300,
-            class: 'w-100 d-none d-md-block'
-          ) %>
+        <div class="container-fluid">
+          <%= lazy_image(src: asset_path('homepage/products.jpg'), alt: 'products-banner', width: 1110, height: 300, class: 'w-100 d-none d-md-block') %>
         </div>
       </div>
     <% end %>
 
     <%= render 'spree/products/filter_and_sort_mobile_buttons' %>
     <%= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
-    <div class="container-fluid px-5 mb-3 d-md-flex">
+    <div class="container-fluid mb-3 d-md-flex">
       <%= render 'spree/shared/products', products: @products %>
     </div>
   <% end %>

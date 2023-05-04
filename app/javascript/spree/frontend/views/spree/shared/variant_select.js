@@ -87,7 +87,7 @@ this.updateStructuredData = function() {
 
 Spree.initializeColorVarianTooltip = function() {
   var colorVariants = $('.color-select-label[data-toggle="tooltip"]')
-  colorVariants.tooltip({
+  const tooltip = new bootstrap.Tooltip(colorVariants, {
     placement: 'bottom'
   })
 }

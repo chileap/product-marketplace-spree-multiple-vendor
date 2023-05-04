@@ -1,11 +1,65 @@
 .search-form {
   button {
+    border-width: 2px;
+    border-color: #222 !important;
+    transition: visibility 0ms;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    position: relative;
+    padding-right: 21px;
+    padding-left: 15px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    height: 48px;
+    color: #222;
+    font-weight: bold;
+    font-size: 16px;
+    white-space: nowrap;
+    z-index: 10;
+    transition: border 200ms ease-out,color 200ms ease-out;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 96px;
+    border-bottom-right-radius: 96px;
+    border: 1px solid rgba(34,34,34,.15);
+    border-left: 0;
+
     svg {
       width: 20px;
       height: 20px;
       @include media-breakpoint-up(md) {
-        width: 27px;
-        height: 27px;
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(34,34,34,.15);
+      color: #222;
+    }
+  }
+
+  input {
+    border: 1px solid #222;
+    height: 48px;
+    border-top-left-radius: 96px;
+    border-bottom-left-radius: 96px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding-left: 1.5rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+      border-color: #222;
+
+      &+button {
+        background-color: #222;
+        color: #fff;
       }
     }
   }

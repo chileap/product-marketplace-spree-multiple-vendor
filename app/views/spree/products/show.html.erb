@@ -1,11 +1,11 @@
 <% @body_id = 'product-details' %>
 
-<div class="container">
+<div class="container-fluid px-4 ml-1">
   <%= spree_breadcrumbs(@taxon, '', @product) %>
 </div>
 
 <% cache cache_key_for_product do %>
-  <div class="container pt-4 product-details">
+  <div class="container-fluid px-4 ml-1 pt-4 product-details">
     <div class="row" data-hook="product_show">
       <%= render partial: 'gallery' %>
       <div class="col-12 col-md-5" data-hook="product_right_part">
@@ -17,18 +17,17 @@
             <%= render 'cart_form', variant_change_identifier: 'productCarousel' %>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="pb-4 pt-md-5 row" data-hook="product_description">
-      <div class="col-12 col-md-7 col-lg-6">
-        <%= render partial: 'description' %>
-      </div>
-      <div class="d-none d-lg-block col-lg-1"></div>
-      <div class="col-12 col-md-5" data-hook="product_properties">
-        <%= render partial: 'properties' %>
-      </div>
-      <div class="col-12" data-hook="promotions">
-        <%= render partial: 'promotions' %>
+
+        <div class="col-12 col-md-7 col-lg-6">
+          <%= render partial: 'description' %>
+        </div>
+        <div class="d-none d-lg-block col-lg-1"></div>
+        <div class="col-12 col-md-5" data-hook="product_properties">
+          <%= render partial: 'properties' %>
+        </div>
+        <div class="col-12" data-hook="promotions">
+          <%= render partial: 'promotions' %>
+        </div>
       </div>
     </div>
 
@@ -45,7 +44,16 @@
   <%= render 'spree/shared/product_added_modal' %>
 <% end %>
 
-<div
-  data-related-products
-  data-related-products-id="<%= @product.slug %>"
-  data-related-products-enabled="<%= @product.respond_to?(:has_related_products?) %>" />
+<div class="container-fluid py-5 px-4">
+  <h3>More from this shop</h3>
+
+  <div class="row">
+    <% @product.vendor.products.sample(6).each do |product| %>
+      <div class="col-6 col-md-3 col-lg-2">
+        <%= render partial: 'spree/shared/product', locals: { product: product, image_class: 'w-100' } %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div data-related-products data-related-products-id="<%= @product.slug %>" data-related-products-enabled="<%= @product.respond_to?(:has_related_products?) %>" />

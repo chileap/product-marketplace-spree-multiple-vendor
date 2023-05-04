@@ -110,8 +110,9 @@ Spree.ready(function($) {
       var carouselToSlideAttributeName = 'data-product-carousel-to-slide'
       var carouselPerPageAttributeName = 'data-product-carousel-per-page'
       var carouselEmptyClass = 'product-thumbnails-carousel--empty'
-
-      carousel.carouselBootstrap4('dispose')
+      new bootstrap.Carousel(carousel, {
+        interval: false
+      })
       var qualifiedSlides = 0
       var perPage = parseInt(carousel.attr(carouselPerPageAttributeName)) || 1
       var slides = carousel.find(carouselSlideSelector)
@@ -154,8 +155,9 @@ Spree.ready(function($) {
 
       // If there are no images to show after picking a variant, disable the carousel.
       carousel.toggleClass(carouselEmptyClass, enabledSlidesCount === 0)
-
-      carousel.carouselBootstrap4()
+      new bootstrap.Carousel(carousel, {
+        interval: false
+      })
       carousel.trigger('thumbnails:ready')
     }
 

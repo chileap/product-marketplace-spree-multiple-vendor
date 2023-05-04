@@ -1,31 +1,25 @@
 <% if (defined?(should_render_store_chooser?) && should_render_store_chooser?) || (defined?(should_render_internationalization_dropdown?) && should_render_internationalization_dropdown?) %>
-  <li class="d-none d-xl-block internationalization-options">
-    <div class="dropdown navbar-right-dropdown">
-      <button id="internationalization-button-desktop" type="button" data-toggle="dropdown" class="navbar-right-dropdown-toggle" aria-label="<%= Spree.t(:internationalization) %>">
-        <%= icon(name: 'global',
-                classes: 'd-none d-xl-inline-block',
-                width: 41,
-                height: 36) %>
-        <%= icon(name: 'arrow-down',
-                classes: 'd-inline-block d-xl-none',
-                width: 15,
-                height: 15) %>
-      </button>
+  <div class="dropdown navbar-right-dropdown">
+    <button id="internationalization-button-desktop" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navbar-right-dropdown-toggle" aria-label="<%= Spree.t(:internationalization) %>">
+      <%= locale_full_name(I18n.locale) %> | <%= currency_presentation(current_currency).first %>
+    </button>
 
-      <div id="internationalization-options-desktop" class="dropdown-menu dropdown-menu-right text-left">
-        <% if (defined?(should_render_store_chooser?) && should_render_store_chooser?) %>
-          <% stores.each do |store| %>
-            <div class="pl-3 d-flex justify-content-between align-items-center stores-list">
-              <%= country_flag_icon(store_country_iso(store)) %>
-              <%= store_link(store, class: "dropdown-item text-uppercase #{'font-weight-bold' if current_store == store}") %>
-            </div>
-          <% end %>
-        <% else %>
-          <%= render 'spree/shared/locale_dropdown' %>
-          <div class="dropdown-divider"></div>
-          <%= render 'spree/shared/currency_dropdown' %>
-        <% end %>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header align-items-center">
+            <h3 class="modal-title fs-5" id="exampleModalLabel">Update your settings</h3>
+            <button type="button" class="border-0 bg-transparent" data-bs-dismiss="modal" aria-label="Close">
+              <%= icon(name: 'close', width: 20, height: 20) %>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= render 'spree/shared/locale_dropdown' %>
+            <div class="dropdown-divider"></div>
+            <%= render 'spree/shared/currency_dropdown' %>
+          </div>
+        </div>
       </div>
     </div>
-  </li>
+  </div>
 <% end %>

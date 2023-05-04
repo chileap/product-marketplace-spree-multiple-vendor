@@ -5,7 +5,9 @@ Spree.fetchRelatedProducts = function (id, htmlContainer) {
     url: Spree.routes.product_related(id)
   }).done(function (data) {
     htmlContainer.html(data)
-    htmlContainer.find('.carousel').carouselBootstrap4()
+    new bootstrap.Carousel(htmlContainer.find('.carousel'), {
+      interval: false
+    })
   })
 }
 

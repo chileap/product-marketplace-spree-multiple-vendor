@@ -161,7 +161,7 @@
     }
 
     &-dropdown {
-      margin-left: -60px;
+      margin-left: 30px !important;
       &-ul {
         padding-inline-start: 0;
         &-li,
@@ -169,6 +169,10 @@
           list-style: none;
           a {
             color: $font-color;
+          }
+
+          &:hover {
+            background-color: #f5f5f5;
           }
         }
         &-li--active {
@@ -199,7 +203,6 @@
 
   &-pagination {
     display: flex;
-    justify-content: center;
     font-size: font-px-to-rem(16px);
     .first,
     .prev,
@@ -217,6 +220,7 @@
       height: 37px;
       text-align: center;
       line-height: 25px;
+      border-radius: 37px;
     }
     .page-item {
       &:not(.active) {
@@ -343,4 +347,10 @@
     height: 17.7px;
     width: 17.7px;
   }
+}
+
+.appears-ready {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
 }

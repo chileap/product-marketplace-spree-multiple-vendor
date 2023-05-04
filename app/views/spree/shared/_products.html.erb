@@ -5,10 +5,10 @@
 <% end %>
 
 <div class="col-md-12 col-lg-12" data-hook="homepage_products">
-  <div class="row">
+  <div class="row px-3">
     <% cache cache_key_for_products(products) do %>
       <% products.each_with_index do |product, index| %>
-        <div id="product_<%= product.id %>" class="col-sm-3 col-6 mb-3 mb-md-3 <%= index == 0 && (index + 1)%5 == 0 ? 'pl-0 pr-4' : 'pr-0 pl-4' %>">
+        <div id="product_<%= product.id %>" class="col-sm-3 col-6 mb-3 mb-md-3 px-2">
           <%= render 'spree/shared/product', product: product, image_class: 'product-component-plp-image' %>
         </div>
       <% end %>
@@ -16,8 +16,9 @@
   </div>
 
   <% if products.respond_to?(:total_pages) %>
-    <div class="row pl-md-4 pl-sm-4">
-      <div class="col-12">
+    <div class="row mt-4 pl-md-4 pl-sm-4">
+      <h2 class="appears-ready">There's so much more for you to discover</h2>
+      <div class="col-12 pl-0">
         <div class="plp-pagination d-none d-lg-flex">
           <%= paginate products, window: 2, theme: 'twitter-bootstrap-4' %>
         </div>
