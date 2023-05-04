@@ -19,12 +19,7 @@
                 data-product-carousel-to-slide="<%= image_index %>"
                 data-variant-is-master="<%= image.viewable_id == @product.master.id %>"
                 data-variant-id="<%= image.viewable_id %>">
-                <%= lazy_image(
-                  src: main_app.cdn_image_url(image.url(:pdp_thumbnail)),
-                  class: 'd-block w-100',
-                  alt: image.alt || @product.name,
-                  width: 57,
-                  height: 70) %>
+                <%= lazy_image( src: main_app.cdn_image_url(image.url(:pdp_thumbnail)), class: 'd-block w-100', alt: image.alt || @product.name, width: 57, height: 70) %>
               </div>
       <% if (image_index + 1) % per_page == 0 || (image_index + 1) == images.length %>
             </div>
@@ -34,29 +29,15 @@
     <% end %>
   </div>
   <% if images.length > per_page %>
-    <a
-      class="d-none d-sm-flex order-0 justify-content-center w-100 product-thumbnails-carousel-previous"
-      href="#<%= id %>"
-      role="button"
-      data-slide="prev">
+    <a class="d-none d-sm-flex order-0 justify-content-center w-100 product-thumbnails-carousel-previous" href="#<%= id %>" role="button" data-slide="prev">
       <span aria-hidden="true">
-        <%= icon(name: 'arrow-right',
-                classes: 'spree-icon-arrow spree-icon-arrow-up',
-                width: 16,
-                height: 16) %>
+        <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-up', width: 16, height: 16) %>
       </span>
       <span class="sr-only"><%= Spree.t(:previous) %></span>
     </a>
-    <a
-      class="d-none d-sm-flex order-2 justify-content-center w-100 product-thumbnails-carousel-next"
-      href="#<%= id %>"
-      role="button"
-      data-slide="next">
+    <a class="d-none d-sm-flex order-2 justify-content-center w-100 product-thumbnails-carousel-next" href="#<%= id %>" role="button" data-slide="next">
       <span aria-hidden="true">
-        <%= icon(name: 'arrow-right',
-                classes: 'spree-icon-arrow spree-icon-arrow-down',
-                width: 16,
-                height: 16) %>
+        <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-down', width: 16, height: 16) %>
       </span>
       <span class="sr-only"><%= Spree.t(:next) %></span>
     </a>

@@ -1,3 +1,8 @@
+.navbar-brand {
+  font-size: 1.5rem;
+  margin-right: 0;
+}
+
 .navbar-right {
   li + li {
     margin-left: calc-spacer(2);
@@ -21,22 +26,14 @@
   }
   .account-icon {
     svg {
-      width: 27.6px;
+      width: 24px;
       height: 24px;
-      @include media-breakpoint-up(xl) {
-        width: 41.4px;
-        height: 36px;
-      }
     }
   }
   .search-icons {
     svg {
       width: 24px;
       height: 24px;
-      @include media-breakpoint-up(xl) {
-        width: 36px;
-        height: 36px;
-      }
     }
   }
   &-search-menu {
@@ -92,4 +89,50 @@
       }
     }
   }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid $global-border-style;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.wt-icon {
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+}
+
+.wt-circle {
+  border-radius: 50% !important;
+  overflow: hidden !important;
+}
+
+.wt-text-title-01 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 0;
+}
+
+.wt-text-caption {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 0;
+}
+
+.wt-ml-xs-2 {
+  margin-left: 12px !important;
+}
+
+.wt-flex-grow-xs-1 {
+  flex-grow: 1 !important;
 }

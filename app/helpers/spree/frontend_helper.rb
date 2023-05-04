@@ -76,7 +76,7 @@ module Spree
         ) << content_tag(:meta, nil, itemprop: 'position', content: '1'), class: 'active', itemscope: 'itemscope', itemtype: 'https://schema.org/ListItem', itemprop: 'itemListElement')
       end
       crumb_list = content_tag(:ol, raw(crumbs.flatten.map(&:mb_chars).join), class: 'breadcrumb', itemscope: 'itemscope', itemtype: 'https://schema.org/BreadcrumbList')
-      content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'col-12 mt-1 mt-sm-3 mt-lg-4', aria: { label: Spree.t(:breadcrumbs) })
+      content_tag(:nav, crumb_list, id: 'breadcrumbs', class: 'col-12 mt-1 mt-sm-3', aria: { label: Spree.t(:breadcrumbs) })
     end
 
     def class_for(flash_type)
@@ -138,7 +138,7 @@ module Spree
         next if msg_type.blank? || excluded_types.include?(msg_type)
 
         flashes << content_tag(:div, class: "alert alert-#{class_for(msg_type)} mb-0") do
-          content_tag(:button, '&times;'.html_safe, class: 'close', data: { dismiss: 'alert', hidden: true }) +
+          content_tag(:button, '&times;'.html_safe, class: 'close', data: { "bs-dismiss": 'alert', hidden: true }) +
             content_tag(:span, text)
         end
       end
@@ -185,7 +185,7 @@ module Spree
         srcset: carousel_image_source_set(image),
         alt: product.name,
         width: image_style&.dig(:width) || 278,
-        height: image_style&.dig(:height) || 371,
+        height: image_style&.dig(:height) || 300,
         class: "product-component-image d-block mw-100 #{image_class}"
       )
     end
@@ -436,6 +436,27 @@ module Spree
           base_cache_key,
           @taxon&.permalink
         ].flatten.compact
+      end
+    end
+
+    def cache_key_for_products(products = @products, additional_cache_key = nil)
+      max_updated_at = (products.except(:group, :order).maximum(:updated_at) || Time.zone.today).to_s(:number)
+      products_cache_keys = "spree/products/#{products.map(&:id).join('-')}-#{params[:page]}-#{params[:sort_by]}-#{max_updated_at}-#{@taxon&.id}"
+      (common_product_cache_keys + [products_cache_keys] + [additional_cache_key]).compact.join('/')
+    end
+
+    def common_product_cache_keys
+      base_cache_key + price_options_cache_key
+    end
+
+    def base_cache_key
+      [I18n.locale, current_currency, defined?(try_spree_current_user) && try_spree_current_user.present?,
+       defined?(try_spree_current_user) && try_spree_current_user.try(:has_spree_role?, 'admin')]
+    end
+
+    def price_options_cache_key
+      current_price_options.sort.map(&:last).map do |value|
+        value.try(:cache_key) || value
       end
     end
   end

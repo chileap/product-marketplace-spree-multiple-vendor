@@ -51,4 +51,9 @@
     -moz-appearance:textfield;
     appearance: none;
   }
+  input[type=number]:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: theme-color("borders");
+  }
 }

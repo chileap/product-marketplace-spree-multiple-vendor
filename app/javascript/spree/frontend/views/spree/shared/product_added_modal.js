@@ -24,12 +24,11 @@ Spree.showProductAddedModal = function(product, variant) {
     $modal.addClass(modalNoImageClass)
   }
 
-  $modal.modal()
+  new bootstrap.Modal($modal[0]).show()
 }
 
 Spree.hideProductAddedModal = function() {
   var modalSelector = '.product-added-modal'
   var $modal = $(modalSelector)
-
-  $modal.modal('hide')
+  new bootstrap.Modal($modal[0]).hide()
 }

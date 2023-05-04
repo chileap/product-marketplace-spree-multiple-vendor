@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       root to: 'home#index'
 
       resources :products, only: [:index, :show], path: '/products'
+      resources :vendors, only: [:show], path: '/vendors'
 
       get '/products/:id/related', to: 'products#related'
       # route globbing for pretty nested taxon and product paths

@@ -23,7 +23,7 @@ module Spree
           authorize! :create, Spree::Vendor
           @vendor = Spree::Vendor.new(vendor_params)
           if @vendor.save
-            render :show, status: 201
+            render :show, status: :created
           else
             invalid_resource!(@vendor)
           end
@@ -43,7 +43,7 @@ module Spree
           @vendor = scope.find(params[:id])
           authorize! :destroy, @vendor
           @vendor.destroy
-          render plain: nil, status: 204
+          render plain: nil, status: :no_content
         end
 
         private

@@ -1,27 +1,29 @@
-document.addEventListener('turbo:load', function(event) {
-  // this condition checks if this is the first initial load of turbo application
-  if (!event.detail.timing.visitStart) {
-    var currencySelect = document.querySelectorAll('select[name=switch_to_currency]')
+Spree.ready(function () {
+  var currencySelect = document.querySelectorAll('select[name=switch_to_currency]')
 
-    if (currencySelect.length) {
-      currencySelect.forEach(function (element) {
-        element.addEventListener('change', function () {
-          var newCurrency = this.value
+  if (currencySelect.length) {
+    currencySelect.forEach(function (element) {
+      element.addEventListener('change', function () {
+        var newCurrency = this.value
+        console.log(newCurrency)
 
-          // we need to make AJAX call here to the backend to set currency in session
-          fetch(Spree.routes.set_currency(newCurrency), {
-            method: 'GET'
-          }).then(function (response) {
-            switch (response.status) {
-              case 200:
-                Spree.setCurrency(newCurrency)
-                document.getElementById('internationalization-options-desktop').classList.remove('show')
-                break
-            }
-          })
+        // we need to make AJAX call here to the backend to set currency in session
+        fetch(Spree.routes.set_currency(newCurrency), {
+          method: 'GET'
+        }).then(function (response) {
+          switch (response.status) {
+            case 200:
+              Spree.setCurrency(newCurrency)
+
+              const modalEl = document.getElementById('internationalization-options-desktop');
+              const modal = bootstrap.Modal.getInstance(modalEl);
+              console.log(modal)
+              if (modal) modal.hide()
+              break
+          }
         })
       })
-    }
+    })
   }
 })
 

@@ -1,9 +1,9 @@
 <% cache spree_menu_cache_key('footer') do %>
   <footer id="footer" class="pt-2 mx-auto border-top footer-spree">
-    <div class="container">
-      <div class="row d-xl-flex justify-content-xl-between pb-xl-5">
-        <div class="d-flex d-xl-block flex-xl-grow-0 col-xl-4">
-          <figure class="logo mx-auto mx-xl-0 pt-xl-2 pb-xl-1">
+    <div class="container-fluid px-5">
+      <div class="row d-flex justify-content-xl-between pb-xl-2 px-0">
+        <div class="d-flex d-xl-block flex-xl-grow-0 col-xl-4 pl-0">
+          <figure class="logo pt-xl-2 pb-xl-1">
             <%= logo %>
           </figure>
           <% if current_store.description %>
@@ -12,11 +12,11 @@
             </div>
           <% end %>
         </div>
-        <div class="py-xl-2 col-xl-3 offset-xl-1">
-          <div class="d-none d-xl-block py-3 footer-spree-label">
+        <div class="py-xl-5">
+          <div class="d-block py-3 footer-spree-label">
             <%= Spree.t(:contact_us) %>
           </div>
-          <div class="d-flex flex-column align-items-center align-items-xl-start pb-3 flex-grow-2 footer-spree-contact-note">
+          <div class="d-flex flex-column pb-3 flex-grow-2 footer-spree-contact-note">
             <div>
               <strong>Product Mall</strong>
               <br>
@@ -33,11 +33,10 @@
           </div>
         </div>
       </div>
-      <div class="row d-none d-xl-flex border-top pt-5 text-uppercase footer-spree-menu-links">
-
+      <div class="row d-flex border-top pt-3 text-uppercase footer-spree-menu-links">
         <% if spree_menu('footer').present? %>
           <% spree_menu('footer').children.each do |parent| %>
-            <div class="col-3 mb-5">
+            <div class="col-3 mb-5 px-0">
               <div class="footer-spree-label">
                 <% if parent.container? %>
                   <%= parent.name %>

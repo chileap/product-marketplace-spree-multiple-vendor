@@ -1,12 +1,17 @@
 // we're keeping this file for legacy installations relying on it
 $grid-gutter-width: 19px;
 $body-color: $font-color;
+
+$primary-color: #2a5180;
+$secondary-color: #644827;
+$info-color: #417B59;
+
 $theme-colors: (
   // standard bootstrap colors
   "primary": $primary-color,
   "secondary": $secondary-color,
   "danger": #f53737,
-  "info": #999999,
+  "info": $info-color,
   "warning": #ffc107,
   "light-secondary": #999999,
   "borders": $second-global-border,

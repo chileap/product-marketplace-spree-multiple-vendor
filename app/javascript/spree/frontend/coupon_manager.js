@@ -91,3 +91,5 @@ CouponManager.prototype.sendRemoveRequest = function () {
     this.couponStatus.prepend(this.couponErrorIcon)
   }.bind(this))
 }
+
+window.CouponManager = CouponManager;

@@ -42,8 +42,6 @@ Spree.ready(function($) {
       touchStartX = 0
       touchCurrentY = 0
       touchStartY = 0
-
-      carouselInstance.touchDeltaX = 0
     })
   }
 

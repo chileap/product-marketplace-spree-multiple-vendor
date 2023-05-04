@@ -1,11 +1,13 @@
-//= require spree/frontend/viewport
+import "./viewport";
 
 Spree.fetchProductCarousel = function (taxonId, htmlContainer) {
   return $.ajax({
     url: Spree.routes.product_carousel(taxonId)
   }).done(function (data) {
     htmlContainer.html(data);
-    htmlContainer.find('.carousel').carouselBootstrap4()
+    new bootstrap.Carousel(htmlContainer.find('.carousel')[0], {
+      interval: false
+    });
   })
 }
 

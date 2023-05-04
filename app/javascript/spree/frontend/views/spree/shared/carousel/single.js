@@ -23,10 +23,9 @@ Spree.ready(function($) {
     var enabledCarouselIndicatorClass =
       'product-carousel-indicators-indicator--visible'
     var activeCarouselIndicatorClass = 'active'
-    var carouselIndicatorSlidetoAttributeName = 'data-slide-to'
+    var carouselIndicatorSlidetoAttributeName = 'data-bs-slide-to'
 
     Spree.showSingleCarouselVariantImages = function($carousel, variantId) {
-      $carousel.carouselBootstrap4('dispose')
       var oldActiveQualifiedIndex = null
       var $firstQualifyingSlide = null
       var qualifiedSlides = 0
@@ -35,55 +34,53 @@ Spree.ready(function($) {
       )
       var $carouselItemsContainer = $carousel.find(carouselItemsContainerSelector)
       var $carouselIndicators = $carousel.find(carouselIndicatorSelector)
-      $carousel
-        .find(carouselItemSelector)
-        .each(function(itemIndex, slideElement) {
-          var $slide = $(slideElement)
-          var qualifies =
-            $slide.attr(variantIdAttributeName) === variantId ||
-            $slide.attr(isMasterVariantAttributeName) === 'true'
-          var $slideIndicator = $carouselIndicators.eq(itemIndex)
+      $carousel.find(carouselItemSelector).each(function(itemIndex, slideElement) {
+        var $slide = $(slideElement)
+        var qualifies =
+          $slide.attr(variantIdAttributeName) === variantId ||
+          $slide.attr(isMasterVariantAttributeName) === 'true'
+        var $slideIndicator = $carouselIndicators.eq(itemIndex)
 
-          if (qualifies) {
-            qualifiedSlides += 1
-            // Switch indicator slide to index based on picked variant.
-            $slideIndicator.attr(
-              carouselIndicatorSlidetoAttributeName,
-              qualifiedSlides - 1
-            )
-          } else {
-            $slideIndicator.detach()
-            $carouselIndicatorsContainer.append($slideIndicator)
+        if (qualifies) {
+          qualifiedSlides += 1
+          // Switch indicator slide to index based on picked variant.
+          $slideIndicator.attr(
+            carouselIndicatorSlidetoAttributeName,
+            qualifiedSlides - 1
+          )
+        } else {
+          $slideIndicator.detach()
+          $carouselIndicatorsContainer.append($slideIndicator)
 
-            $slide.detach()
-            $carouselItemsContainer.append($slide)
+          $slide.detach()
+          $carouselItemsContainer.append($slide)
+        }
+
+        // Switch item visibility in the carousel based on picked variant.
+        $slide.toggleClass(enabledCarouselItemClass, qualifies)
+        // Switch indicator visibility in the carousel based on picked variant.
+        $slideIndicator.toggleClass(enabledCarouselIndicatorClass, qualifies)
+
+        // Safari doesn't correctly calculate width of $slideIndicator after page loading.
+        // w-100 class makes Safari work as expected. For visible images we don't need this class anymore.
+        $slideIndicator.find('img').toggleClass('w-100', !qualifies)
+
+        $slideIndicator.removeClass(activeCarouselIndicatorClass)
+
+        // Select an active image included in the new list of images for selected variant.
+        if (qualifies) {
+          if ($slide.hasClass(activeCarouselItemClass)) {
+            // Use the current active slide if it's still active after changing the variant.
+            oldActiveQualifiedIndex = qualifiedSlides - 1
           }
 
-          // Switch item visibility in the carousel based on picked variant.
-          $slide.toggleClass(enabledCarouselItemClass, qualifies)
-          // Switch indicator visibility in the carousel based on picked variant.
-          $slideIndicator.toggleClass(enabledCarouselIndicatorClass, qualifies)
-
-          // Safari doesn't correctly calculate width of $slideIndicator after page loading.
-          // w-100 class makes Safari work as expected. For visible images we don't need this class anymore.
-          $slideIndicator.find('img').toggleClass('w-100', !qualifies)
-
-          $slideIndicator.removeClass(activeCarouselIndicatorClass)
-
-          // Select an active image included in the new list of images for selected variant.
-          if (qualifies) {
-            if ($slide.hasClass(activeCarouselItemClass)) {
-              // Use the current active slide if it's still active after changing the variant.
-              oldActiveQualifiedIndex = qualifiedSlides - 1
-            }
-
-            if ($firstQualifyingSlide === null) {
-              $firstQualifyingSlide = $slide
-            }
-          } else {
-            $slide.removeClass(activeCarouselItemClass)
+          if ($firstQualifyingSlide === null) {
+            $firstQualifyingSlide = $slide
           }
-        })
+        } else {
+          $slide.removeClass(activeCarouselItemClass)
+        }
+      })
 
       if (qualifiedSlides === 0) {
         // There are no images to show after picking a variant. Disable the carousel.
@@ -106,8 +103,6 @@ Spree.ready(function($) {
             .eq(oldActiveQualifiedIndex)
             .addClass(activeCarouselIndicatorClass)
         }
-
-        $carousel.carouselBootstrap4()
 
         setTimeout(function() {
           // Add delay to allow other carousels to adjust their slides after a variant is picked before syncing slides.

@@ -42,13 +42,9 @@ Spree.ready(function($) {
               }
             ).perPage
 
-            $candidateCarousel.carouselBootstrap4(
-              Math.floor((slideIndex * invokedPerPage) / element.perPage)
-            )
+            new bootstrap.Carousel($candidateCarousel).to(Math.floor((slideIndex * invokedPerPage) / element.perPage))
           } else {
-            $candidateCarousel.carouselBootstrap4(
-              Math.floor(slideIndex / element.perPage)
-            )
+            new bootstrap.Carousel($candidateCarousel).to(Math.floor(Math.floor(slideIndex / element.perPage)))
           }
         })
       }
@@ -61,7 +57,7 @@ Spree.ready(function($) {
   ) {
     var $carousel = $(carouselElement)
 
-    $carousel.carouselBootstrap4()
+    new bootstrap.Carousel($carousel).to(0);
 
     var elementGroupIdentifier = $carousel.attr(
       carouselGroupIdentifierAttributeName
@@ -112,18 +108,14 @@ Spree.ready(function($) {
     Spree.goToCarouselSlide($invokedCarousel, toSlideOnPageIndex, false, false)
   })
 
-  $('body').on(
-    'slide.bs.carousel',
-    '[' + carouselGroupIdentifierAttributeName + ']',
-    function(event) {
-      var invokedCarouselElement = event.relatedTarget.closest(
-        '[' + carouselGroupIdentifierAttributeName + ']'
-      )
-      var $invokedCarousel = $(invokedCarouselElement)
-      var toSlideIndex = event.to
-      Spree.goToCarouselSlide($invokedCarousel, toSlideIndex, true, true)
-    }
-  )
-
-  $('.carousel').carouselBootstrap4()
+  document.addEventListener('slide.bs.carousel', event => {
+    var invokedCarouselElement = event.relatedTarget.closest(
+      '[' + carouselGroupIdentifierAttributeName + ']'
+    )
+    var $invokedCarousel = $(invokedCarouselElement)
+    var toSlideIndex = event.to
+    Spree.goToCarouselSlide($invokedCarousel, toSlideIndex, true, true)
+  })
+  const carousel = $('.carousel');
+  if (carousel.length) new bootstrap.Carousel(carousel[0]).to(0);
 })

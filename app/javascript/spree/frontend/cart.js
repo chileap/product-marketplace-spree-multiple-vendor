@@ -1,4 +1,4 @@
-//= require spree/frontend/coupon_manager
+import "./coupon_manager"
 
 Spree.ready(function ($) {
   var formUpdateCart = $('form#update-cart')

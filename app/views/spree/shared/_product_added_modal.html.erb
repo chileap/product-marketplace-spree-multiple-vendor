@@ -2,16 +2,10 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header pb-0 px-4 pt-4 border-0">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">
-            <%= icon(name: 'close',
-                     classes: 'd-block d-lg-none',
-                     width: 16,
-                     height: 16) %>
-            <%= icon(name: 'close',
-                     classes: 'd-none d-lg-block',
-                     width: 30,
-                     height: 30) %>
+            <%= icon(name: 'close', classes: 'd-block d-lg-none', width: 16, height: 16) %>
+            <%= icon(name: 'close', classes: 'd-none d-lg-block', width: 30, height: 30) %>
           </span>
         </button>
       </div>
@@ -19,14 +13,8 @@
         <div class="container-fluid">
           <div class="row justify-content-center align-items-center">
             <div class="col-md-2 d-flex w-auto">
-              <%= icon(name: 'check-mark-circle',
-                       classes: 'd-block d-lg-none mx-auto product-added-modal-check-mark',
-                       width: 38,
-                       height: 38) %>
-              <%= icon(name: 'check-mark-circle',
-                       classes: 'd-none d-lg-block mx-auto product-added-modal-check-mark',
-                       width: 68,
-                       height: 68) %>
+              <%= icon(name: 'check-mark-circle', classes: 'd-block d-lg-none mx-auto product-added-modal-check-mark', width: 38, height: 38) %>
+              <%= icon(name: 'check-mark-circle', classes: 'd-none d-lg-block mx-auto product-added-modal-check-mark', width: 68, height: 68) %>
             </div>
             <div class="col-8 col-sm-6 col-lg-4 product-added-modal-message">
               <%= Spree.t(:added_to_cart) %>

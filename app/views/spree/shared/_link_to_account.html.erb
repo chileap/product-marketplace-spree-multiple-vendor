@@ -1,10 +1,62 @@
 <% if try_spree_current_user %>
-  <%= link_to Spree.t(:my_account).upcase, spree.account_path, class: 'dropdown-item' if spree.respond_to?(:account_path) %>
-  <% if spree.respond_to?(:admin_orders_path) %>
-    <%= link_to Spree.t('nav_bar.admin_panel'), spree.admin_orders_path(locale: nil), class: 'dropdown-item text-uppercase' if try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any? %>
+  <li class="ml-0">
+    <%= link_to spree.account_path, class: 'dropdown-item menu-item' do %>
+      <div class="wt-icon">
+        <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
+      </div>
+      <div class="wt-ml-xs-2 wt-flex-grow-xs-1">
+        <h4 class="wt-text-title-01 wt-m-xs-0" aria-label="View your profile">
+          <%= try_spree_current_user.email %>
+        </h4>
+        <p class="wt-text-caption wt-m-xs-0" aria-hidden="true">View your profile</p>
+      </div>
+    <% end %>
+  </li>
+
+  <li class="ml-0">
+    <%= link_to spree.edit_user_path(spree_current_user), class: 'dropdown-item menu-item' do %>
+      <div class="wt-icon">
+        <%= icon(name: 'gear', classes: 'd-inline-block', width: 24, height: 24) %>
+      </div>
+      <div class="wt-ml-xs-2 wt-flex-grow-xs-1">
+        <p class="wt-text-caption wt-display-inline wt-m-xs-0">
+          Account Settings
+        </p>
+      </div>
+    <% end %>
+  </li>
+
+  <% if spree.respond_to?(:admin_orders_path) && (try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
+    <li class="ml-0">
+      <%= link_to spree.admin_orders_path(locale: nil), class: 'dropdown-item menu-item' do %>
+        <div class="wt-icon">
+          <%= icon(name: 'shield', classes: 'd-inline-block', width: 24, height: 24) %>
+        </div>
+        <div class="wt-ml-xs-2 wt-flex-grow-xs-1">
+          <p class="wt-text-caption wt-display-inline wt-m-xs-0">Admin Panel</p>
+        </div>
+      <% end %>
+    </li>
   <% end %>
-  <%= link_to Spree.t(:logout).upcase, spree_logout_path, class: 'dropdown-item', method: :get if defined?(spree_logout_path) %>
+
+  <li class="ml-0"><hr class="dropdown-divider"></li>
+  <li class="ml-0">
+    <%= link_to spree_logout_path, class: 'dropdown-item menu-item', method: :get do %>
+      <div>
+        <span class="wt-icon">
+          <%= icon(name: 'logout', classes: 'd-inline-block', width: 24, height: 24) %>
+        </span>
+      </div>
+      <div class="wt-ml-xs-2 wt-flex-grow-xs-1">
+        <p class="wt-text-caption wt-display-inline wt-m-xs-0">Sign out</p>
+      </div>
+    <% end %>
+  </li>
 <% else %>
-  <%= link_to Spree.t(:login).upcase, spree_login_path, class: 'dropdown-item' if defined?(spree_login_path) %>
-  <%= link_to Spree.t(:sign_up).upcase, spree_signup_path, class: 'dropdown-item' if defined?(spree_signup_path) %>
+  <li class="ml-0">
+    <%= link_to Spree.t(:login).upcase, spree_login_path, class: 'dropdown-item' if defined?(spree_login_path) %>
+  </li>
+  <li class="ml-0">
+    <%= link_to Spree.t(:sign_up).upcase, spree_signup_path, class: 'dropdown-item' if defined?(spree_signup_path) %>
+  </li>
 <% end %>

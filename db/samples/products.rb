@@ -26,11 +26,11 @@ PRODUCTS.each do |(parent_name, taxon_name, product_name)|
     product.available_on = Time.zone.now
     product.make_active_at = Time.zone.now
     product.status = 'active'
-    if parent_name == 'Women' and %w[Dresses Skirts].include?(taxon_name)
-      product.option_types = [color, length, size]
-    else
-      product.option_types = [color, size]
-    end
+    product.option_types = if parent_name == 'Women' && %w[Dresses Skirts].include?(taxon_name)
+                             [color, length, size]
+                           else
+                             [color, size]
+                           end
     product.shipping_category = default_shipping_category
     product.tax_category = clothing_tax_category
     product.sku = [taxon_name.delete(' '), product_name.delete(' '), product.price].join('_')
@@ -41,7 +41,7 @@ PRODUCTS.each do |(parent_name, taxon_name, product_name)|
   end
 end
 
-Spree::Taxon.where(name: ['Bestsellers', 'New', 'Trending', 'Streetstyle', 'Summer Sale', "Summer #{Date.today.year}", '30% Off']).each do |taxon|
+Spree::Taxon.where(name: ['Bestsellers', 'New', 'Trending', 'Streetstyle', 'Summer Sale', "Summer #{Time.zone.today.year}", '30% Off']).each do |taxon|
   next if taxon.products.any?
 
   taxon.products << Spree::Product.all.sample(30)
