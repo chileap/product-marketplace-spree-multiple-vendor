@@ -29,7 +29,7 @@ MENUS.each do |menu|
     pants = 'Pants'
 
     promo_a_name = 'New Collection'
-    promo_a_subtitle = "Summer #{Date.today.year}"
+    promo_a_subtitle = "Summer #{Time.zone.today.year}"
 
     promo_b_name = 'Special Offers'
     promo_b_subtitle = 'Get up to 30% off'
@@ -54,7 +54,7 @@ MENUS.each do |menu|
     pants = 'Pantalon'
 
     promo_a_name = 'Nouvelle collection'
-    promo_a_subtitle = "Été #{Date.today.year}"
+    promo_a_subtitle = "Été #{Time.zone.today.year}"
 
     promo_b_name = 'Offres spéciales'
     promo_b_subtitle = "Obtenez jusqu'à 30% de réduction"
@@ -79,7 +79,7 @@ MENUS.each do |menu|
     pants = 'Hose'
 
     promo_a_name = 'Neue Kollektion'
-    promo_a_subtitle = "Sommer #{Date.today.year}"
+    promo_a_subtitle = "Sommer #{Time.zone.today.year}"
 
     promo_b_name = 'Sonderangebote'
     promo_b_subtitle = 'Erhalten Sie bis zu 30% Rabatt'
@@ -104,7 +104,7 @@ MENUS.each do |menu|
     pants = 'Pantalones'
 
     promo_a_name = 'Nueva colección'
-    promo_a_subtitle = "Verano #{Date.today.year}"
+    promo_a_subtitle = "Verano #{Time.zone.today.year}"
 
     promo_b_name = 'Ofertas especiales'
     promo_b_subtitle = 'Obtenga hasta un 30% de descuento'
@@ -207,7 +207,7 @@ MENUS.each do |menu|
     promos = []
   end
 
-  summer = Spree::Taxon.find_by!(permalink: "categories/new-collection/summer-#{Date.today.year}")
+  summer = Spree::Taxon.find_by!(permalink: "categories/new-collection/summer-#{Time.zone.today.year}")
   offers = Spree::Taxon.find_by!(permalink: 'categories/special-offers/30-percent-off')
 
   #####################

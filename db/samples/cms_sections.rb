@@ -27,7 +27,7 @@ PAGES.each do |page|
     button_txt = 'Compra ahora'
   end
 
-  summer_collection = Spree::Taxon.find_by!(permalink: "categories/new-collection/summer-#{Date.today.year}")
+  summer_collection = Spree::Taxon.find_by!(permalink: "categories/new-collection/summer-#{Time.zone.today.year}")
 
   hero_section = Spree::CmsSection.where(
     name: name_txt,
@@ -124,22 +124,22 @@ PAGES.each do |page|
   case page.locale
   when 'en'
     name_txt = 'Fashion Trends'
-    title_txt = "Summer #{Date.today.year}"
+    title_txt = "Summer #{Time.zone.today.year}"
     subtitle_txt = 'Fashion Trends'
     button_txt = 'Read More'
   when 'de'
     name_txt = 'Modetrends'
-    title_txt = "Sommer #{Date.today.year}"
+    title_txt = "Sommer #{Time.zone.today.year}"
     subtitle_txt = 'Modetrends'
     button_txt = 'Weiterlesen'
   when 'fr'
     name_txt = 'Tendances de la mode'
-    title_txt = "Été #{Date.today.year}"
+    title_txt = "Été #{Time.zone.today.year}"
     subtitle_txt = 'Tendances de la mode'
     button_txt = 'Lire la suite'
   when 'es'
     name_txt = 'Tendencias de la moda'
-    title_txt = "Verano #{Date.today.year}"
+    title_txt = "Verano #{Time.zone.today.year}"
     subtitle_txt = 'Tendencias de la moda'
     button_txt = 'Lee mas'
   end
