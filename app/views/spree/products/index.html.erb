@@ -10,14 +10,14 @@
     <% end %>
   <% else %>
     <% if params[:keywords] %>
-      <div class="container-fluid px-5 d-md-flex pt-md-5">
+      <div class="container-lg px-4 d-md-flex pt-md-5">
         <div class="plp-results-text text-uppercase mx-md-auto py-md-5">
           <%= "#{@products.total_count} #{Spree.t('plp.results_for')} '#{params[:keywords].upcase}'" %>
         </div>
       </div>
     <% elsif not @taxon %>
       <div id="no-taxon-banner">
-        <div class="container-fluid">
+        <div class="container">
           <%= lazy_image(src: asset_path('homepage/products.jpg'), alt: 'products-banner', width: 1110, height: 300, class: 'w-100 d-none d-md-block') %>
         </div>
       </div>

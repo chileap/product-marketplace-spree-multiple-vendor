@@ -62,7 +62,7 @@ module Spree
       elsif order
         authorize! :edit, order, cookies.signed[:token]
       else
-        authorize! :create, Spree::Order
+        authorize! :cart, Spree::Order
       end
     end
 

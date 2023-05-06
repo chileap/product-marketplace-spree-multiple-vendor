@@ -1,4 +1,12 @@
 <ul id="nav-bar" class="nav align-items-center d-flex flex-nowrap justify-content-end navbar-right" data-turbo-permanent data-turbo-permanent>
+  <% if try_spree_current_user && spree_current_user.vendors.present? %>
+    <li>
+      <%= link_to shop_path(spree_current_user.vendors.first) do %>
+        <%= icon(name: 'store', classes: 'd-inline-block', width: 24, height: 24) %>
+      <% end %>
+    </li>
+  <% end %>
+
   <% if defined?(spree.account_link_path) %>
     <li>
       <div class="dropdown navbar-right-dropdown">
@@ -6,7 +14,7 @@
           <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
         </button>
 
-        <ul id="link-to-account" class="dropdown-menu dropdown-menu-end rounded mt-2">
+        <ul id="link-to-account" class="dropdown-menu mt-2">
           <%= render 'spree/shared/link_to_account'  %>
         </ul>
       </div>

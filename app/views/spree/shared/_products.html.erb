@@ -5,7 +5,7 @@
 <% end %>
 
 <div class="col-md-12 col-lg-12" data-hook="homepage_products">
-  <div class="row px-3">
+  <div class="row">
     <% cache cache_key_for_products(products) do %>
       <% products.each_with_index do |product, index| %>
         <div id="product_<%= product.id %>" class="col-sm-3 col-6 mb-3 mb-md-3 px-2">
@@ -15,10 +15,10 @@
     <% end %>
   </div>
 
-  <% if products.respond_to?(:total_pages) %>
-    <div class="row mt-4 pl-md-4 pl-sm-4">
-      <h2 class="appears-ready">There's so much more for you to discover</h2>
-      <div class="col-12 pl-0">
+  <% if products.respond_to?(:total_pages) && products.total_pages > 1 %>
+    <div class="row mt-4">
+      <div class="col-12 ps-0">
+        <h2 class="appears-ready">There's so much more for you to discover</h2>
         <div class="plp-pagination d-none d-lg-flex">
           <%= paginate products, window: 2, theme: 'twitter-bootstrap-4' %>
         </div>

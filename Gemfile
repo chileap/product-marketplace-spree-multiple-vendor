@@ -100,6 +100,8 @@ gem 'spree_i18n', '~> 5.1'
 gem 'spree_multi_vendor', '~> 2.4.0'
 gem 'spree_dev_tools', require: false, group: %w[test development]
 
+gem 'simple_form'
+
 # Sentry Client
 gem 'sentry-raven'
 

@@ -1,5 +1,5 @@
 <% if (defined?(should_render_store_chooser?) && should_render_store_chooser?) || (defined?(should_render_internationalization_dropdown?) && should_render_internationalization_dropdown?) %>
-  <div class="dropdown navbar-right-dropdown">
+  <div class="dropdown navbar-right-dropdown row">
     <button id="internationalization-button-desktop" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navbar-right-dropdown-toggle" aria-label="<%= Spree.t(:internationalization) %>">
       <%= locale_full_name(I18n.locale) %> | <%= currency_presentation(current_currency).first %>
     </button>

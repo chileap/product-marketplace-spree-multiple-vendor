@@ -507,6 +507,9 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.11.0)
+    simple_form (5.2.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     simple_po_parser (1.1.6)
     simplecov (0.21.2)
       docile (~> 1.1)
@@ -744,6 +747,7 @@ DEPENDENCIES
   sendgrid-actionmailer
   sentry-raven
   sidekiq
+  simple_form
   spree (~> 4.5)
   spree_auth_devise (~> 4.5)
   spree_backend (~> 4.5)

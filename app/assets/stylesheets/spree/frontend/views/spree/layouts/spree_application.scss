@@ -40,7 +40,7 @@ body {
 .form-control:focus,
 .spree-flat-input {
   background: $input-background;
-  color: color-yiq($input-background);
+  color: color-contrast($input-background);
 }
 
 @include media-breakpoint-down(md) {

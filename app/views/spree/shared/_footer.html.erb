@@ -1,8 +1,8 @@
 <% cache spree_menu_cache_key('footer') do %>
   <footer id="footer" class="pt-2 mx-auto border-top footer-spree">
-    <div class="container-fluid px-5">
-      <div class="row d-flex justify-content-xl-between pb-xl-2 px-0">
-        <div class="d-flex d-xl-block flex-xl-grow-0 col-xl-4 pl-0">
+    <div class="container-fluid">
+      <div class="row flex-row justify-content-between pb-2 px-0">
+        <div class="d-block flex-grow-0 col-4 ps-0">
           <figure class="logo pt-xl-2 pb-xl-1">
             <%= logo %>
           </figure>
@@ -12,13 +12,13 @@
             </div>
           <% end %>
         </div>
-        <div class="py-xl-5">
+        <div class="py-0 d-flex flex-column col-2">
           <div class="d-block py-3 footer-spree-label">
             <%= Spree.t(:contact_us) %>
           </div>
           <div class="d-flex flex-column pb-3 flex-grow-2 footer-spree-contact-note">
             <div>
-              <strong>Product Mall</strong>
+              <strong><%= current_store.name %></strong>
               <br>
               <% if current_store.address %>
                 <%= current_store.address.html_safe %>
@@ -33,28 +33,42 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex border-top pt-3 text-uppercase footer-spree-menu-links">
-        <% if spree_menu('footer').present? %>
-          <% spree_menu('footer').children.each do |parent| %>
-            <div class="col-3 mb-5 px-0">
-              <div class="footer-spree-label">
-                <% if parent.container? %>
-                  <%= parent.name %>
-                <% else %>
-                  <%= spree_nav_link_tag(parent) %>
-                <% end %>
-              </div>
-              <% parent.children.each do |child| %>
-                <div class="pt-2">
-                  <%= spree_nav_link_tag(child) %>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-        <% end %>
+      <div class="row d-flex border-top py-4 pb-5 mb-5 text-uppercase footer-spree-menu-links">
+        <div class="col-3 px-0">
+          <div class="footer-spree-label">
+            Shop
+          </div>
+          <div class="pt-2">
+            <%= link_to "Shop on #{current_store.name}", spree.nested_taxons_path('categories') %>
+          </div>
+        </div>
+
+        <div class="col-3 px-0">
+          <div class="footer-spree-label">
+            Sell
+          </div>
+          <div class="pt-2">
+            <%= link_to "Sell on #{current_store.name}", spree.root_path %>
+          </div>
+        </div>
+
+        <div class="col-3 px-0">
+          <div class="footer-spree-label">
+            About
+          </div>
+          <div class="pt-2">
+            <%= link_to current_store.name, spree.root_path %>
+          </div>
+          <div class="pt-2">
+            <%= link_to 'Terms of Use', spree.root_path %>
+          </div>
+          <div class="pt-2">
+            <%= link_to 'Privacy', spree.root_path %>
+          </div>
+        </div>
 
         <% if spree.respond_to?(:account_path) %>
-          <div class="col-3 mb-5">
+          <div class="col-3 px-0">
             <div class="footer-spree-label">
               <%= Spree.t('nav_bar.my_account') %>
             </div>

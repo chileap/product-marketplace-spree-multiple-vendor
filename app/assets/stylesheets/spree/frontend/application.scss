@@ -1,6 +1,6 @@
-@import "./variables/variables";
-@import "bootstrap";
-@import "./bootstrap-patches";
+@import 'bootstrap/scss/bootstrap-utilities';
+@import "./variables";
+@import "./bootstrap-customize";
 
 @import "./fonts";
 @import "./mixins";
@@ -10,7 +10,6 @@
 
 @import "./components-bootstrap/carousel";
 @import "./components-bootstrap/button";
-@import "./components-bootstrap/modal";
 @import "./components-bootstrap/alert";
 
 @import "./views/spree/shared/quantity_select";

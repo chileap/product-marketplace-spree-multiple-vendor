@@ -8,7 +8,7 @@ module Spree
 
         begin
           current_order.update(currency: new_currency)
-        rescue e
+        rescue StandardError => e
           flash[:error] = e.message
         end
       end

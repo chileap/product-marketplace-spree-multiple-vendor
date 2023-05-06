@@ -2,7 +2,7 @@
   &-border {
     stroke: $second-global-border;
     &--selected {
-      stroke: $secondary-color;
+      stroke: $secondary;
     }
   }
   &-label {
@@ -25,7 +25,7 @@
     input:focus-within {
       & + .color-select {
         .color-select-border {
-          stroke: $secondary-color;
+          stroke: $secondary;
         }
       }
     }

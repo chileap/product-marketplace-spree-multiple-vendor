@@ -2,14 +2,14 @@
   &-indicators {
     &-indicator {
       $size: 6px;
-      border: 1px solid theme-color("secondary");
-      background: theme-color("light");
+      border: 1px solid $secondary;
+      background: $light;
       width: $size;
       height: $size;
       flex: 0 0 auto;
       border-radius: 50%;
       &.active {
-        background: theme-color("secondary");
+        background: $secondary;
       }
     }
   }
