@@ -140,7 +140,8 @@
     justify-content: center;
     &-modal-opener {
       flex-basis: 430px;
-      cursor: image-url("picture-zoom.svg"), zoom-in;
+      $image-path: image-path("picture-zoom.svg");
+      cursor: url("#{$image-path}"), zoom-in;
     }
   }
 }
