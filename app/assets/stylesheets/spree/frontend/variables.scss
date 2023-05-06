@@ -1,0 +1,188 @@
+$body-bg: #000;
+$body-color: #111;
+
+$white: #fff;
+$black: #000;
+$primary: #2a5180;
+$secondary: #644827;
+$success: #5cb85c;
+$info: #5bc0de;
+$warning: #f0ad4e;
+$danger: #d9534f;
+
+$link-color: #2a5180;
+
+$font-color: #222;
+$dark-text: $font-color;
+
+$primary-background: #ffffff;
+$secondary-background: #f2f2f2;
+
+$light-background: $primary-background;
+
+$secondary-font-color: $font-color;
+
+$global-border-style: #e2e2e2;
+$second-global-border: #e2e2e2;
+$input-background: #ffffff;
+$header-background: $primary-background;
+$header-font-color: $font-color;
+$meganav-background: $primary-background;
+$meganav-font-color: $font-color;
+$min-contrast-ratio: 4.5;
+$min-contrast-ratio-large: 3;
+$min-contrast-ratio-small: 4.5;
+
+$color-contrast-dark: #ffffff;
+$color-contrast-light: #000000;
+
+$grid-gutter-width: 30px;
+$font-size-base-px: 16px;
+$font-size-base: $font-size-base-px * 1;
+$target-font-size-px: 16px;
+
+$footer-background: $primary-background;
+$footer-font-color: $font-color;
+
+$spree-header-max-width: 1440px;
+$spree-header-mobile-height: 110px;
+$spree-header-tablet-height: 110px;
+$spree-header-desktop-height: 110px;
+
+$thumbnails-carousel-single-height: 400px;
+$thumbnails-carousel-single-width: 400px;
+$thumbnails-carousel-single-mobile-height: 400px;
+$thumbnails-carousel-single-mobile-width: 400px;
+$thumbnails-carousel-single-tablet-height: 400px;
+$thumbnails-carousel-single-tablet-width: 400px;
+$thumbnails-carousel-single-desktop-height: 400px;
+$thumbnails-carousel-single-desktop-width: 400px;
+
+
+// helper variables
+$container-padding: $grid-gutter-width / 2;
+$photo-width-to-height-ratio: 30001/ 37500;
+$photo-width-to-height-ratio-zoom: 28015 / 37500;
+$thumbnails-carousel-single-height: 100% / $photo-width-to-height-ratio;
+$thumbnails-carousel-single-height-zoom: 100% / $photo-width-to-height-ratio-zoom;
+$zoom-height-breakpoint: calc(
+  650px / #{$photo-width-to-height-ratio-zoom} + 102px * 2
+);
+$spree-plp-filter-desktop-position: $spree-header-desktop-height + 77px;
+
+$theme-colors: (
+  // standard bootstrap colors
+  "primary": $primary,
+  "secondary": $secondary,
+  "danger": $danger,
+  "info": $info,
+  "warning": #ffc107,
+  "light-secondary": #999999,
+  "borders": $second-global-border,
+  "dark-borders": $global-border-style,
+  "light-background": $primary-background,
+  "dark-text": $font-color,
+  "overlay": rgba(76, 76, 76, 0.5),
+  "shadow": rgba(0, 0, 0, 0.16)
+);
+
+$spacer: 1rem !default;
+
+$spacers: (
+  0: 0,
+  1: ($spacer * .25),
+  2: ($spacer * .5),
+  3: $spacer,
+  4: ($spacer * 1.5),
+  5: ($spacer * 3)
+);
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 992px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-black: #000;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #2a5180;
+  --bs-secondary: #644827;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark-rgb: 33, 37, 41;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+  --bs-border-width: 1px;
+  --bs-border-style: solid;
+  --bs-border-color: #dee2e6;
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --bs-border-radius: 0.375rem;
+  --bs-border-radius-sm: 0.25rem;
+  --bs-border-radius-lg: 0.5rem;
+  --bs-border-radius-xl: 1rem;
+  --bs-border-radius-2xl: 2rem;
+  --bs-border-radius-pill: 50rem;
+  --bs-link-color: #2a5180;
+  --bs-link-hover-color: #2a5180ab;
+  --bs-code-color: #d63384;
+  --bs-highlight-bg: #fff3cd;
+  --bs-dropdown-padding-x: 0;
+  --bs-dropdown-padding-y: 0;
+  --bs-dropdown-border-radius: 0;
+  --bs-pagination-active-bg: #2a5180;
+}

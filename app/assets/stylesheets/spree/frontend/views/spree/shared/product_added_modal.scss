@@ -1,7 +1,7 @@
 .product-added-modal {
   $self: &;
   &-check-mark {
-    color: $secondary-color;
+    color: $secondary;
   }
   &-message {
     font-size: font-px-to-rem(20px);

@@ -20,7 +20,7 @@ content_for :head do
 end
 %>
 
-<div id="checkout" class="container checkout" data-hook>
+<div id="checkout" class="container-fluid checkout" data-hook>
   <%= render partial: 'spree/shared/error_messages', locals: { target: @order } %>
 
   <div class="row align-items-center flex-column checkout-header" data-hook="checkout_header">
@@ -41,7 +41,7 @@ end
 
       <% unless @order.confirm? %>
         <div id="checkout-summary" class="col-md-12 col-lg-auto" data-hook="checkout_summary_box">
-          <div class="checkout-summary-container position-sticky">
+          <div class="checkout-summary-container-fluid position-sticky">
             <%= render partial: 'summary', locals: { order: @order } %>
             <div data-hook="buttons">
               <% submit_label_key = @order.confirm? ? :place_order : :save_and_continue %>

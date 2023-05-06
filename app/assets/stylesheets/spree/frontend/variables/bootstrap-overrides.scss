@@ -2,14 +2,14 @@
 $grid-gutter-width: 19px;
 $body-color: $font-color;
 
-$primary-color: #2a5180;
-$secondary-color: #644827;
+$primary: #2a5180;
+$secondary: #644827;
 $info-color: #417B59;
 
 $theme-colors: (
   // standard bootstrap colors
-  "primary": $primary-color,
-  "secondary": $secondary-color,
+  "primary": $primary,
+  "secondary": $secondary,
   "danger": #f53737,
   "info": $info-color,
   "warning": #ffc107,

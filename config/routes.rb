@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       get '/content/test', to: 'content#test'
       get '/cart_link', to: 'store#cart_link', as: :cart_link
       get '/account_link', to: 'store#account_link', as: :account_link
+      get '/shops/:slug', to: 'shops#show', as: :shop
 
       get '/locales', to: 'locale#index', as: :locales
       get '/locale/set', to: 'locale#set', as: :set_locale

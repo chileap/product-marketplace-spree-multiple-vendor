@@ -20,12 +20,12 @@
       font-size: font-px-to-rem(20px);
     }
     &-value {
-      color: theme-color("primary");
+      color: $primary;
       &--danger {
-        color: theme-color("danger");
+        color: $danger;
       }
       &--warning {
-        color: theme-color("warning");
+        color: $warning;
       }
     }
   }
@@ -34,16 +34,18 @@
   }
   .quantity-select button {
     background: $input-background;
-    color: color-yiq($input-background);
+    color: color-contrast($input-background);
     touch-action: manipulation;
   }
 
   .quantity-select-decrease {
+    border-right: 0;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
 
   .quantity-select-increase {
+    border-left: 0;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
   }
@@ -86,14 +88,14 @@
       margin-right: -calc-spacer(1);
       &-label {
         font-size: font-px-to-rem(11px);
-        border: 2px solid theme-color-level("light", 1);
+        border: 2px solid darken($light, 1);
         font-weight: 500;
         min-width: 26px;
         padding: calc-spacer(1);
         transition: border-color 200ms;
         cursor: pointer;
         &:hover {
-          border-color: theme-color("dark-text");
+          border-color: $dark-text;
         }
       }
       &-radio {
@@ -103,18 +105,18 @@
         width: 0;
         &:checked {
           & + #{$self}-variant-values-label {
-            border-color: theme-color("dark-text");
+            border-color: $dark-text;
           }
         }
         &:focus + label, &:focus + svg {
-          outline: theme-color("dark-text") dotted 2px;
+          outline: $dark-text dotted 2px;
         }
         &--bad-combination {
           & + #{$self2}-label {
             position: relative;
-            color: theme-color-level("light", 1);
+            color: darken($light, 1);
             &:hover {
-              border-color: theme-color-level("light", 1);
+              border-color: darken($light, 1);
               cursor: not-allowed;
             }
             &:after {
@@ -122,7 +124,7 @@
               width: 2px;
               height: 100% * sqrt(2);
               content: "";
-              background: theme-color-level("light", 1);
+              background: darken($light, 1);
               transition: background 200ms;
               transform: rotate(-45deg);
               top: 50% - 50% * sqrt(2);
@@ -133,13 +135,13 @@
         }
 
         &:disabled + label {
-          color: theme-color-level("light", 1);
+          color: darken($light, 1);
           cursor: not-allowed;
           opacity: 0.5;
 
           &:active,
           &:focus {
-            outline: theme-color("dark-text") dotted thin;
+            outline: $dark-text dotted thin;
           }
         }
       }
@@ -182,7 +184,7 @@
               &--bad-combination {
                 & + #{$self}-variant-values-label {
                   &:after {
-                    background: theme-color("dark-text");
+                    background: $dark-text;
                   }
                 }
               }
@@ -197,7 +199,7 @@
         &-values {
           &-label {
             &:hover {
-              border-color: theme-color-level("light", 1);
+              border-color: darken($light, 1);
               cursor: not-allowed;
             }
           }
@@ -206,7 +208,7 @@
               & + #{$self}-variant-values-label {
                 &:hover {
                   &:after {
-                    background: theme-color-level("light", 1);
+                    background: darken($light, 1);
                   }
                 }
               }

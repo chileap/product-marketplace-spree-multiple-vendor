@@ -4,17 +4,17 @@
     border-radius: 0;
     font-size: font-px-to-rem(20px);
     font-weight: 500;
-    background-color: theme-color("light-background");
-    border: 1px solid theme-color("borders");
+    background-color: $light-background;
+    border: 1px solid $border-color;
     @include media-breakpoint-up(sm) {
       width: 58px;
       font-size: font-px-to-rem(30px);
-      border: 2px solid theme-color("borders");
+      border: 2px solid $border-color;
     }
     @include media-breakpoint-up(md) {
       width: 45px;
       font-size: font-px-to-rem(20px);
-      border: 1px solid theme-color("borders");
+      border: 1px solid $border-color;
     }
   }
   &-value {
@@ -29,13 +29,13 @@
       width: 58px;
       height: 58px;
       font-size: font-px-to-rem(28px);
-      border: 2px solid theme-color("borders");
+      border: 2px solid $border-color;
     }
     @include media-breakpoint-up(md) {
       width: 46px;
       height: 45px;
       font-size: font-px-to-rem(20px);
-      border: 1px solid theme-color("borders");
+      border: 1px solid $border-color;
     }
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
@@ -54,6 +54,6 @@
   input[type=number]:focus {
     outline: none;
     box-shadow: none;
-    border-color: theme-color("borders");
+    border-color: $border-color;
   }
 }

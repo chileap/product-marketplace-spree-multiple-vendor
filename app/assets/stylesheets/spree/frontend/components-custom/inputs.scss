@@ -152,7 +152,7 @@
   }
 
   input[type="checkbox"]:focus + label {
-    border-color: $primary-color;
+    border-color: $primary;
   }
 
   input[type="checkbox"]:checked + label {
@@ -260,11 +260,11 @@
     width: 0;
     &:focus + span {
       border-radius: 50%;
-      border: 2px solid $primary-color;
+      border: 2px solid $primary;
     }
   }
   &-custom-input {
-    @include colored-circle-radio($secondary-color);
+    @include colored-circle-radio($secondary);
     position: absolute;
     top: 2px;
     left: 0;
@@ -281,7 +281,7 @@
     }
   }
   input:checked ~ &-custom-input {
-    @include colored-full-circle-radio($secondary-color);
+    @include colored-full-circle-radio($secondary);
     background-size: contain;
   }
 }

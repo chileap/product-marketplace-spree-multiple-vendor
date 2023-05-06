@@ -5,6 +5,8 @@ Rails.application.config.after_initialize do
   Spree.config do |config|
     config.track_inventory_levels = true
   end
+
+  SpreeMultiVendor::Config[:vendorized_models] = %w[product variant stock_location shipping_method line_item]
 end
 
 Spree::Frontend::Config = Spree::Frontend::Configuration.new

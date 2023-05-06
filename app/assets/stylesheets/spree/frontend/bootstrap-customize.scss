@@ -1,0 +1,35 @@
+a {
+  color: var(--bs-link-color);
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+
+  &:hover {
+    color: var(--bs-link-hover-color);
+    text-decoration: underline;
+  }
+}
+
+a:has(> span.navbar-brand) {
+  &:hover {
+    color: var(--bs-link-hover-color);
+    text-decoration: none;
+  }
+}
+
+
+.container {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-fluid {
+  width: 100%;
+  padding-right: 2.75rem;
+  padding-left: 2.75rem;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -3,7 +3,7 @@
   font-weight: 500;
 
   & > .order-show-check-mark {
-    color: $secondary-color;
+    color: $secondary;
     margin-bottom: 25px;
     margin-top: 27px;
     @include media-breakpoint-up(sm) {
