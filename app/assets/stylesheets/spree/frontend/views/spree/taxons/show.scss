@@ -37,10 +37,10 @@
       }
     }
     > a, &-selected {
-      color: theme-color("dark-text");
+      color: $dark-text;
     }
     &-selected {
-      border-bottom: 5px solid theme-color('dark-text');
+      border-bottom: 5px solid $dark-text;
     }
   }
 }

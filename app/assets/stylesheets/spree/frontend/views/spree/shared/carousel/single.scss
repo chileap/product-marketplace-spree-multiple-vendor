@@ -10,10 +10,10 @@
 
     @mixin arrow {
       top: 0;
-      width: $arrow-width;
       z-index: 2;
     }
     &--previous {
+      width: 20%;
       left: -$arrow-width;
       @include arrow;
       @include media-breakpoint-between(md, md) {
@@ -22,6 +22,7 @@
     }
     &--next {
       right: -$arrow-width;
+      width: $arrow-width;
       @include arrow;
       @include media-breakpoint-between(md, md) {
         right: 15px;
@@ -119,14 +120,14 @@
 
       &.active {
         img {
-          border-color: theme-color("dark-text");
+          border-color: $dark-text;
         }
       }
     }
   }
   &--empty {
     padding: 0 0 100% / $photo-width-to-height-ratio 0;
-    background: theme-color("light");
+    background: $light-background;
     & > * {
       display: none !important;
     }
@@ -143,5 +144,17 @@
       $image-path: image-path("picture-zoom.svg");
       cursor: url("#{$image-path}"), zoom-in;
     }
+  }
+}
+
+#productModalCarousel {
+  .product-carousel-control--previous {
+    width: 35%;
+    left: -30%;
+  }
+
+  .product-carousel-control--next {
+    width: 25%;
+    right: -25%;
   }
 }

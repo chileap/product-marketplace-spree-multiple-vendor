@@ -39,7 +39,7 @@
   &-search-menu {
     position: static;
     &-dropdown {
-      background-color: theme-color("light-background");
+      background-color: $light-background;
       visibility: hidden;
       opacity: 0;
       z-index: 4;
@@ -68,7 +68,7 @@
           }
           &::placeholder {
             text-transform: uppercase;
-            color: theme-color("borders");
+            color: $border-color;
           }
           &::-webkit-search-cancel-button {
             display: none;

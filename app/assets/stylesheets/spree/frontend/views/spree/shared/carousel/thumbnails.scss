@@ -52,7 +52,7 @@
   }
   &--empty {
     padding: 0 0 100% / $photo-width-to-height-ratio 0;
-    background: theme-color("light");
+    background: $light-background;
     & > * {
       display: none !important;
     }

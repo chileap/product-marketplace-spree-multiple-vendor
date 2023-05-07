@@ -1,5 +1,5 @@
 .spree-flat-input {
-  color: theme-color("secondary");
+  color: $secondary;
   transition: basic-transition(border-color);
   padding: 15px;
   width: 100%;
@@ -23,7 +23,7 @@
     font-size: font-px-to-rem(14px);
   }
   &:focus {
-    border-color: theme-color("secondary");
+    border-color: $secondary;
   }
   &::placeholder {
     text-transform: uppercase;
@@ -57,7 +57,7 @@
 }
 
 .spree-flat-label {
-  color: theme-color("secondary");
+  color: $secondary;
   text-transform: uppercase;
   font-size: font-px-to-rem(12px);
 
@@ -106,7 +106,7 @@
     height: 22px;
     font-size: 0;
     border-radius: 0;
-    border: 2px solid theme-color("secondary");
+    border: 2px solid $secondary;
     background-color: $input-background;
     cursor: pointer;
 
@@ -156,7 +156,7 @@
   }
 
   input[type="checkbox"]:checked + label {
-    background-color: theme-color("secondary");
+    background-color: $secondary;
 
     &:after {
       opacity: 1;
@@ -182,7 +182,7 @@
 }
 
 .spree-checkbox-label {
-  color: theme-color("info");
+  color: $info;
   font-size: font-px-to-rem(12px);
   margin: 0;
   // Autoprefixer don't seem to catch this

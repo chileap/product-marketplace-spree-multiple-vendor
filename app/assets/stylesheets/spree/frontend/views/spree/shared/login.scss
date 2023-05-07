@@ -5,12 +5,12 @@
     transition: basic-transition(color);
     text-transform: uppercase;
     text-decoration: underline;
-    color: theme-color('info');
+    color: $info;
     font-size: font-px-to-rem(12px);
 
     &:hover,
     &:active {
-      color: theme-color('primary');
+      color: $primary;
     }
   }
 
