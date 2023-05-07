@@ -135,7 +135,7 @@
       line-height: 1.83;
       letter-spacing: 0.3px;
       text-align: center;
-      color: theme-color('primary');
+      color: $primary;
       font-size: font-px-to-rem(12px);
 
       @include media-breakpoint-up(md) {
@@ -179,7 +179,7 @@
     }
     .spree-btn {
       &.btn-outline-primary {
-        border: solid 2px theme-color('primary');
+        border: solid 2px $primary;
         font-size: font-px-to-rem(12px);
         font-weight: bold;
         max-width: 100%;
@@ -212,7 +212,7 @@
         font-weight: 500;
         line-height: 0.9;
         letter-spacing: 0.25px;
-        color: theme-color('primary');
+        color: $primary;
         font-size: font-px-to-rem(10px);
 
         @include media-breakpoint-up(md) {

@@ -40,7 +40,7 @@
   }
 
   th {
-    color: theme-color("secondary");
+    color: $secondary;
     padding: 7.5px 0;
   }
 
@@ -306,7 +306,7 @@
     }
 
     &-text-primary {
-      color: theme-color("primary");
+      color: $primary;
     }
 
     &-lead {

@@ -1,7 +1,7 @@
 .spree-header {
   font-size: font-px-to-rem(18px);
   text-transform: uppercase;
-  color: theme-color('dark-text');
+  color: $dark-text;
   text-align: center;
 
   &.header-sm {

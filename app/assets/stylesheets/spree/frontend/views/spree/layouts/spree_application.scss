@@ -3,6 +3,13 @@ body {
 }
 .modal-content {
   background: $primary-background;
+
+  .modal-body {
+    button {
+      border: none;
+      background: none;
+    }
+  }
 }
 .overlay {
   position: fixed;
@@ -12,7 +19,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: theme-color("overlay");
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   z-index: 5;
   cursor: pointer;

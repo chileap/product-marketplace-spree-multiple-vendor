@@ -32,14 +32,14 @@
 
     form {
       input#keywords{
-        color: theme-color("dark-text");
+        color: $dark-text;
         font-size: font-px-to-rem(14px);
         width: calc(100% - 40px);
         &:focus {
           outline: none;
         }
         &::placeholder {
-          color: theme-color("borders");
+          color: $border-color;
         }
         &::-webkit-search-cancel-button {
           display: none;

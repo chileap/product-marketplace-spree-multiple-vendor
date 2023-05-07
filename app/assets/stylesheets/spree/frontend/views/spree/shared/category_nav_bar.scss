@@ -64,7 +64,7 @@
 
     &-small-text {
       text-align: center;
-      color: theme-color('primary');
+      color: $primary;
       font-size: font-px-to-rem(12px);
       padding-bottom: 7px;
       font-weight: 500;
@@ -151,7 +151,7 @@
 
     &-small-text {
       text-align: center;
-      color: theme-color('primary');
+      color: $primary;
       font-size: font-px-to-rem(12px);
       padding-bottom: 7px;
       font-weight: 500;
