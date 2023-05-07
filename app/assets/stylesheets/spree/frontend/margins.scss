@@ -1,24 +1,24 @@
 .spree-mt-large {
-  margin-top: font-px-to-rem(33px) !important;
+  margin-top: font-px-to-rem(20px) !important;
 
   @include media-breakpoint-up(sm) {
-    margin-top: font-px-to-rem(77.2px) !important;
+    margin-top: font-px-to-rem(30px) !important;
   }
 
   @include media-breakpoint-up(lg) {
-    margin-top: font-px-to-rem(89px) !important;
+    margin-top: font-px-to-rem(40px) !important;
   }
 }
 
 .spree-mb-large {
-  margin-bottom: font-px-to-rem(33px) !important;
+  margin-bottom: font-px-to-rem(20px) !important;
 
   @include media-breakpoint-up(sm) {
-    margin-bottom: font-px-to-rem(77.2px) !important;
+    margin-bottom: font-px-to-rem(30px) !important;
   }
 
   @include media-breakpoint-up(lg) {
-    margin-bottom: font-px-to-rem(89px) !important;
+    margin-bottom: font-px-to-rem(40px) !important;
   }
 }
 

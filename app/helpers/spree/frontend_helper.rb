@@ -137,9 +137,9 @@ module Spree
       flash.to_h.except('order_completed').each do |msg_type, text|
         next if msg_type.blank? || excluded_types.include?(msg_type)
 
-        flashes << content_tag(:div, class: "alert alert-#{class_for(msg_type)} mb-0") do
-          content_tag(:button, '&times;'.html_safe, class: 'close', data: { "bs-dismiss": 'alert', hidden: true }) +
-            content_tag(:span, text)
+        flashes << content_tag(:div, class: "alert alert-#{class_for(msg_type)} alert-dismissible mb-0", role: "alert") do
+          content_tag(:span, text) +
+            content_tag(:button, ''.html_safe, class: 'btn-close', data: { "bs-dismiss": 'alert', hidden: true })
         end
       end
       flashes.html_safe
