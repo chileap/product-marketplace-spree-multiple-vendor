@@ -4,7 +4,11 @@ module Spree
     include Spree::CacheHelper
     helper 'spree/products'
 
-    before_action :load_taxon
+    before_action :load_taxon, only: [:show, :product_carousel]
+
+    def index
+      @taxons = current_store.taxons.roots
+    end
 
     def show
       if !http_cache_enabled? || stale?(etag: etag, last_modified: last_modified, public: true)

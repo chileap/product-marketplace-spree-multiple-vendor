@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :show], path: '/products'
       resources :vendors, only: [:show], path: '/vendors'
 
+      get '/categories', to: 'taxons#index', as: :categories
       get '/products/:id/related', to: 'products#related'
       # route globbing for pretty nested taxon and product paths
       get '/t/*id', to: 'taxons#show', as: :nested_taxons
@@ -60,6 +61,12 @@ Rails.application.routes.draw do
 
       get '/forbidden', to: 'errors#forbidden', as: :forbidden
       get '/unauthorized', to: 'errors#unauthorized', as: :unauthorized
+
+
+      get '/sell', to: 'shops#index', as: :sell
+      get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
+      get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
+      get '/your/shops/:slug', to: 'shops#show', as: :your_shop
     end
   end
 end

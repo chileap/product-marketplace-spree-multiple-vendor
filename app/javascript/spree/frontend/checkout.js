@@ -1,4 +1,4 @@
-//= require spree/frontend/coupon_manager
+import "./coupon_manager";
 
 Spree.disableSaveOnClick = function () {
   $('form.edit_order').on('submit', function (event) {

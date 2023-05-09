@@ -43,7 +43,7 @@
 
   <% if spree.respond_to?(:admin_orders_path) && (try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
     <li class="ms-0">
-      <%= link_to spree.admin_orders_path(locale: nil), class: 'dropdown-item menu-item' do %>
+      <%= link_to spree.admin_orders_path(locale: nil), class: 'dropdown-item menu-item', target: "_blank" do %>
         <div class="wt-icon">
           <%= icon(name: 'shield', classes: 'd-inline-block', width: 24, height: 24) %>
         </div>
@@ -66,12 +66,5 @@
         <p class="wt-text-caption wt-display-inline wt-m-xs-0">Sign out</p>
       </div>
     <% end %>
-  </li>
-<% else %>
-  <li class="ms-0">
-    <%= link_to Spree.t(:login).upcase, spree_login_path, class: 'dropdown-item' if defined?(spree_login_path) %>
-  </li>
-  <li class="ms-0">
-    <%= link_to Spree.t(:sign_up).upcase, spree_signup_path, class: 'dropdown-item' if defined?(spree_signup_path) %>
   </li>
 <% end %>

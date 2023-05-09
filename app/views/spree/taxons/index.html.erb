@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <h1 class="text-center py-3">Sitemap</h1>
+
+  <div class="d-flex flex-column">
+    <% @taxons.each do |taxon| %>
+      <h2><%= taxon.name %></h2>
+      <% if taxon.children.present? %>
+        <div class="row">
+          <% taxon.children.each do |child| %>
+            <div class="col-12 col-md-3 parent-category-links">
+              <%= link_to child.name, spree.nested_taxons_path(child), class: "parent-category-title" %>
+              <% if child.children.present? %>
+                <ul class="px-0 py-2">
+                  <% child.children.each do |grandchild| %>
+                    <li class="py-1">
+                      <%= link_to grandchild.name, spree.nested_taxons_path(grandchild), class: "sub-category-title" %>
+
+                      <% if grandchild.children.present? %>
+                        <ul class="px-0 py-2">
+                          <% grandchild.children.each do |great_grandchild| %>
+                            <li>
+                              <%= link_to great_grandchild.name, spree.nested_taxons_path(great_grandchild), class: "sub-sub-category-title" %>
+                            </li>
+                          <% end %>
+                        </ul>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+</div>
