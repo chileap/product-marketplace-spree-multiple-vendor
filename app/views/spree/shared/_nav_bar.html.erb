@@ -1,4 +1,4 @@
-<ul id="nav-bar" class="nav align-items-center d-flex flex-nowrap justify-content-end navbar-right" data-turbo-permanent data-turbo-permanent>
+<ul id="nav-bar" class="nav align-items-center d-flex flex-nowrap justify-content-end navbar-right">
   <% if try_spree_current_user && spree_current_user.vendors.present? %>
     <li>
       <%= link_to shop_path(spree_current_user.vendors.first) do %>
@@ -7,9 +7,9 @@
     </li>
   <% end %>
 
-  <% if defined?(spree.account_link_path) %>
+  <% if spree_user_signed_in? %>
     <li>
-      <div class="dropdown navbar-right-dropdown">
+      <div class="dropdown navbar-right-dropdown nav-link">
         <button id="account-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" class="navbar-right-dropdown-toggle dropdown-toggle account-icon" aria-label="<%= Spree.t('nav_bar.show_user_menu') %>">
           <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
         </button>
@@ -19,7 +19,20 @@
         </ul>
       </div>
     </li>
+  <% else %>
+    <li>
+      <%= link_to spree.login_path, class: 'nav-link' do %>
+        <%= Spree.t(:login) %>
+      <% end %>
+    </li>
+
+    <li>
+      <%= link_to spree.login_path, class: 'nav-link' do %>
+        Sell on <%= current_store.name %>
+      <% end %>
+    </li>
   <% end %>
+
   <li id="link-to-cart">
     <%= render 'spree/shared/cart', class: 'd-inline-block cart-icon', size: 24, item_count: 0 %>
   </li>

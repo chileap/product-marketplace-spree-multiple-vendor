@@ -33,3 +33,15 @@ a:has(> span.navbar-brand) {
   margin-right: auto;
   margin-left: auto;
 }
+
+
+@include media-breakpoint-down(md) {
+  .container-fluid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+ul {
+  list-style: none;
+}

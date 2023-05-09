@@ -6,7 +6,6 @@
     color: $font-color;
     font-size: $font-size;
     line-height: $font-size;
-    margin-top: calc-spacer(2);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -16,7 +15,6 @@
 
       font-size: $font-size;
       line-height: $font-size;
-      margin-top: calc-spacer(3);
     }
   }
 

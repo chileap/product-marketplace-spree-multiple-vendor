@@ -10,6 +10,8 @@ $info: #5bc0de;
 $warning: #f0ad4e;
 $danger: #d9534f;
 
+$btn-color: #fff;
+
 $link-color: #2a5180;
 
 $font-color: #222;
@@ -184,5 +186,8 @@ $container-max-widths: (
   --bs-dropdown-padding-x: 0;
   --bs-dropdown-padding-y: 0;
   --bs-dropdown-border-radius: 0;
+}
+
+.pagination {
   --bs-pagination-active-bg: #2a5180;
 }

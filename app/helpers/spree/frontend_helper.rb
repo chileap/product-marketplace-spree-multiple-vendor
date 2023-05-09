@@ -185,7 +185,7 @@ module Spree
         srcset: carousel_image_source_set(image),
         alt: product.name,
         width: image_style&.dig(:width) || 278,
-        height: image_style&.dig(:height) || 300,
+        height: image_style&.dig(:height) || 200,
         class: "product-component-image d-block mw-100 #{image_class}"
       )
     end

@@ -10,15 +10,6 @@
         <% end %>
       </dt>
       <dd class="account-page-user-info-item-definition"><%= @user.email %></dd>
-
-      <div class="d-lg-inline-block account-page-user-info-item-store-credits">
-        <p class="my-0 text-uppercase text-center">
-          <%= Spree.t(:store_credit_name) %>
-          <% @user.available_store_credits(current_store).each do |value| %>
-            <br><b class="account-page-user-info-item-store-credits-amount"><%= value %></b>
-          <% end %>
-        </p>
-      </div>
     </div>
     <div class="col-xs-12 col-lg-8 mt-sm-5 mt-lg-0">
       <h4 class="mb-3"><%= link_to Spree.t(:add_new_address), spree.new_address_path, method: :get %></h4>

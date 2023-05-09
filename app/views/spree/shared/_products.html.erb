@@ -3,30 +3,31 @@
     <%= rel_next_prev_link_tags products %>
   <% end %>
 <% end %>
-
-<div class="col-md-12 col-lg-12" data-hook="homepage_products">
-  <div class="row">
-    <% cache cache_key_for_products(products) do %>
-      <% products.each_with_index do |product, index| %>
-        <div id="product_<%= product.id %>" class="col-sm-3 col-6 mb-3 mb-md-3 px-2">
-          <%= render 'spree/shared/product', product: product, image_class: 'product-component-plp-image' %>
-        </div>
+<div class="row">
+  <div class="col-md-12 col-lg-12" data-hook="homepage_products">
+    <div class="row">
+      <% cache cache_key_for_products(products) do %>
+        <% products.each_with_index do |product, index| %>
+          <div id="product_<%= product.id %>" class="col-sm-3 col-6 mb-3 mb-md-3 px-2">
+            <%= render 'spree/shared/product', product: product, image_class: 'product-component-plp-image' %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
 
-  <% if products.respond_to?(:total_pages) && products.total_pages > 1 %>
-    <div class="row mt-4">
-      <div class="col-12 ps-0">
-        <h2 class="appears-ready">There's so much more for you to discover</h2>
-        <div class="plp-pagination d-none d-lg-flex">
-          <%= paginate products, window: 2, theme: 'twitter-bootstrap-4' %>
-        </div>
+    <% if products.respond_to?(:total_pages) && products.total_pages > 1 %>
+      <div class="row mt-4 px-sm-2">
+        <div class="col-12 ps-0">
+          <h2 class="appears-ready">There's so much more for you to discover</h2>
+          <div class="plp-pagination d-none d-lg-flex">
+            <%= paginate products, window: 2, theme: 'twitter-bootstrap-4' %>
+          </div>
 
-        <div class="plp-pagination d-lg-none">
-          <%= paginate products, window: 1, theme: 'twitter-bootstrap-4' %>
+          <div class="plp-pagination d-lg-none">
+            <%= paginate products, window: 1, theme: 'twitter-bootstrap-4' %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

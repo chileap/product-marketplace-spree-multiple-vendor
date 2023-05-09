@@ -1,33 +1,65 @@
-<div class="container-fluid px-4 dropdown d-none d-lg-flex justify-content-end py-3 plp-sort">
+<div class="container-fluid px-4 dropdown d-none d-lg-flex justify-content-end align-items-center py-3 plp-sort">
+  <% if params[:keywords] %>
+    <div class="d-none d-md-flex mr-2">
+      <div class="mx-4">
+        <%= "#{@products.total_count} #{Spree.t('plp.results')}" %>
+      </div>
+    </div>
+  <% end %>
+
   <a data-bs-toggle="dropdown" class="plp-sort-header" href="#" role="button" aria-haspopup="true" aria-expanded="false">
     <span class="fw-light pe-2"><%= Spree.t("plp.sort_by") %>:</span>
     <span class="fw-semibold">
       <%= Spree.t("plp.#{ params[:sort_by].blank? ? 'default': params[:sort_by].gsub('-', '_') }") %>
     </span>
 
-    <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-up ms-3 plp-sort-header-arrow--up', width: 18, height: 18) %>
-    <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-down ms-3 plp-sort-header-arrow--down', width: 18, height: 18) %>
+    <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-up ms-3 plp-sort-header-arrow--up', width: 13, height: 13) %>
+    <%= icon(name: 'arrow-right', classes: 'spree-icon-arrow spree-icon-arrow-down ms-3 plp-sort-header-arrow--down', width: 13, height: 13) %>
   </a>
   <div class="dropdown-menu text-left plp-sort-dropdown">
     <ul class="pt-1 plp-sort-dropdown-ul">
-      <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by].blank? %>">
+      <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by].blank? %>">
         <%= link_to Spree.t('plp.default'), url_for(permitted_params.merge(sort_by: nil)), class: 'dropdown-item' %>
+
+        <% if params[:sort_by].blank? %>
+          <i class="bi bi-check-lg"></i>
+        <% end %>
       </li>
-      <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'name-a-z' %>">
+      <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'name-a-z' %>">
         <%= link_to Spree.t('plp.name_a_z'), url_for(permitted_params.merge(sort_by: 'name-a-z')), class: 'dropdown-item' %>
+
+        <% if params[:sort_by] == 'name-a-z' %>
+          <i class="bi bi-check-lg"></i>
+        <% end %>
       </li>
     </li>
-    <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'name-z-a' %>">
+    <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'name-z-a' %>">
       <%= link_to Spree.t('plp.name_z_a'), url_for(permitted_params.merge(sort_by: 'name-z-a')), class: 'dropdown-item' %>
+
+      <% if params[:sort_by] == 'name-z-a' %>
+        <i class="bi bi-check-lg"></i>
+      <% end %>
     </li>
-    <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'newest-first' %>">
+    <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'newest-first' %>">
       <%= link_to Spree.t('plp.newest_first'), url_for(permitted_params.merge(sort_by: 'newest-first')), class: 'dropdown-item' %>
+
+      <% if params[:sort_by] == 'newest-first' %>
+        <i class="bi bi-check-lg"></i>
+      <% end %>
     </li>
-    <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'price-high-to-low' %>">
+    <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'price-high-to-low' %>">
       <%= link_to Spree.t('plp.price_high_to_low'), url_for(permitted_params.merge(sort_by: 'price-high-to-low')), class: 'dropdown-item' %>
+
+      <% if params[:sort_by] == 'price-high-to-low' %>
+        <i class="bi bi-check-lg"></i>
+      <% end %>
     </li>
-    <li class="p-3 plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'price-low-to-high' %>">
+    <li class="px-3 py-2 d-flex plp-sort-dropdown-ul-li<%= '--active' if params[:sort_by] == 'price-low-to-high' %>">
       <%= link_to Spree.t('plp.price_low_to_high'), url_for(permitted_params.merge(sort_by: 'price-low-to-high')), class: 'dropdown-item' %>
+
+      <% if params[:sort_by] == 'price-low-to-high' %>
+        <i class="bi bi-check-lg"></i>
+      <% end %>
     </li>
   </ul>
 </div>
