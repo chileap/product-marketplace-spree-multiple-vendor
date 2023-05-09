@@ -106,7 +106,7 @@
     height: 22px;
     font-size: 0;
     border-radius: 0;
-    border: 2px solid $secondary;
+    border: 2px solid $primary;
     background-color: $input-background;
     cursor: pointer;
 
@@ -156,7 +156,7 @@
   }
 
   input[type="checkbox"]:checked + label {
-    background-color: $secondary;
+    background-color: $primary;
 
     &:after {
       opacity: 1;
@@ -182,7 +182,7 @@
 }
 
 .spree-checkbox-label {
-  color: $info;
+  color: $primary;
   font-size: font-px-to-rem(12px);
   margin: 0;
   // Autoprefixer don't seem to catch this
