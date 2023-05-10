@@ -5,12 +5,12 @@ module Spree::UserDecorator
 
     base.has_one :profile_picture, as: :viewable, dependent: :destroy, class_name: 'Spree::Image'
     base.validates :first_name, presence: true
+  end
 
-    private
+  private
 
-    def should_generate_new_friendly_id?
-      slug.blank? || first_name_changed?
-    end
+  def should_generate_new_friendly_id?
+    slug.blank? || first_name_changed?
   end
 end
 

@@ -1,5 +1,4 @@
 module Spree::Admin::UsersControllerDecorator
-
   def find_resource
     if parent_data.present?
       parent.send(controller_name).friendly.find(params[:id])

@@ -13,7 +13,6 @@ class Spree::ProfileController < Spree::StoreController
     @shipping_address = @user.shipping_address
   end
 
-
   private
 
   def set_current_user
