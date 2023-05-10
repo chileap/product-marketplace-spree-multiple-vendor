@@ -1,12 +1,12 @@
-<div class="container-fluid account-page py-4">
+<%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'user_preferences' } %>
+
+<div class="container-fluid py-3">
   <div class="row">
     <div class="col-xs-12 col-lg-4">
       <dt class="text-uppercase account-page-user-info-item-title">
         <%= Spree.t(:account_info) %>
-        <% if spree_current_user == @user %>
           <%= link_to spree.edit_user_profile_path, class: "account-page-user-info-item-title-edit" do %>
-            <%= inline_svg_tag('edit.svg', width: 27.6, height: 24) %>
-          <% end %>
+          <%= inline_svg_tag('edit.svg', width: 27.6, height: 24) %>
         <% end %>
       </dt>
       <dd class="account-page-user-info-item-definition"><%= @user.email %></dd>

@@ -1,0 +1,23 @@
+.account-tab-bars {
+  li.nav-item {
+    font-size: 1.2rem;
+    font-weight: bold;
+
+    .nav-link {
+      padding: 1rem;
+      color: $header-font-color;
+      border-radius: 10px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &:has(.nav-link.active) {
+      border-bottom: 2px solid $header-font-color;
+    }
+
+    &:hover {
+      border-bottom: 2px solid lighten($header-font-color, 40%);
+    }
+  }
+}

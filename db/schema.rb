@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_023519) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_10_055326) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1393,10 +1393,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_023519) do
     t.datetime "confirmation_sent_at", precision: nil
     t.string "first_name"
     t.string "last_name"
+    t.string "default_language", default: "en"
+    t.string "default_currency", default: "USD"
+    t.string "default_country", default: "US"
+    t.string "default_city"
+    t.string "slug"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
+    t.index ["default_country"], name: "index_spree_users_on_default_country"
+    t.index ["default_currency"], name: "index_spree_users_on_default_currency"
+    t.index ["default_language"], name: "index_spree_users_on_default_language"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
     t.index ["ship_address_id"], name: "index_spree_users_on_ship_address_id"
+    t.index ["slug"], name: "index_spree_users_on_slug", unique: true
     t.index ["spree_api_key"], name: "index_spree_users_on_spree_api_key"
   end
 

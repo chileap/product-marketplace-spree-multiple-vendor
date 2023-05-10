@@ -1,6 +1,6 @@
 <% if try_spree_current_user %>
   <li class="ms-0">
-    <%= link_to spree.account_path, class: 'dropdown-item menu-item' do %>
+    <%= link_to spree.user_profile_path(spree_current_user), class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
         <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
       </div>
@@ -27,7 +27,7 @@
   </li>
 
   <li class="ms-0">
-    <%= link_to spree.edit_user_path(spree_current_user), class: 'dropdown-item menu-item' do %>
+    <%= link_to spree.user_account_path, class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
         <i class="bi bi-gear icon"></i>
       </div>

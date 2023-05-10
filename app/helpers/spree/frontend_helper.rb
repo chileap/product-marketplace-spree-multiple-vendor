@@ -173,7 +173,7 @@ module Spree
       image = default_image_for_product_or_variant(product)
 
       image_url = if image.present?
-                    main_app.cdn_image_url(image.url('plp'))
+                    main_app.cdn_image_url(image.url(:large))
                   else
                     asset_path('noimage/plp.svg')
                   end
@@ -182,7 +182,6 @@ module Spree
 
       lazy_image(
         src: image_url,
-        srcset: carousel_image_source_set(image),
         alt: product.name,
         width: image_style&.dig(:width) || 278,
         height: image_style&.dig(:height) || 200,
