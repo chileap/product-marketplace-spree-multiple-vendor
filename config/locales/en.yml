@@ -1,5 +1,27 @@
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      spree/vendor:
+        one: Vendor
+        other: Vendors
+    attributes:
+      spree/vendor:
+        about_us: About us
+        contact_us: Contact us
+        image: Image
+        name: Name
+        status: Status
+        created_at: Created at
+        priority: Priority
+        country: Country
+        city: City
+        state: State
+        zipcode: Zipcode
+        address1: Address1
+        address2: Address2
+        phone: Phone
+        email: Email
+        website: Website
   spree:
     vendors: "Vendors"
     plp:
@@ -9,3 +31,5 @@ en:
       price_low_to_high: "Lowest Price"
       sort_by: "Sort by"
       results: "Results"
+    nav_bar:
+      my_account: My Account

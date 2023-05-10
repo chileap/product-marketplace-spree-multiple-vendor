@@ -1,10 +1,10 @@
 <% if try_spree_current_user %>
   <li class="ms-0">
-    <%= link_to spree.account_path, class: 'dropdown-item menu-item' do %>
+    <%= link_to spree.user_profile_path(spree_current_user), class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
         <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
       </div>
-      <div class="ms-2 wt-flex-grow-xs-1">
+      <div class="ms-3 wt-flex-grow-xs-1">
         <h4 class="wt-text-title-01 wt-m-xs-0" aria-label="View your profile">
           <%= try_spree_current_user.email %>
         </h4>
@@ -14,11 +14,24 @@
   </li>
 
   <li class="ms-0">
-    <%= link_to spree.edit_user_path(spree_current_user), class: 'dropdown-item menu-item' do %>
+    <%= link_to spree.your_orders_path, class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
-        <%= icon(name: 'gear', classes: 'd-inline-block', width: 24, height: 24) %>
+        <i class="bi bi-journal-text icon"></i>
       </div>
-      <div class="ms-2 wt-flex-grow-xs-1">
+      <div class="ms-3 wt-flex-grow-xs-1">
+        <p class="wt-text-caption wt-display-inline wt-m-xs-0">
+          Purchases and Reviews
+        </p>
+      </div>
+    <% end %>
+  </li>
+
+  <li class="ms-0">
+    <%= link_to spree.user_account_path, class: 'dropdown-item menu-item' do %>
+      <div class="wt-icon">
+        <i class="bi bi-gear icon"></i>
+      </div>
+      <div class="ms-3 wt-flex-grow-xs-1">
         <p class="wt-text-caption wt-display-inline wt-m-xs-0">
           Account Settings
         </p>
@@ -30,9 +43,9 @@
     <li class="ms-0">
       <%= link_to spree.edit_user_path(spree_current_user), class: 'dropdown-item menu-item' do %>
         <div class="wt-icon">
-          <%= icon(name: 'store', classes: 'd-inline-block', width: 24, height: 24) %>
+          <i class="bi bi-shop icon"></i>
         </div>
-        <div class="ms-2 wt-flex-grow-xs-1">
+        <div class="ms-3 wt-flex-grow-xs-1">
           <p class="wt-text-caption wt-display-inline wt-m-xs-0">
             Sell on <%= Spree::Store.current.name %>
           </p>
@@ -45,9 +58,9 @@
     <li class="ms-0">
       <%= link_to spree.admin_orders_path(locale: nil), class: 'dropdown-item menu-item', target: "_blank" do %>
         <div class="wt-icon">
-          <%= icon(name: 'shield', classes: 'd-inline-block', width: 24, height: 24) %>
+          <i class="bi bi-shield-lock icon"></i>
         </div>
-        <div class="ms-2 wt-flex-grow-xs-1">
+        <div class="ms-3 wt-flex-grow-xs-1">
           <p class="wt-text-caption wt-display-inline wt-m-xs-0">Admin Panel</p>
         </div>
       <% end %>
@@ -62,7 +75,7 @@
           <%= icon(name: 'logout', classes: 'd-inline-block', width: 24, height: 24) %>
         </span>
       </div>
-      <div class="ms-2 wt-flex-grow-xs-1">
+      <div class="ms-3 wt-flex-grow-xs-1">
         <p class="wt-text-caption wt-display-inline wt-m-xs-0">Sign out</p>
       </div>
     <% end %>

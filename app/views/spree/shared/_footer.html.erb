@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex border-top py-4 pb-5 mb-5 text-uppercase footer-spree-menu-links">
+      <div class="row d-flex border-top py-4 pb-5 mb-5 footer-spree-menu-links">
         <div class="col-3 px-0">
           <div class="footer-spree-label">
             Shop
@@ -43,6 +43,18 @@
           </div>
           <div class="pt-2">
             <%= link_to "Shop on #{current_store.name}", spree.nested_taxons_path('categories') %>
+          </div>
+          <div class="pt-2">
+            <%= link_to "Product Mall US", '/en' %>
+          </div>
+          <div class="pt-2">
+            <%= link_to "Product Mall Germany", '/de' %>
+          </div>
+          <div class="pt-2">
+            <%= link_to "Product Mall Canada", '/ca' %>
+          </div>
+          <div class="pt-2">
+            <%= link_to "Product Mall France", '/fr' %>
           </div>
         </div>
 
@@ -76,7 +88,7 @@
               <%= Spree.t('nav_bar.my_account') %>
             </div>
             <div class="pt-2">
-              <%= link_to Spree.t(:my_orders).upcase, spree.account_path(anchor: "account-my-orders") %>
+              <%= link_to Spree.t(:my_orders), spree.account_path(anchor: "account-my-orders") %>
             </div>
           </div>
         <% end %>

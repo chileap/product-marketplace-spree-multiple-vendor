@@ -1,3 +1,5 @@
+<%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'edit_profile' } %>
+
 <div class="col-lg-6 offset-lg-3 mb-5">
   <h3 class="spree-mb-large spree-mt-large spree-header"><%= Spree.t(:editing_user) %></h3>
   <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>

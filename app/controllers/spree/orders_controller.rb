@@ -1,11 +1,15 @@
 module Spree
   class OrdersController < Spree::StoreController
-    before_action :set_current_order
-    before_action :check_authorization
+    before_action :set_current_order, except: [:index]
+    before_action :check_authorization, except: [:index]
 
     helper 'spree/products', 'spree/orders'
 
     before_action :assign_order_with_lock, only: :update
+
+    def index
+      @orders = spree_current_user.orders.for_store(current_store).complete.order('completed_at desc')
+    end
 
     def show
       @order = current_store.orders.includes(line_items: [variant: [:option_values, :images, :product]], bill_address: :state, ship_address: :state).find_by!(number: params[:id])

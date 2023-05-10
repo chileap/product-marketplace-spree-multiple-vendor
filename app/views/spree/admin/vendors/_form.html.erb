@@ -1,0 +1,76 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @vendor } %>
+<div class="form-group">
+  <%= f.field_container :name do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  <% end %>
+  <%= f.field_container :about_us do %>
+    <%= f.label :about_us %>
+    <%= f.text_area :about_us, class: 'form-control' %>
+  <% end %>
+  <%= f.field_container :contact_us do %>
+    <%= f.label :contact_us %>
+    <%= f.text_area :contact_us, class: 'form-control' %>
+  <% end %>
+  <%= f.field_container :status do %>
+    <%= f.label :status %>
+    <%= f.select :status,
+      options_for_select(vendor_status_options, selected: @vendor.status),
+      {}, class: 'select2', required: :required %>
+  <% end %>
+  <% if Spree.version.to_f >= 3.6 %>
+    <%= f.field_container :image do %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <%= image_tag main_app.url_for(@vendor.image.url(:small)) if @vendor.image %>
+    <% end %>
+  <% end %>
+  <%= f.field_container :commission_rate do %>
+    <%= f.label :commission_rate %>
+    <%= f.number_field :commission_rate, step: '0.01', class: 'form-control' %>
+  <% end %>
+  <%= f.field_container :notification_email do%>
+    <%= f.label :notification_email %>
+    <%= f.email_field :notification_email, class: 'form-control' %>
+  <% end %>
+
+  <div class="form-group" data-hook="vendor_address1">
+    <%= f.label :address1, Spree.t(:street_address) %>
+    <%= f.text_field :address1, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" data-hook="vendor_city">
+    <%= f.label :city, Spree.t(:city) %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" data-hook="vendor_address2">
+    <%= f.label :address2, Spree.t(:street_address_2) %>
+    <%= f.text_field :address2, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" data-hook="vendor_zipcode">
+    <%= f.label :zipcode, Spree.t(:zip) %>
+    <%= f.text_field :zipcode, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" data-hook="vendor_phone">
+    <%= f.label :phone, Spree.t(:phone) %>
+    <%= f.phone_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group" data-hook="vendor_country">
+    <%= f.label :country_id, Spree.t(:country) %>
+    <span id="country"><%= f.collection_select :country_id, available_countries, :id, :name, {}, { class: 'select2' } %></span>
+  </div>
+
+  <div class="form-group" data-hook="vendor_state">
+    <% if f.object.country %>
+      <%= f.label :state_id, Spree.t(:state) %>
+      <span id="state" class="region">
+        <%= f.text_field :state_name, style: "#{f.object.country.states.empty? ? '' : 'display: none;'}", disabled: !f.object.country.states.empty?, class: 'state_name form-control' %>
+        <%= f.collection_select :state_id, f.object.country.states.sort, :id, :name, { include_blank: true }, {class: 'select2-clear', style: "#{f.object.country.states.empty? ? 'display: none;' : '' };", disabled: f.object.country.states.empty?} %>
+      </span>
+    <% end %>
+  </div>
+</div>

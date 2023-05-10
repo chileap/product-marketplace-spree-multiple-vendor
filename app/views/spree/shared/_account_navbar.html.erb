@@ -1,0 +1,16 @@
+<div class="container-fluid py-4">
+  <ul class="nav justify-content-center account-tab-bars">
+    <li class="nav-item">
+      <%= link_to 'Account', spree.user_account_path, class: "nav-link #{ 'active' if current_link == 'account' }" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Public Profile', spree.edit_user_profile_path, class: "nav-link #{ 'active' if current_link == 'edit_profile' }" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Preferences', spree.user_preferences_path, class: "nav-link #{ 'active' if current_link == 'user_preferences' }" %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'Addresses', spree.user_addresses_path, class: "nav-link #{ 'active' if current_link == 'user_addresses' }" %>
+    </li>
+  </ul>
+</div>

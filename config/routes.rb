@@ -64,9 +64,20 @@ Rails.application.routes.draw do
 
 
       get '/sell', to: 'shops#index', as: :sell
+      get '/people/:slug', to: 'users#show', as: :user_profile
+
+      get '/your/account', to: 'profile#show', as: :user_account
+      get '/your/profile', to: 'profile#edit', as: :edit_user_profile
+      get '/your/profile/preferences', to: 'profile#preferences', as: :user_preferences
+      get '/your/profile/addresses', to: 'profile#addresses', as: :user_addresses
+      get '/your/profile/orders', to: 'profile#orders', as: :user_orders
+
+      get '/your/orders/:id', to: 'orders#show', as: :your_order
+      get '/your/orders', to: 'orders#index', as: :your_orders
       get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
       get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
+      get 'search/shops', to: 'shops#search', as: :search_shops
     end
   end
 end
