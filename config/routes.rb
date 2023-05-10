@@ -36,7 +36,7 @@ Rails.application.routes.draw do
       get '/checkout/:state', to: 'checkout#edit', as: :checkout_state
       get '/checkout', to: 'checkout#edit', as: :checkout
 
-      resources :orders, except: [:index, :new, :create, :destroy]
+      resources :orders, except: [:index, :new, :create, :destroy, :show]
 
       resources :addresses, except: [:index, :show]
 
@@ -64,9 +64,12 @@ Rails.application.routes.draw do
 
 
       get '/sell', to: 'shops#index', as: :sell
+      get '/your/orders/:id', to: 'orders#show', as: :your_order
+      get '/your/orders', to: 'orders#index', as: :your_orders
       get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
       get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
+      get 'search/shops', to: 'shops#search', as: :search_shops
     end
   end
 end

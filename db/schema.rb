@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_123908) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_10_023519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1445,7 +1445,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_123908) do
     t.string "name"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
-    t.string "state"
+    t.string "status"
     t.datetime "deleted_at", precision: nil
     t.string "slug"
     t.text "about_us"
@@ -1453,10 +1453,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_123908) do
     t.float "commission_rate", default: 5.0
     t.integer "priority"
     t.string "notification_email"
+    t.integer "country_id"
+    t.string "address1"
+    t.string "address2"
+    t.string "city"
+    t.integer "state_id"
+    t.string "state_name"
+    t.string "zipcode"
+    t.string "phone"
     t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
     t.index ["name"], name: "index_spree_vendors_on_name", unique: true
     t.index ["slug"], name: "index_spree_vendors_on_slug", unique: true
-    t.index ["state"], name: "index_spree_vendors_on_state"
+    t.index ["status"], name: "index_spree_vendors_on_status"
   end
 
   create_table "spree_webhooks_events", force: :cascade do |t|

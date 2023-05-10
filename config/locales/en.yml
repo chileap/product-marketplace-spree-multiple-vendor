@@ -9,3 +9,5 @@ en:
       price_low_to_high: "Lowest Price"
       sort_by: "Sort by"
       results: "Results"
+    nav_bar:
+      my_account: My Account
