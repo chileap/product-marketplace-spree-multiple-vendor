@@ -33,3 +33,10 @@ en:
       results: "Results"
     nav_bar:
       my_account: My Account
+      help_center: Help Center
+    help: "Help"
+    dont_have_account: Not yet registered?
+    create_an_account: Create an Account
+    new_customer: Create your account
+    back_to_login: Back to Login
+    registration_caption: "Creating an account will allow you to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more."

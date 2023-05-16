@@ -11,7 +11,7 @@
     }
   }
   .spree-icon path {
-    fill: $footer-font-color;
+    fill: $primary;
   }
   &-contact-note {
     min-width: max-content;
@@ -21,6 +21,7 @@
     }
   }
   &-copyright {
+    background-color: $footer-copy-background;
     border-color: $global-border-style !important;
     font-size: font-px-to-rem(9px);
     a {

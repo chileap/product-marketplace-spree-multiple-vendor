@@ -87,3 +87,60 @@
     }
   }
 }
+
+.help-item {
+  height: 660px;
+  background-color: #fdebd2;
+
+  @include media-breakpoint-down(sm) {
+    height: 535px;
+  }
+}
+
+.carousel-caption {
+  top: 15rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
+  p {
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0 auto 3.375rem auto;
+    padding-top: 1.5rem;
+  }
+
+  @include media-breakpoint-down(sm) {
+    top: 12rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+
+    p {
+      font-size: 0.875rem;
+      margin: 0 auto 2.25rem auto;
+      padding-top: 1rem;
+    }
+  }
+}
+
+.carousel-indicators {
+  bottom: 5rem;
+
+  [data-bs-target] {
+    border-radius: 50%;
+    border: none;
+    height: 0.5625rem;
+    width: 0.5625rem;
+    margin: 0 0.9375rem;
+    align-self: center;
+
+    &.active {
+      margin: 0 0.70312rem;
+      height: 0.9375rem;
+      width: 0.9375rem;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    bottom: 1rem;
+  }
+}

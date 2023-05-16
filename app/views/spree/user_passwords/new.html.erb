@@ -2,19 +2,24 @@
 
 <div class="container-fluid user-passwords">
   <div class="row">
-    <div class="col-lg-6 offset-lg-3" id="forgot-password">
-      <div class="card mb-3 user-passwords-no-border">
-        <h3 class="spree-mb-large spree-mt-large spree-header"><%= Spree.t(:forgot_password) %></h3>
-        <div class="card-body">
-          <p><%= Spree.t(:instructions_to_reset_password) %></p>
+    <div class="col-lg-6 mx-auto" id="forgot-password">
+      <div class="col-lg-11 mx-auto" id="new-customer" data-hook="login">
+        <h4 class="spree-header pt-5 pb-3"><%= Spree.t(:forgot_password) %></h4>
+        <p><%= Spree.t(:instructions_to_reset_password) %></p>
 
-          <%= simple_form_for Spree.user_class.new, as: :spree_user, url: spree.reset_password_path do |f| %>
-            <div class="form-group">
-              <%= f.email_field :email, class: "spree-flat-input", placeholder: Spree.t(:email) %>
-            </div>
-            <div>
-              <%= f.submit Spree.t(:reset_password), class: 'btn btn-primary btn-block spree-btn mt-2' %>
-            </div>
+        <%= simple_form_for Spree.user_class.new, as: :spree_user, url: spree.reset_password_path do |f| %>
+          <div class="form-group">
+            <%= f.input :email, input_html: {class: "spree-flat-input"}, required: true %>
+          </div>
+          <div>
+            <%= f.submit Spree.t(:reset_password), class: 'btn btn-primary btn-block w-100 rounded-pill mt-2' %>
+          </div>
+        <% end %>
+
+        <div class="d-flex justify-content-center text-center py-4">
+          <%= link_to spree.login_path, class: 'btn btn-link btn-icon' do %>
+            <i class="bi bi-arrow-left-short icon-lg"></i>
+            <span><%= Spree.t(:back_to_login) %></span>
           <% end %>
         </div>
       </div>

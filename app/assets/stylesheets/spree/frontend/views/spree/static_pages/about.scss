@@ -1,0 +1,95 @@
+.how-it-works {
+  background-color: #303044;
+  color: #ffffff;
+  display: flex;
+}
+
+.inc-wrapper {
+  margin: 0 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.how-it-works__list {
+  padding-bottom: 110px;
+  padding-top: 0;
+  list-style: none;
+  padding: 30px 0 30px;
+}
+
+.how-it-works__headline {
+  margin-bottom: 1.2rem;
+}
+
+.how-it-works__item {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0;
+  padding: 0 37px;
+}
+
+.how-it-works__item-icon {
+  flex: 0 0 120px;
+  display: flex;
+  position: relative;
+}
+
+.how-it-works__item-icon--sell .animation {
+  background-color: #f56400;
+
+  svg {
+    fill: #ffffff;
+  }
+}
+
+.how-it-works__item-icon > div {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+}
+
+.how-it-works__item-icon--shop .animation {
+  background-color: #f2d0b8;
+}
+
+.how-it-works__paragraph {
+  width: 60%;
+  margin: 0.9375rem auto;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.75rem;
+}
+
+.how-it-works__item-paragraph {
+  margin-bottom: 0.9375rem;
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.75rem;
+}
+
+.default-button {
+  color: #ffffff;
+  width: 230px;
+}
+
+.default-button {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 3.5rem;
+  text-align: center;
+  text-decoration: none;
+  transition: border-color 0.1s cubic-bezier(0.22, 0.61, 0.36, 1);
+  width: 100%;
+
+  &:hover {
+    border-color: #ffffff;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}

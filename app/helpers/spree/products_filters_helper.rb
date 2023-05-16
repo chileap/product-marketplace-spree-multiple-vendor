@@ -5,7 +5,7 @@ module Spree
     FILTER_LINK_CSS_CLASSES = 'd-inline-block text-uppercase py-1 px-2 m-1 plp-overlay-card-item'.freeze
     ACTIVE_FILTER_LINK_CSS_CLASSES = 'plp-overlay-card-item--selected'.freeze
 
-    CLEAR_ALL_FILTERS_LINK_CSS_CLASSES = 'btn spree-btn btn-outline-primary w-100 mb-4'.freeze
+    CLEAR_ALL_FILTERS_LINK_CSS_CLASSES = 'btn btn-outline-primary w-100 mb-4'.freeze
 
     def price_filters
       @price_filters ||= [

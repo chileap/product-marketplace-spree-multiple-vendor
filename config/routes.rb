@@ -78,6 +78,8 @@ Rails.application.routes.draw do
       get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
       get 'search/shops', to: 'shops#search', as: :search_shops
+      get '/help', to: 'static_pages#help', as: :help
+      get '/about', to: 'static_pages#about', as: :about
     end
   end
 end
