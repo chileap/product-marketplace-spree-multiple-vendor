@@ -72,11 +72,5 @@ module Spree
         link_to item.name, spree_localized_link(item), link_opts
       end
     end
-
-    private
-
-    def spree_navigation_data_cache_key
-      @spree_navigation_data_cache_key ||= Digest::MD5.hexdigest(spree_navigation_data.to_s)
-    end
   end
 end

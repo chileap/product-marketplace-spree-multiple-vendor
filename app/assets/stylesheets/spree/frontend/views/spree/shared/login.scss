@@ -1,9 +1,6 @@
 .forgot-password {
-  margin-top: font-px-to-rem(10px);
-
   a {
     transition: basic-transition(color);
-    text-transform: uppercase;
     text-decoration: underline;
     color: $primary;
     font-size: font-px-to-rem(12px);
@@ -15,14 +12,12 @@
   }
 
   @include media-breakpoint-up(sm) {
-    margin-top: font-px-to-rem(19.7px);
     a {
       font-size: font-px-to-rem(23px);
     }
   }
 
   @include media-breakpoint-up(lg) {
-    margin-top: font-px-to-rem(20px);
     a {
       font-size: font-px-to-rem(16px);
     }

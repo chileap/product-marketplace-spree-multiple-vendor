@@ -8,10 +8,12 @@
 @import "./margins";
 @import "./flags/flag-icon";
 
+@import "./components-bootstrap/margin";
 @import "./components-bootstrap/carousel";
 @import "./components-bootstrap/button";
 @import "./components-bootstrap/alert";
 
+@import "./views/spree/static_pages/about";
 @import "./views/spree/shared/quantity_select";
 @import "./views/spree/layouts/spree_application";
 @import "./helpers/spree/frontend_helper";

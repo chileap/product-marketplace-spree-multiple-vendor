@@ -1,13 +1,13 @@
 .spree-flat-input {
   color: $secondary;
   transition: basic-transition(border-color);
-  padding: 15px;
+  padding: 13px;
   width: 100%;
   height: auto;
   border-width: 1px;
   border-style: solid;
   border-color: $second-global-border;
-  border-radius: 0;
+  border-radius: 6px;
   outline: none;
   font-size: font-px-to-rem(12px);
   line-height: inherit;
@@ -15,11 +15,9 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   @include media-breakpoint-up(sm) {
-    padding: 25px;
     font-size: font-px-to-rem(23px);
   }
   @include media-breakpoint-up(lg) {
-    padding: 20px;
     font-size: font-px-to-rem(14px);
   }
   &:focus {
@@ -203,7 +201,6 @@
 }
 
 .spree-btn {
-  text-transform: uppercase;
   letter-spacing: 0.05rem;
   font-size: font-px-to-rem(14px);
   font-weight: bold;

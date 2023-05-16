@@ -7,16 +7,12 @@ module Spree
     respond_to :html
 
     def index
-      if @cms_home_page&.visible?
-        @homepage = @cms_home_page
-      elsif try_spree_current_user&.admin?
-        @homepage = @cms_home_page
-        @edit_mode = true
-      end
-
-      if http_cache_enabled?
-        fresh_when etag: store_etag, last_modified: last_modified_index, public: true
-      end
+      @men_taxon = Spree::Taxon.find_by(permalink: 'categories/clothing-and-shoes/men')
+      @women_taxon = Spree::Taxon.find_by(permalink: 'categories/clothing-and-shoes/women')
+      @kids_taxon = Spree::Taxon.find_by(permalink: 'categories/clothing-and-shoes/kids')
+      @accessories_taxon = Spree::Taxon.find_by(permalink: 'categories/jewelry-and-accessories')
+      @home_taxon = Spree::Taxon.find_by(permalink: 'categories/home-and-living')
+      @toys_taxon = Spree::Taxon.find_by(permalink: 'categories/toys-and-entertainment')
     end
 
     private

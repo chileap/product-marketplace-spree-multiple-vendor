@@ -1,0 +1,53 @@
+<div class="how-it-works row" data-component="how-it-works">
+  <div class="inc-wrapper pt-5 col-8 mx-auto">
+    <div class="how-it-works__content text-center">
+      <div class="how-it-works__intro">
+        <h3 class="how-it-works__headline">
+          How Product Mall Works
+        </h3>
+        <p class="how-it-works__paragraph">
+          Our global marketplace is a vibrant community of real people connecting over special goods.
+          The platform empowers sellers to do what they love and helps buyers find what they love.
+        </p>
+      </div>
+      <ul class="how-it-works__list row" data-how-it-works-list="">
+        <li class="how-it-works__item col-md-6 flex-column" data-how-it-works-item-for="sell">
+          <div class="how-it-works__item-icon how-it-works__item-icon--sell how-it-works__item-icon--tablet-portrait">
+            <div class="animation" data-component="animation" data-file-name="data_handhammer" data-autoplay="false" data-loop="false" data-lastframe="true">
+              <%= icon(name: 'rating', classes: 'd-block w-100', width: 60, height: 60) %>
+            </div>
+          </div>
+          <div class="how-it-works__item-content d-flex flex-column h-100 justify-content-between">
+            <h4 class="how-it-works__item-headline">
+              Sell extraordinarily
+            </h4>
+            <p class="how-it-works__item-paragraph">
+              With low fees, powerful tools, and support and education, we help creative entrepreneurs start, manage, and scale their businesses. Want to become an Product Mall seller? All it takes is 20 cents to get started.
+            </p>
+            <a class="default-button how-it-works__cta" href="<%= sell_path %>">
+              Become a seller
+            </a>
+          </div>
+        </li>
+        <li class="how-it-works__item col-md-6 flex-column" data-how-it-works-item-for="shop">
+          <div class="how-it-works__item-icon how-it-works__item-icon--shop how-it-works__item-icon--tablet-portrait">
+            <div class="animation" data-component="animation" data-file-name="data_handsgiving" data-autoplay="false" data-loop="false" data-lastframe="true">
+              <%= icon(name: 'shop', classes: 'd-block w-100', width: 60, height: 60) %>
+            </div>
+          </div>
+          <div class="how-it-works__item-content d-flex flex-column h-100 justify-content-between">
+            <h4 class="how-it-works__item-headline">
+              Buy extraordinary
+            </h4>
+            <p class="how-it-works__item-paragraph">
+              From the specific to the unexpected (or custom-made), our search tools help buyers explore all the special one-of-a-kind items offered by Product Mall sellers.
+            </p>
+            <a class="default-button how-it-works__cta" href="<%= root_path %>">
+              Start shopping
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

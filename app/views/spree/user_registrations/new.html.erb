@@ -1,17 +1,21 @@
 <% @body_id = 'signup' %>
 <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
-<div class="col-lg-6 offset-lg-3">
-  <h4 class="spree-header my-4"><%= Spree.t(:new_customer) %></h4>
-  <div id="new-customer" data-hook="login">
-    <%= simple_form_for resource, as: :spree_user, url: spree.registration_path, data: { turbo: false } do |f| %>
-      <div data-hook="signup_inside_form">
-        <%= render partial: 'spree/shared/user_form', locals: { f: f, remember_me_field: true } %>
-        <div><%= f.submit Spree.t(:sign_up), class: 'btn btn-primary btn-block spree-btn mb-5' %></div>
-      </div>
-    <% end %>
+<div class="container-fluid user-registration user-registration-new">
+  <div class="col-lg-6 mx-auto">
+    <div class="col-lg-11 mx-auto" id="new-customer" data-hook="login">
+      <h4 class="spree-header pt-5 pb-3"><%= Spree.t(:new_customer) %></h4>
+      <%= simple_form_for resource, as: :spree_user, url: spree.registration_path, data: { turbo: false } do |f| %>
+        <div data-hook="signup_inside_form">
+          <%= render partial: 'spree/shared/user_form', locals: { f: f, remember_me_field: true } %>
+          <div><%= f.submit Spree.t(:sign_up), class: 'btn btn-primary btn-lg w-100 mb-2 rounded-pill' %></div>
+        </div>
+      <% end %>
 
-    <h3 class="spree-header header-sm spree-mt-medium mb-3 mb-sm-4 mb-xl-4"><%= Spree.t('already_have_account') %></h3>
-    <%= link_to Spree.t(:log_in), spree.login_path, class: 'btn btn-block btn-outline-primary spree-btn spree-mb-large' %>
-    <div data-hook="login_extras"></div>
+      <div class="text-center py-4">
+        <span class="mb-3 mb-sm-4 mb-xl-4"><%= Spree.t('already_have_account') %></span>
+        <%= link_to Spree.t(:log_in), spree.login_path, class: 'btn btn-link' %>
+      </div>
+      <div data-hook="login_extras"></div>
+    </div>
   </div>
 </div>

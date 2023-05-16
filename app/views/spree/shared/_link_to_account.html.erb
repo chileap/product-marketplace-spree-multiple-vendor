@@ -6,7 +6,7 @@
       </div>
       <div class="ms-3 wt-flex-grow-xs-1">
         <h4 class="wt-text-title-01 wt-m-xs-0" aria-label="View your profile">
-          <%= try_spree_current_user.email %>
+          <%= try_spree_current_user.first_name || try_spree_current_user.email %>
         </h4>
         <p class="wt-text-caption wt-m-xs-0" aria-hidden="true">View your profile</p>
       </div>

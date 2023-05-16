@@ -1,5 +1,5 @@
 <% if spree_menu.present? %>
-  <ul class="nav h-100 main-nav-bar">
+  <ul class="nav w-100 h-100 main-nav-bar justify-content-between">
     <% spree_menu.children.each do |parent| %>
       <li class="p-0 nav-item main-nav-bar-category">
         <% has_dropdown = parent.children.present? %>
@@ -20,15 +20,15 @@
                 <% if child.container? && child.code?('category') %>
                   <div class="row category-links w-100 mx-0">
                     <% if child.children.present? %>
-                      <ul class="p-0 col-4">
+                      <ul class="p-0 col-9 d-flex">
                         <% child.children.each do |category_link| %>
-                          <li class="mb-2">
-                            <%= spree_nav_link_tag(category_link, { class: "text-uppercase main-nav-bar-category-links dropdown-item truncate" }) %>
+                          <li class="mb-2 col-4">
+                            <%= spree_nav_link_tag(category_link, { class: "main-nav-bar-category-links dropdown-item truncate" }) %>
                             <% if category_link.children.present? %>
                               <ul class="pt-2 px-0 sub-category-links">
                                 <% category_link.children.each do |sub_category_link| %>
                                   <li>
-                                    <%= spree_nav_link_tag(sub_category_link, { class: "text-uppercase main-nav-bar-sub-category-links dropdown-item truncate" }) %>
+                                    <%= spree_nav_link_tag(sub_category_link, { class: "main-nav-bar-sub-category-links dropdown-item truncate" }) %>
                                   </li>
                                 <% end %>
                               </ul>
@@ -38,8 +38,8 @@
                       </ul>
                     <% end %>
 
-                    <div class="category-links-header col-4">
-                      <%= link_to spree_localized_link(parent), class: "text-uppercase main-nav-bar-category-links dropdown-item truncate" do %>
+                    <div class="category-links-header col-3 p-0">
+                      <%= link_to spree_localized_link(parent), class: "main-nav-bar-category-links dropdown-item truncate" do %>
                         <strong>All <%= parent.name %></strong>
                         <%= icon(name: 'arrow-right-short', classes: 'd-inline-block', width: 24, height: 24) %>
                       <% end %>

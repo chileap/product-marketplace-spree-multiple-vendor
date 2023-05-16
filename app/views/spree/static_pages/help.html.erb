@@ -1,0 +1,52 @@
+<div id="carouselHelperPage" class="carousel carousel-dark slide" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselHelperPage" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselHelperPage" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselHelperPage" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active help-item">
+      <div class="pt-lg-9 pt-5">
+        <%= icon(name: 'shopping', classes: 'd-block w-100', width: 100, height: 100) %>
+      </div>
+      <div class="carousel-caption">
+        <h2>I’m ready to shop. Where do I begin?</h2>
+        <p>
+          Visit <%= link_to 'product-mall.herokuapp.com', root_path %> to start exploring.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-item help-item">
+      <div class="pt-lg-9 pt-5">
+        <%= icon(name: 'shop', classes: 'd-block w-100', width: 100, height: 100) %>
+      </div>
+      <div class="carousel-caption">
+        <h2>How do I become an Product Mall Seller?</h2>
+        <p>
+          If you want to sell your handmade, vintage or craft items on Product Mall, check that they fit within our Seller Policy.
+          Then, visit <%= link_to 'product-mall.herokuapp.com/sell', sell_path %> to set up your shop. It only takes 20 cents and your imagination to set up a global business.
+        </p>
+      </div>
+    </div>
+
+    <div class="carousel-item help-item">
+      <div class="pt-lg-9 pt-5">
+        <%= icon(name: 'help-user', classes: 'd-block w-100', width: 100, height: 100) %>
+      </div>
+      <div class="carousel-caption">
+        <h2>More helps</h2>
+        <p>
+          Please visit <%= link_to 'contact us', help_path %> page to get more helps.
+        </p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselHelperPage" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselHelperPage" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

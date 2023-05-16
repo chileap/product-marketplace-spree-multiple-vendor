@@ -227,9 +227,11 @@
 #internationalization-button-desktop {
   padding: 0.5rem;
   border-radius: 10px;
+  color: #fff;
   &:hover {
-    background-color: darken($light, 2);
-    border-color: darken($light, 2);
+    border-radius: 24px;
+    background-color: #45404e;
+    border-color: #45404e;
   }
 }
 
@@ -241,5 +243,16 @@ button.close {
 a.btn {
   &:hover {
     text-decoration: none;
+  }
+}
+
+.btn-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  &:hover {
+    background-color: darken($light, 2);
+    border-color: darken($light, 2);
   }
 }

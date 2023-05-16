@@ -3,7 +3,7 @@
 <div id="filter-by-overlay" class="d-lg-none plp-overlay" style="display: <%= is_visible %>;">
   <% cache filters_cache_key('mobile') do %>
     <div class="plp-scroll">
-      <div class="container">
+      <div class="container-fluid">
         <div class="plp-overlay-header">
           <%= Spree.t('plp.filter_by') %>
           <%= inline_svg_tag 'close.svg', id: 'filter-by-overlay-hide-button' %>
@@ -89,6 +89,6 @@
 
   <div class="container-fluid position-absolute text-center plp-overlay-buttons pt-3">
     <%= clear_all_filters_link(permitted_params) %>
-    <%= link_to Spree.t('plp.done'), permitted_params, id: 'filterProductsButtonMobile', class: 'btn btn-primary spree-btn w-100 done-btn', data: { params: permitted_params } %>
+    <%= link_to Spree.t('plp.done'), permitted_params, id: 'filterProductsButtonMobile', class: 'btn btn-primary w-100 done-btn', data: { params: permitted_params } %>
   </div>
 </div>
