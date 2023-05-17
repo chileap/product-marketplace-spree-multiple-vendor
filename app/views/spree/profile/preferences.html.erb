@@ -2,14 +2,14 @@
 
 <div class="container-fluid py-3">
   <div class="row">
-    <div class="col-xs-12 col-lg-4">
-      <dt class="text-uppercase account-page-user-info-item-title">
-        <%= Spree.t(:account_info) %>
-          <%= link_to spree.edit_user_profile_path, class: "account-page-user-info-item-title-edit" do %>
-          <%= inline_svg_tag('edit.svg', width: 27.6, height: 24) %>
-        <% end %>
-      </dt>
-      <dd class="account-page-user-info-item-definition"><%= @user.email %></dd>
+    <div class="col-xs-12 col-lg-8 mx-auto">
+      <div class="card rounded mb-4">
+        <div class="card-header">
+          Everything on this page can be seen by anyone
+        </div>
+        <div class="card-body">
+        </div>
+      </div>
     </div>
   </div>
 </div>

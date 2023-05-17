@@ -30,8 +30,15 @@
           <div class="footer-spree-label">
             Sell
           </div>
+
+          <% if spree_current_user&.vendors.blank? %>
+            <div class="pt-2">
+              <%= link_to "Sell on #{current_store.name}", spree.sell_path %>
+            </div>
+          <% end %>
+
           <div class="pt-2">
-            <%= link_to "Sell on #{current_store.name}", spree.sell_path %>
+            <%= link_to "Affiliates & Creators", spree.affiliates_path %>
           </div>
         </div>
 
@@ -42,12 +49,6 @@
           <div class="pt-2">
             <%= link_to current_store.name, spree.about_path %>
           </div>
-          <div class="pt-2">
-            <%= link_to 'Terms of Use', spree.root_path %>
-          </div>
-          <div class="pt-2">
-            <%= link_to 'Privacy', spree.root_path %>
-          </div>
         </div>
 
         <% if spree.respond_to?(:account_path) && try_spree_current_user %>
@@ -56,7 +57,7 @@
               <%= Spree.t('nav_bar.my_account') %>
             </div>
             <div class="pt-2">
-              <%= link_to Spree.t(:my_orders), spree.account_path(anchor: "account-my-orders") %>
+              <%= link_to Spree.t(:my_orders), spree.your_orders_path %>
             </div>
           </div>
         <% else %>

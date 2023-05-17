@@ -8,7 +8,7 @@ module Spree
       @address = try_spree_current_user.addresses.build(address_params)
       if create_service.call(user: try_spree_current_user, address_params: @address.attributes).success?
         flash[:notice] = I18n.t(:successfully_created, scope: :address_book)
-        redirect_to spree.account_path
+        redirect_to spree.user_addresses_path
       else
         render action: 'new', status: :unprocessable_entity
       end

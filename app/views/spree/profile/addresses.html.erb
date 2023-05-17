@@ -1,15 +1,36 @@
 <%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'user_addresses' } %>
 
-<div class="container-fluid py-3">
+<div class="container-fluid pt-2 pb-5">
   <div class="row">
-    <div class="col-xs-12 col-lg-4">
-      <dt class="text-uppercase account-page-user-info-item-title">
-        <%= Spree.t(:account_info) %>
-          <%= link_to spree.edit_user_profile_path, class: "account-page-user-info-item-title-edit" do %>
-          <%= inline_svg_tag('edit.svg', width: 27.6, height: 24) %>
+    <div class="col-xs-12 col-lg-8 mx-auto">
+      <div class="row">
+        <div class="col-xs-12 col-lg-6">
+          <h1>Your shipping addresses</h1>
+        </div>
+        <div class="col-xs-12 col-lg-6 d-flex justify-content-end align-items-center">
+          <%= link_to 'Add new address', new_address_path, class: "btn btn-primary rounded-pill float-lg-right" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <% if spree_current_user.addresses.any? %>
+          <% spree_current_user.addresses.each do |address| %>
+            <div class="col-md-4 col-sm-12 py-3">
+              <%= render "spree/profile/address", address: address %>
+              <%= render "spree/profile/address_controls", address: address %>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="col-xs-12 col-lg-6">
+            <p>You have no shipping addresses yet.</p>
+          </div>
         <% end %>
-      </dt>
-      <dd class="account-page-user-info-item-definition"><%= @user.email %></dd>
+      </div>
     </div>
   </div>
+</div>
+
+
+<div id="delete-address-popup" class="delete-address-popup-dropdown hide-on-esc">
+  <%= render 'spree/shared/delete_address_popup' %>
 </div>

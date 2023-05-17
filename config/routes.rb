@@ -80,6 +80,7 @@ Rails.application.routes.draw do
       get 'search/shops', to: 'shops#search', as: :search_shops
       get '/help', to: 'static_pages#help', as: :help
       get '/about', to: 'static_pages#about', as: :about
+      get '/affiliates', to: 'static_pages#affiliates', as: :affiliates
     end
   end
 end

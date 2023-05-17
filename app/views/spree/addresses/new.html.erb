@@ -6,11 +6,7 @@
     <%= f.text_field :label, class: 'spree-flat-input', placeholder: Spree.t(:address_name_placeholder, scope: :address_book) %>
     <%= f.label :address_name, Spree.t(:label, scope: :address_book) %>
   </div>
-    <%= render 'spree/addresses/form',
-      address_name: 'address',
-      address_form: f,
-      address_type: 'shipping',
-      address: @address %>
+    <%= render 'spree/addresses/form', address_name: 'address', address_form: f, address_type: 'shipping', address: @address %>
 
     <%= f.submit t(:save, scope: :address_book), class: 'btn btn-primary btn-block spree-btn mb-5' %>
   <% end %>
