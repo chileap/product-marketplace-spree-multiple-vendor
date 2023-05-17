@@ -23,6 +23,7 @@ en:
         email: Email
         website: Website
   spree:
+    welcome_back: Welcome back,
     vendors: "Vendors"
     plp:
       default: "Relevance"

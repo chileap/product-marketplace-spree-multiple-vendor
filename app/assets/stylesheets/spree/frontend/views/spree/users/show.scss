@@ -317,3 +317,12 @@
     @include item-title-font-size;
   }
 }
+
+address {
+  h4 {
+    padding-bottom: 0.5rem;
+  }
+  div {
+    font-size: 0.90rem;
+  }
+}

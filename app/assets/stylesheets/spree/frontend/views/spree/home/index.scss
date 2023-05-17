@@ -38,6 +38,13 @@
   fill: #FFFFFF !important;
 }
 
+.edge--smaller {
+  svg {
+    height: 30px;
+    width: 100%;
+  }
+}
+
 @media only screen and (min-width: 0) and (max-width: 1199px) {
   .edge.edge--ratio-none:not(.edge--right):not(.edge--left) {
     display: none;
@@ -82,7 +89,7 @@
 .text-body-01 {
   font-size: 1rem;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.7;
 }
 
 .flex-1 {

@@ -1,5 +1,14 @@
 <div class="row">
-  <div class="col-12 py-5 px-5">
+  <% if try_spree_current_user %>
+    <div class="col-12 py-md-3 py-sm-2">
+      <h3 class="text-center">
+        <%= Spree.t(:welcome_back) %>
+        <%= link_to spree_current_user.first_name || spree_current_user.email, user_profile_path(spree_current_user), class: "ps-1 text-decoration-underline" %>!
+      </h3>
+    </div>
+  <% end %>
+
+  <div class="col-12 py-3 px-5">
     <div class="row list-unstyled mb-5">
       <div class="pb-3 text-xs-center text-md-left">
         <div class="d-inline-block">
@@ -143,7 +152,7 @@
         <a class="text-link" href="<%= about_path %>"> Read our wonderfully weird story </a>
 
         <div class="row pt-6 text-left mb-7">
-          <div class="col-md-4 mt-4">
+          <div class="col-md-4 mt-4 px-2">
             <div data-selector="what-is-product-mall-community-impact-container" id="what-is-product-mall-community-impact-container">
               <h3 class="text-title-03 mb-3">A community doing good</h3>
 
@@ -152,11 +161,11 @@
               </p>
             </div>
           </div>
-          <div class="col-md-4 mt-4">
+          <div class="col-md-4 mt-4 px-2">
             <h3 class="text-title-03 mb-xs-3">Support independent creators</h3>
             <p class="text-body-01">There’s no Product Mall warehouse – just millions of people selling the things they love. We make the whole process easy, helping you connect directly with makers to find something extraordinary.</p>
           </div>
-          <div class="col-md-4 mt-4">
+          <div class="col-md-4 mt-4 px-2">
             <h3 class="text-title-03 mb-xs-3">Peace of mind</h3>
             <p class="text-body-01">Your privacy is the highest priority of our dedicated team. And if you ever need assistance, we are always ready to step in for support.</p>
           </div>

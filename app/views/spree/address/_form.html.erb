@@ -40,7 +40,7 @@
       <%= Spree.t(:country) %><abbr class="required" title="required">*</abbr>
     <% end %>
     <span id='<%= "#{address_id}country-selection" %>'>
-      <%= form.collection_select :country_id, available_countries, :id, :name, {}, { class: 'form-control', required: true } %>
+      <%= form.collection_select :country_id, all_countries, :id, :name, {}, { class: 'form-control', required: true } %>
     </span>
   </div>
 
@@ -52,12 +52,7 @@
       <% end %>
 
       <%== state_elements = [
-         form.collection_select(:state_id, address.country.states,
-                            :id, :name,
-                            {include_blank: true},
-                            {class: have_states ? 'form-control' : 'form-control hidden',
-                            required: have_states,
-                            disabled: !have_states}) +
+         form.collection_select(:state_id, address.country.states, :id, :name, {include_blank: true}, {class: have_states ? 'form-control' : 'form-control hidden', required: have_states, disabled: !have_states}) +
          form.text_field(:state_name,
                             class: !have_states ? 'form-control' : 'form-control hidden',
                             required: !have_states,

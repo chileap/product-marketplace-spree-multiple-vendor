@@ -2,14 +2,52 @@
 
 <div class="container-fluid py-3">
   <div class="row">
-    <div class="col-xs-12 col-lg-4">
-      <dt class="text-uppercase account-page-user-info-item-title">
-        <%= Spree.t(:account_info) %>
-          <%= link_to spree.edit_user_profile_path, class: "account-page-user-info-item-title-edit" do %>
-          <%= inline_svg_tag('edit.svg', width: 27.6, height: 24) %>
-        <% end %>
-      </dt>
-      <dd class="account-page-user-info-item-definition"><%= @user.email %></dd>
+    <div class="col-xs-12 col-lg-8 mx-auto">
+      <div class="card rounded mb-4">
+        <div class="card-header">
+          About You
+        </div>
+        <div class="card-body">
+          <h4>Name</h4>
+          <p><%= @user.first_name %> <%= @user.last_name %></p>
+
+          <h4>Email</h4>
+          <p><%= @user.email %></p>
+
+          <h4>Member since</h4>
+          <p><%= @user.created_at.strftime('%B %d, %Y') %></p>
+
+          <%= link_to 'Edit Public Profile', edit_user_profile_path, class: "btn btn-outline-primary rounded" %>
+        </div>
+      </div>
+
+      <div class="card rounded my-4">
+        <div class="card-header">
+          Password
+        </div>
+        <div class="card-body">
+          <%= simple_form_for @user, as: :spree_user, url: spree.update_password_path, method: :put do |f| %>
+            <div class="form-group">
+              <%= f.input :password, required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.input :password_confirmation, required: true %>
+            </div>
+            <%= f.hidden_field :reset_password_token %>
+            <%= f.submit Spree.t(:update), class: 'btn btn-primary rounded mt-2' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card rounded my-4">
+        <div class="card-header">
+          Close your account
+        </div>
+        <div class="card-body">
+          Unhappy?
+          <%= button_to "Cancel my account", registration_path(@user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-secondary my-3" %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

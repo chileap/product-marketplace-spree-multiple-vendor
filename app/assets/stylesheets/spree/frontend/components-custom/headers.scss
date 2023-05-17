@@ -24,3 +24,24 @@
     }
   }
 }
+
+.text-heading-01 {
+  font-size: font-px-to-rem(24px);
+  line-height: 1.17;
+  color: $dark-text;
+
+  @include media-breakpoint-up(sm) {
+    font-size: font-px-to-rem(34px);
+    line-height: 0.91;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: font-px-to-rem(32px);
+    line-height: 0.88;
+  }
+}
+
+.max-width-sm {
+  max-width: 480px;
+  margin: 0 auto;
+}

@@ -1,13 +1,23 @@
 <%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'edit_profile' } %>
 
-<div class="col-lg-6 offset-lg-3 mb-5">
-  <h3 class="spree-mb-large spree-mt-large spree-header"><%= Spree.t(:editing_user) %></h3>
-  <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+<div class="container-fluid py-3">
+  <div class="row">
+    <div class="col-xs-12 col-lg-8 mx-auto">
+      <div class="card rounded mb-4">
+        <div class="card-header">
+          Everything on this page can be seen by anyone
+        </div>
+        <div class="card-body">
+          <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
 
-  <%= simple_form_for Spree.user_class.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
-    <%= render partial: 'spree/shared/user_form', locals: { f: f, remember_me_field: false } %>
-    <div>
-      <%= f.submit Spree.t(:update), class: 'btn btn-lg btn-block btn-primary text-uppercase font-weight-bold' %>
+          <%= simple_form_for Spree.user_class.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
+            <%= render partial: 'spree/shared/user_form', locals: { f: f, remember_me_field: false } %>
+            <div>
+              <%= f.submit Spree.t(:update), class: 'btn btn-lg btn-block btn-primary text-uppercase font-weight-bold' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>

@@ -12,6 +12,13 @@
 @import "./components-bootstrap/carousel";
 @import "./components-bootstrap/button";
 @import "./components-bootstrap/alert";
+@import "./components-bootstrap/typography";
+@import "./components-bootstrap/position";
+
+@import "./components-custom/headers";
+@import "./components-custom/inputs";
+@import "./components-custom/icons";
+@import "./components-custom/background";
 
 @import "./views/spree/static_pages/about";
 @import "./views/spree/shared/quantity_select";
@@ -37,8 +44,6 @@
 @import "./views/spree/user_passwords/user_passwords";
 @import "./views/spree/user_sessions/new";
 @import "./views/spree/products/index";
-@import "./components-custom/headers";
-@import "./components-custom/inputs";
 @import "./views/spree/checkout/registration";
 @import "./views/spree/checkout/delivery";
 @import "./views/spree/checkout/confirm";
@@ -62,7 +67,7 @@
 
 body {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", "Instrument Sans", "Open Sans", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
