@@ -34,7 +34,9 @@ class Spree::UsersController < Spree::StoreController
 
   def update
     load_object
-    if @user.update(user_params)
+
+    @user.create_profile_picture(attachment: user_params[:profile_picture]) if user_params[:profile_picture].present?
+    if @user.update(user_params.except(:profile_picture))
       if params[:user][:password].present?
         # this logic needed b/c devise wants to log us out after password changes
         Spree.user_class.reset_password_by_token(params[:user])
@@ -44,16 +46,30 @@ class Spree::UsersController < Spree::StoreController
           bypass_sign_in(@user)
         end
       end
-      redirect_to spree.account_path, notice: Spree.t(:account_updated)
+      redirect_to spree.user_profile_path(@user), notice: Spree.t(:account_updated)
     else
-      render :edit
+      flash[:error] = @user.errors.full_messages.join(', ')
+      redirect_to spree.user_account_path, status: :unprocessable_entity
     end
+  end
+
+  def update_profile_picture
+    load_object
+    @user.create_profile_picture(attachment: user_params[:profile_picture]) if user_params[:profile_picture].present?
+    redirect_to spree.user_profile_path(@user), notice: Spree.t(:account_updated)
   end
 
   private
 
   def user_params
-    params.require(:user).permit(Spree::PermittedAttributes.user_attributes)
+    params.require(:user).permit(
+      Spree::PermittedAttributes.user_attributes,
+      :profile_picture,
+      :default_city,
+      :default_country,
+      :default_currency,
+      :default_language
+    )
   end
 
   def load_object

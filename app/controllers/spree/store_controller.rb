@@ -4,8 +4,9 @@ module Spree
     include Spree::Core::ControllerHelpers::Search
     include Spree::Core::ControllerHelpers::Store
     include Spree::Core::ControllerHelpers::StrongParameters
-    include Spree::Core::ControllerHelpers::Locale
-    include Spree::Core::ControllerHelpers::Currency
+    include Spree::CountryConcern
+    include Spree::LocaleConcern
+    include Spree::CurrencyConcern
     include Spree::Core::ControllerHelpers::Order
     include Spree::LocaleUrls
 

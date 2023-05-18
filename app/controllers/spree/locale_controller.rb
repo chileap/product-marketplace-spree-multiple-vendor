@@ -8,6 +8,7 @@ module Spree
 
     def set
       new_locale = (params[:switch_to_locale] || params[:locale]).to_s
+      spree_current_user.update(default_language: new_locale) if spree_current_user.present?
 
       if new_locale.present? && supported_locale?(new_locale)
         if should_build_new_url?

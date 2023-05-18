@@ -25,6 +25,7 @@ en:
   spree:
     welcome_back: Welcome back,
     vendors: "Vendors"
+    update: "Save Changes"
     plp:
       default: "Relevance"
       newest_first: "Most Recent"

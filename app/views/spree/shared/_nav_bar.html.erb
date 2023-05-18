@@ -11,7 +11,11 @@
     <li>
       <div class="dropdown navbar-right-dropdown nav-link">
         <button id="account-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" class="navbar-right-dropdown-toggle dropdown-toggle account-icon" aria-label="<%= Spree.t('nav_bar.show_user_menu') %>">
-          <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
+          <% if spree_current_user.profile_picture %>
+            <%= image_tag(main_app.cdn_image_url(spree_current_user.profile_picture.attachment), class: 'h-8 w-8 rounded-pill') %>
+          <% else %>
+            <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
+          <% end %>
         </button>
 
         <ul id="link-to-account" class="dropdown-menu mt-2">
