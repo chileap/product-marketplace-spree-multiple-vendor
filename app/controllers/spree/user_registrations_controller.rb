@@ -8,8 +8,9 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
 
   include SpreeI18n::ControllerLocaleHelper if defined?(SpreeI18n::ControllerLocaleHelper)
 
-  include Spree::Core::ControllerHelpers::Currency if defined?(Spree::Core::ControllerHelpers::Currency)
-  include Spree::Core::ControllerHelpers::Locale if defined?(Spree::Core::ControllerHelpers::Locale)
+  include Spree::CountryConcern
+  include Spree::LocaleConcern
+  include Spree::CurrencyConcern
 
   include Spree::LocaleUrls if defined?(Spree::LocaleUrls)
 

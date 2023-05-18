@@ -42,9 +42,7 @@ class Spree::VendorAbility
   def apply_order_permissions
     cannot :create, Spree::Order
 
-    order_scope = if ::Spree::Order.reflect_on_association(:vendor)
-                    { vendor_id: @vendor_ids }
-                  elsif ::Spree::LineItem.reflect_on_association(:vendor)
+    order_scope = if ::Spree::LineItem.reflect_on_association(:vendor)
                     { line_items: { vendor_id: @vendor_ids } }
                   elsif ::Spree::Product.reflect_on_association(:vendor)
                     { line_items: { product: { vendor_id: @vendor_ids } } }
@@ -53,7 +51,7 @@ class Spree::VendorAbility
                   end
 
     if order_scope.present?
-      can %i[admin show index edit update cart], Spree::Order, order_scope.merge(state: 'complete')
+      can %i[admin show index edit update_shipment cart], Spree::Order, order_scope.merge(state: 'complete')
     else
       cannot_display_model(Spree::Order)
     end
@@ -107,7 +105,7 @@ class Spree::VendorAbility
   end
 
   def apply_shipment_permissions
-    can :update, Spree::Shipment, inventory_units: { line_item: { product: { vendor_id: @vendor_ids } } }
+    can [:update, :show], Spree::Shipment, inventory_units: { line_item: { vendor_id: @vendor_ids } }
   end
 
   def apply_shipping_methods_permissions
