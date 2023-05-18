@@ -47,21 +47,15 @@ module Spree
           params[:q][:completed_at_lt] = params[:q].delete(:created_at_lt)
         end
 
-        if spree_current_user.has_spree_role?('admin')
-          @search = scope.preload(:user).accessible_by(current_ability, :index).ransack(params[:q])
+        @search = if spree_current_user.has_spree_role?('admin')
+                    scope.preload(:user).accessible_by(current_ability, :index).ransack(params[:q])
+                  else
+                    current_spree_vendor.orders.ransack(params[:q])
+                  end
 
-          # lazy loading other models here (via includes) may result in an invalid query
-          # e.g. SELECT  DISTINCT DISTINCT "spree_orders".id, "spree_orders"."created_at" AS alias_0 FROM "spree_orders"
-          # see https://github.com/spree/spree/pull/3919
-          @orders = @search.result(distinct: true).
-                    page(params[:page]).
-                    per(params[:per_page] || Spree::Backend::Config[:admin_orders_per_page])
-        else
-          @search = current_spree_vendor.orders.ransack(params[:q])
-          @orders = @search.result(distinct: true).
-                    page(params[:page]).
-                    per(params[:per_page] || Spree::Backend::Config[:admin_orders_per_page])
-        end
+        @orders = @search.result(distinct: true).
+                  page(params[:page]).
+                  per(params[:per_page] || Spree::Backend::Config[:admin_orders_per_page])
 
         # Restore dates
         params[:q][:created_at_gt] = created_at_gt
