@@ -3,6 +3,10 @@ module Spree
     include BaseHelper
     include InlineSvg::ActionView::Helpers
 
+    def country_presentation(country_iso)
+      Spree::Country.find_by(iso: country_iso)&.name || country_iso
+    end
+
     def body_class
       @body_class ||= content_for?(:sidebar) ? 'two-col' : 'one-col'
       @body_class

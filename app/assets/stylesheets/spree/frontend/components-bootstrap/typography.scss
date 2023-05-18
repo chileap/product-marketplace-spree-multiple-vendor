@@ -1,5 +1,7 @@
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Nanum Myeongjo', 'Noto Serif', serif;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 h1 {
@@ -30,6 +32,8 @@ p {
   font-family: 'Noto Sans', sans-serif;
   font-size: 1rem;
   font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .text-2xl {
@@ -40,6 +44,29 @@ p {
   font-size: 1.25rem;
 }
 
+.text-md {
+  font-size: 1rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
 .font-medium {
   font-weight: 500;
+}
+
+.text-caption {
+  font-size: 0.9rem;
+}
+
+.text-title-01  {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.text-heading-01 {
+  font-family: 'Nanum Myeongjo', 'Noto Serif', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
 }

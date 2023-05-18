@@ -82,6 +82,42 @@ module Spree
       update(notification_email: email)
     end
 
+    def customers_count
+      orders.complete.distinct.count(:user_id)
+    end
+
+    def pending_orders_count
+      orders.where(payment_state: :balance_due).count
+    end
+
+    def sales_count
+      orders.where(payment_state: :paid).count
+    end
+
+    def sales_total
+      orders.where(payment_state: :paid).map { |order| order.vendor_total(self) }.sum
+    end
+
+    def this_month_sales
+      orders.where(payment_state: :paid).where(completed_at: Time.current.beginning_of_month..Time.current.end_of_month).map { |order| order.vendor_total(self) }.sum
+    end
+
+    def last_month_sales
+      orders.where(payment_state: :paid).where(completed_at: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).map { |order| order.vendor_total(self) }.sum
+    end
+
+    def last_12_mos_sales
+      orders.where(payment_state: :paid).where(completed_at: 12.months.ago.beginning_of_month..Time.current.end_of_month).map { |order| order.vendor_total(self) }.sum
+    end
+
+    def commission_total
+      commissions.sum(:amount)
+    end
+
+    def commission_total_for(order)
+      commissions.where(order: order).sum(:amount)
+    end
+
     private
 
     def create_stock_location

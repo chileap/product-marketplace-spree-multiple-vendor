@@ -1,0 +1,14 @@
+<h1>All Shops in <%= @local_country&.name %></h1>
+
+<% if @shops.present? %>
+  <% @shops.each do |shop| %>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title"><%= shop.name %></h5>
+        <%= link_to 'View Shop', shop %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p>There are no shops in <%= @local_country&.name %></p>
+<% end %>

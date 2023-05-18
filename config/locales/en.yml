@@ -25,6 +25,9 @@ en:
   spree:
     welcome_back: Welcome back,
     vendors: "Vendors"
+    update: "Save Changes"
+    start_shopping: "Start Shopping"
+    order_not_paid: Order is not paid!
     plp:
       default: "Relevance"
       newest_first: "Most Recent"

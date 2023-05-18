@@ -5,6 +5,7 @@ module Spree::UserDecorator
 
     base.has_one :profile_picture, as: :viewable, dependent: :destroy, class_name: 'Spree::Image'
     base.validates :first_name, presence: true
+    base.validates_associated :profile_picture
   end
 
   private

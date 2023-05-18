@@ -2,13 +2,21 @@
   <li class="ms-0">
     <%= link_to spree.user_profile_path(spree_current_user), class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
-        <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
+        <% if spree_current_user.profile_picture %>
+          <%= image_tag(main_app.cdn_image_url(spree_current_user.profile_picture.attachment), class: 'h-10 w-10 rounded-pill') %>
+        <% else %>
+          <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
+        <% end %>
       </div>
       <div class="ms-3 wt-flex-grow-xs-1">
-        <h4 class="wt-text-title-01 wt-m-xs-0" aria-label="View your profile">
-          <%= try_spree_current_user.first_name || try_spree_current_user.email %>
+        <h4 class="text-title-01 m-xs-0 text-capitalize" aria-label="View your profile">
+          <% if try_spree_current_user.first_name.present? %>
+            <%= try_spree_current_user.first_name %> <%= try_spree_current_user.last_name %>
+          <% else %>
+            <%= try_spree_current_user.email %>
+          <% end %>
         </h4>
-        <p class="wt-text-caption wt-m-xs-0" aria-hidden="true">View your profile</p>
+        <p class="text-caption m-xs-0" aria-hidden="true">View your profile</p>
       </div>
     <% end %>
   </li>

@@ -1,15 +1,38 @@
+<% self.title = 'Preferences' %>
+
 <%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'user_preferences' } %>
 
 <div class="container-fluid py-3">
   <div class="row">
     <div class="col-xs-12 col-lg-8 mx-auto">
-      <div class="card rounded mb-4">
-        <div class="card-header">
-          Everything on this page can be seen by anyone
+      <%= simple_form_for Spree.user_class.new, as: @user, url: spree.update_user_preferences_path, method: :put do |f| %>
+        <div class="row">
+          <div class="col-md-6 pe-md-3">
+            <div class="form-group">
+              <%= f.input :default_language, as: :select, label: 'Choose your default language:', collection: supported_locales_options %>
+            </div>
+          </div>
+
+          <div class="col-md-6 ps-md-3">
+            <div class="form-group">
+              <%= f.input :default_currency, as: :select, label: 'Choose your default currency:', collection: supported_currency_options %>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
+
+        <div class="card rounded mb-4">
+          <div class="card-header">
+            <span class="mb-0 card-title">Region</span>
+          </div>
+          <div class="card-body">
+            <p>Set your region to help us show you custom content from your area.</p>
+            <%= f.input :default_country, as: :select, label: false, collection: all_countries.map{|country| [country.name, country.iso]} %>
+          </div>
         </div>
-      </div>
+
+        <%= f.submit 'Update Preferences', class: 'btn btn-primary rounded mt-2' %>
+      <% end %>
+
     </div>
   </div>
 </div>

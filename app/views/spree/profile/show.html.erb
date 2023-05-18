@@ -9,7 +9,11 @@
         </div>
         <div class="card-body">
           <h4>Name</h4>
-          <p><%= @user.first_name %> <%= @user.last_name %></p>
+          <% if @user.first_name.blank? %>
+            <%= link_to 'Edit Public Profile', edit_user_profile_path %>
+          <% else %>
+            <p><%= @user.first_name %> <%= @user.last_name %></p>
+          <% end %>
 
           <h4>Email</h4>
           <p><%= @user.email %></p>
@@ -23,17 +27,19 @@
 
       <div class="card rounded my-4">
         <div class="card-header">
-          Password
+          Email & Password
         </div>
         <div class="card-body">
-          <%= simple_form_for @user, as: :spree_user, url: spree.update_password_path, method: :put do |f| %>
+          <%= simple_form_for Spree.user_class.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
+            <div class="form-group">
+              <%= f.input :email, required: true %>
+            </div>
             <div class="form-group">
               <%= f.input :password, required: true %>
             </div>
             <div class="form-group">
               <%= f.input :password_confirmation, required: true %>
             </div>
-            <%= f.hidden_field :reset_password_token %>
             <%= f.submit Spree.t(:update), class: 'btn btn-primary rounded mt-2' %>
           <% end %>
         </div>

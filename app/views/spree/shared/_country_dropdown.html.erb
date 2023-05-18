@@ -1,0 +1,9 @@
+<%= form_tag spree.set_country_path, method: :get, class: 'px-0 py-2 w-100 country-select' do %>
+  <div class="form-group">
+    <label for="switch_to_country" class="dropdown-header px-0">
+      <%= Spree.t(:choose_country) %>
+    </label>
+    <%= select_tag(:switch_to_country, options_for_select(all_countries.map{|country| [country.name, country.iso]}, current_country), class: 'custom-select w-100 form-control') %>
+    <noscript><%= submit_tag %></noscript>
+  </div>
+<% end %>

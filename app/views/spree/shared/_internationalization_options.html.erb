@@ -1,7 +1,7 @@
 <% if (defined?(should_render_store_chooser?) && should_render_store_chooser?) || (defined?(should_render_internationalization_dropdown?) && should_render_internationalization_dropdown?) %>
   <div class="dropdown navbar-right-dropdown row">
     <button id="internationalization-button-desktop" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="navbar-right-dropdown-toggle" aria-label="<%= Spree.t(:internationalization) %>">
-      <%= locale_full_name(I18n.locale) %> | <%= currency_presentation(current_currency).first %>
+      <%= country_presentation(current_country) %> | <%= locale_full_name(I18n.locale) %> | <%= currency_presentation(current_currency).first %>
     </button>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -14,6 +14,8 @@
             </button>
           </div>
           <div class="modal-body">
+            <%= render 'spree/shared/country_dropdown' %>
+            <div class="dropdown-divider"></div>
             <%= render 'spree/shared/locale_dropdown' %>
             <div class="dropdown-divider"></div>
             <%= render 'spree/shared/currency_dropdown' %>

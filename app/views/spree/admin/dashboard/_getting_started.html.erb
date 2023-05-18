@@ -44,7 +44,7 @@
       <div class="tab-pane fade <% if @active_tab == 'products'%>show active<% end %>" id="list-products" role="tabpanel" aria-labelledby="list-products-list">
         <% if @products_added %>
           <p>
-            You have added <strong><%= current_store.products.count %> products</strong> so far - good job!</p>
+            You have added <strong><%= current_spree_vendor.products.count %> products</strong> so far - good job!</p>
         <% else %>
           <p>
             You can add products manually through API or import from a CSV file.
@@ -93,11 +93,7 @@
           </p>
           <%= link_to_with_icon 'settings.svg', 'Setup tax calculation', spree.admin_tax_rates_path, class: 'btn btn-primary btn-sm mb-2' %>
         <% end %>
-
       </div>
     </div>
   </div>
 </div>
-
-
-

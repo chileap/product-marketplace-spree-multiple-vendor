@@ -1,6 +1,8 @@
 <script>
   var SPREE_LOCALE = '<%= I18n.locale %>'
   var SPREE_CURRENCY = '<%= current_currency %>'
-  var SPREE_DEFAULT_CURRENCY = '<%= current_store.default_currency %>'
-  var SPREE_DEFAULT_LOCALE = '<%= current_store.default_locale %>'
+  var SPREE_COUNTRY = '<%= current_country %>'
+  var SPREE_DEFAULT_CURRENCY = '<%= try_spree_current_user&.default_currency || current_store.default_currency %>'
+  var SPREE_DEFAULT_LOCALE = '<%= try_spree_current_user&.default_language || current_store.default_locale %>'
+  var SPREE_DEFAULT_COUNTRY = '<%= try_spree_current_user&.default_country || current_store.default_country %>'
 </script>

@@ -1,23 +1,83 @@
+<% self.title = 'Public Profile' %>
+
 <%= render partial: 'spree/shared/account_navbar', locals: { current_link: 'edit_profile' } %>
 
 <div class="container-fluid py-3">
   <div class="row">
     <div class="col-xs-12 col-lg-8 mx-auto">
-      <div class="card rounded mb-4">
-        <div class="card-header">
+      <div class="d-flex justify-content-between mb-4">
+        <div class="edit-profile-header">
           Everything on this page can be seen by anyone
         </div>
-        <div class="card-body">
-          <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
-
-          <%= simple_form_for Spree.user_class.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
-            <%= render partial: 'spree/shared/user_form', locals: { f: f, remember_me_field: false } %>
-            <div>
-              <%= f.submit Spree.t(:update), class: 'btn btn-lg btn-block btn-primary text-uppercase font-weight-bold' %>
-            </div>
-          <% end %>
+        <div class="edit-profile-header">
+          <%= link_to 'View Profile', spree.user_profile_path(@user), class: 'btn btn-outline-primary btn-sm' %>
         </div>
       </div>
+
+      <%= simple_form_for Spree.user_class.new, as: @user, url: spree.user_path(@user), method: :put do |f| %>
+        <div class="card rounded mb-4">
+          <div class="card-body">
+            <%= render partial: 'spree/shared/error_messages', locals: { target: @user } %>
+
+            <div class="row">
+              <div class="col-12 my-3">
+                <%= f.field_container :profile_picture do %>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= f.label :profile_picture, Spree.t(:profile_picture), class: 'mb-3 d-block' %>
+                    </div>
+                    <div class="col-md-9">
+                      <%= f.file_field :profile_picture, class: 'mb-4 d-block ' %>
+
+                      <% if @user.profile_picture %>
+                        <%= image_tag(main_app.cdn_image_url(@user.profile_picture.try(:attachment)), class: 'image-avatar') %>
+                      <% else %>
+                        <%= image_tag('noimage/avatar.png', class: 'image-avatar') %>
+                      <% end %>
+
+                      <p class="mt-4 text-sm">
+                        Must be a .jpg, .gif or .png file smaller than 10MB and at least 400px by 400px.
+                      </p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row border-top pt-4">
+              <div class="col-md-3">
+                <%= f.label :first_name, class: 'mb-3 d-block', required: true %>
+              </div>
+              <div class="col-md-9 pe-md-2">
+                <%= f.input :first_name, label: false, required: true %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.label :last_name, class: 'mb-3 d-block', required: true %>
+              </div>
+              <div class="col-md-9 pe-md-2">
+                <%= f.input :last_name, label: false, required: true %>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3">
+                <%= f.label :default_city, 'City', class: 'mb-3 d-block' %>
+              </div>
+              <div class="col-md-9 pe-md-2">
+                <%= f.input :default_city, label: false %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="action">
+          <%= f.submit Spree.t(:update), class: 'btn btn-primary rounded mt-2' %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

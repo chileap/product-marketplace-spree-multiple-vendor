@@ -16,6 +16,7 @@ import "./frontend/api_tokens"
 import "./frontend/cart"
 import "./frontend/locale"
 import "./frontend/currency"
+import "./frontend/country"
 import "./frontend/checkout"
 import "./frontend/checkout/address"
 import "./frontend/checkout/address_book"
@@ -27,6 +28,7 @@ import "./frontend/views/spree/products/cart_form"
 import "./frontend/views/spree/products/description"
 import "./frontend/views/spree/products/index"
 import "./frontend/views/spree/products/price_filters"
+import "./frontend/views/spree/users/show"
 import "./frontend/views/spree/shared/carousel"
 import "./frontend/views/spree/shared/carousel/single"
 import "./frontend/views/spree/shared/carousel/swipes"
@@ -50,6 +52,7 @@ Spree.routes.product_related = function(id) { return Spree.localizedPathFor('pro
 Spree.routes.product_carousel = function (taxonId) { return Spree.localizedPathFor('product_carousel/' + taxonId) }
 Spree.routes.set_locale = function(locale) { return Spree.localizedPathFor('locale/set?switch_to_locale=' + locale) }
 Spree.routes.set_currency = function(currency) { return Spree.localizedPathFor('currency/set?switch_to_currency=' + currency) }
+Spree.routes.set_country = function(countryId) { return Spree.localizedPathFor('country/set?switch_to_country_id=' + countryId) }
 
 Spree.clearCache = function () {
   if (!window.Turbo) { return }
@@ -70,6 +73,23 @@ Spree.setCurrency = function (currency) {
   if (queryString !== '') { queryString = '?' + queryString }
 
   SPREE_CURRENCY = currency
+
+  Turbo.visit(window.location.pathname + queryString, { action: 'replace' })
+}
+
+Spree.setCountry = function (country) {
+  Spree.clearCache()
+
+  var params = (new URL(window.location)).searchParams
+  if (country === SPREE_DEFAULT_COUNTRY) {
+    params.delete('country')
+  } else {
+    params.set('country', country)
+  }
+  var queryString = params.toString()
+  if (queryString !== '') { queryString = '?' + queryString }
+
+  SPREE_COUNTRY = country
 
   Turbo.visit(window.location.pathname + queryString, { action: 'replace' })
 }

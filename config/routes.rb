@@ -48,11 +48,14 @@ Rails.application.routes.draw do
       get '/content/test', to: 'content#test'
       get '/cart_link', to: 'store#cart_link', as: :cart_link
       get '/account_link', to: 'store#account_link', as: :account_link
+
+      get '/shops/search', to: 'shops#search', as: :search_shops
       get '/shops/:slug', to: 'shops#show', as: :shop
 
       get '/locales', to: 'locale#index', as: :locales
       get '/locale/set', to: 'locale#set', as: :set_locale
       get '/currency/set', to: 'currency#set', as: :set_currency
+      get '/country/set', to: 'country#set', as: :set_country
 
       get '/api_tokens', to: 'store#api_tokens'
       post '/ensure_cart', to: 'store#ensure_cart'
@@ -69,15 +72,16 @@ Rails.application.routes.draw do
       get '/your/account', to: 'profile#show', as: :user_account
       get '/your/profile', to: 'profile#edit', as: :edit_user_profile
       get '/your/profile/preferences', to: 'profile#preferences', as: :user_preferences
+      put '/your/profile/preferences', to: 'profile#update_preferences', as: :update_user_preferences
       get '/your/profile/addresses', to: 'profile#addresses', as: :user_addresses
       get '/your/profile/orders', to: 'profile#orders', as: :user_orders
 
+      put '/profile_picture', to: 'users#update_profile_picture', as: :profile_picture
       get '/your/orders/:id', to: 'orders#show', as: :your_order
       get '/your/orders', to: 'orders#index', as: :your_orders
       get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
       get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
-      get 'search/shops', to: 'shops#search', as: :search_shops
       get '/help', to: 'static_pages#help', as: :help
       get '/about', to: 'static_pages#about', as: :about
       get '/affiliates', to: 'static_pages#affiliates', as: :affiliates
