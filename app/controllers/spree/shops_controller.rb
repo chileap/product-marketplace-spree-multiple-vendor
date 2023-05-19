@@ -51,7 +51,7 @@ module Spree
       @product.store_ids = [current_store.id]
       if @product.save
         flash[:success] = 'Product created successfully'
-        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'shipping')
+        redirect_to spree.shop_path(@shop.slug)
       else
         flash[:error] = @product.errors.full_messages.join(', ')
         redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'products')
