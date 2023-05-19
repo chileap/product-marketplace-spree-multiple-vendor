@@ -1,0 +1,31 @@
+.step-app > .step-steps {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+}
+
+.step-app > .step-content {
+  border-top: 0;
+}
+.step-app > .step-content > .step-tab-panel {
+  display: none;
+}
+.step-app > .step-content > .step-tab-panel.active {
+  display: block;
+}
+.step-app > .step-footer {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.step-app > .step-footer > .step-btn {
+  padding: 4px 16px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+/*# sourceMappingURL=jquery-steps.css.map */

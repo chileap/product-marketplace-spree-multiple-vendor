@@ -297,10 +297,22 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+jquery.steps@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/jquery.steps/-/jquery.steps-1.1.4.tgz#3b57c0c194cfc1fe241cedc76bf1973159bbaaef"
+  integrity sha512-DVagGTsiqY4GGohyIzhUbF6KNWcM2x+tMwV3YNkw0J0nRL/NyPRu2wtcRwStBnc6QxA+vOzzwKcrYS730y5mLQ==
+  dependencies:
+    jquery "^3.6.3"
+
 jquery@3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+
+jquery@^3.6.3:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
+  integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
 
 jquery@^3.6.4:
   version "3.6.4"

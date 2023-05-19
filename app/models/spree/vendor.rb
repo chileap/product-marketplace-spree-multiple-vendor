@@ -14,21 +14,34 @@
 #  notification_email :string
 #  phone              :string
 #  priority           :integer
+#  shop_currency      :string           default("USD")
+#  shop_locale        :string           default("en")
 #  slug               :string
 #  state_name         :string
 #  status             :string
 #  zipcode            :string
 #  created_at         :datetime
 #  updated_at         :datetime
+#  bill_address_id    :bigint
 #  country_id         :integer
+#  ship_address_id    :bigint
 #  state_id           :integer
 #
 # Indexes
 #
-#  index_spree_vendors_on_deleted_at  (deleted_at)
-#  index_spree_vendors_on_name        (name) UNIQUE
-#  index_spree_vendors_on_slug        (slug) UNIQUE
-#  index_spree_vendors_on_status      (status)
+#  index_spree_vendors_on_bill_address_id  (bill_address_id)
+#  index_spree_vendors_on_deleted_at       (deleted_at)
+#  index_spree_vendors_on_name             (name) UNIQUE
+#  index_spree_vendors_on_ship_address_id  (ship_address_id)
+#  index_spree_vendors_on_shop_currency    (shop_currency)
+#  index_spree_vendors_on_shop_locale      (shop_locale)
+#  index_spree_vendors_on_slug             (slug) UNIQUE
+#  index_spree_vendors_on_status           (status)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (bill_address_id => spree_addresses.id)
+#  fk_rails_...  (ship_address_id => spree_addresses.id)
 #
 module Spree
   class Vendor < Spree::Base
@@ -39,7 +52,6 @@ module Spree
     friendly_id :name, use: %i[slugged history]
 
     validates :name, presence: true, uniqueness: { case_sensitive: false }
-
     validates :slug, uniqueness: true
     validates_associated :image
 
@@ -59,9 +71,19 @@ module Spree
     has_many :users, through: :vendor_users, class_name: Spree.user_class.to_s
     belongs_to :country, class_name: 'Spree::Country', optional: true
 
+    belongs_to :bill_address, foreign_key: :bill_address_id, class_name: 'Spree::Address', optional: true
+    alias_attribute :billing_address, :bill_address
+
+    belongs_to :ship_address, foreign_key: :ship_address_id, class_name: 'Spree::Address', optional: true
+    alias_attribute :shipping_address, :ship_address
+
+    accepts_nested_attributes_for :ship_address, :bill_address
+    attr_accessor :use_billing
+
     after_create :create_stock_location
     after_update :update_stock_location_names
     before_save :ensure_country
+    before_validation :clone_billing_address, if: :use_billing?
 
     state_machine :status, initial: :pending do
       event :activate do
@@ -74,6 +96,8 @@ module Spree
     end
 
     scope :active, -> { where(status: 'active') }
+    scope :blocked, -> { where(status: 'blocked') }
+    scope :pending, -> { where(status: 'pending') }
     scope :by_country, ->(country_id) { where(country_id: country_id) }
 
     self.whitelisted_ransackable_attributes = %w[name status]
@@ -137,6 +161,19 @@ module Spree
       return if country.present?
 
       self.country = Spree::Store.default.default_country || Spree::Country.find_by(iso: 'US')
+    end
+
+    def clone_billing_address
+      if bill_address && ship_address.nil?
+        self.ship_address = bill_address.clone
+      else
+        ship_address.attributes = bill_address.attributes.except('id', 'updated_at', 'created_at')
+      end
+      true
+    end
+
+    def use_billing?
+      use_billing.in?([true, 'true', '1'])
     end
   end
 end

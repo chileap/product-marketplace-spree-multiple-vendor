@@ -7,9 +7,9 @@
   <head data-hook="inside_head">
     <%= render partial: 'spree/shared/head' %>
   </head>
-  <body class="d-flex flex-column <%= body_class %> spree-body" id="<%= @body_id || 'default' %>" data-hook="body">
+  <body class="d-flex flex-column main-body <%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <div class="main">
-      <%= render partial: 'spree/shared/header' %>
+      <%= render partial: 'spree/shared/main_header' %>
       <div id="overlay" class="overlay hide-on-esc"></div>
 
       <div data-hook class="row">
@@ -21,7 +21,7 @@
         <%= yield :templates %>
       </div>
 
-      <%= render partial: 'spree/shared/footer' %>
+      <%= render partial: 'spree/shared/main_footer' %>
       <%= render 'spree/shared/translations' %>
     </div>
   </body>

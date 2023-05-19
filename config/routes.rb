@@ -79,9 +79,12 @@ Rails.application.routes.draw do
       put '/profile_picture', to: 'users#update_profile_picture', as: :profile_picture
       get '/your/orders/:id', to: 'orders#show', as: :your_order
       get '/your/orders', to: 'orders#index', as: :your_orders
-      get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
-      get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
+      get '/your/shops/onboarding', to: 'shops#onboarding', as: :onboarding
+      get '/your/shops/:slug/onboarding/:screen_type', to: 'shops#onboarding', as: :shop_onboarding
+      get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :welcome_onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
+      put '/your/shops/:slug', to: 'shops#update', as: :update_shop
+      post '/your/shops', to: 'shops#create', as: :create_shop
       get '/help', to: 'static_pages#help', as: :help
       get '/about', to: 'static_pages#about', as: :about
       get '/affiliates', to: 'static_pages#affiliates', as: :affiliates

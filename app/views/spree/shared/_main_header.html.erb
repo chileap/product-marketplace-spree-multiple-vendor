@@ -1,0 +1,14 @@
+<%# leaving #spree-header div for legacy support  %>
+<% cache spree_menu_cache_key('header') do %>
+  <div id="spree-header">
+    <header id="header" class="d-flex flex-md-column align-items-center main-header-spree border-bottom pt-2">
+      <div class="container-fluid header-spree-fluid">
+        <div class="d-flex flex-nowrap align-items-center">
+          <figure class="logo flex-grow-0 flex-xl-grow-1 order-xl-0 header-spree-fluid-logo m-0">
+            <%= logo %>
+          </figure>
+        </div>
+      </div>
+    </header>
+  </div>
+<% end %>
