@@ -87,27 +87,27 @@ module Spree
     end
 
     def pending_orders_count
-      orders.where(payment_state: :balance_due).count
+      orders.balance_due.count
     end
 
     def sales_count
-      orders.where(payment_state: :paid).count
+      orders.paid.count
     end
 
     def sales_total
-      orders.where(payment_state: :paid).map { |order| order.vendor_total(self) }.sum
+      orders.paid.map { |order| order.vendor_total(self) }.sum
     end
 
     def this_month_sales
-      orders.where(payment_state: :paid).where(completed_at: Time.current.beginning_of_month..Time.current.end_of_month).map { |order| order.vendor_total(self) }.sum
+      orders.paid.this_month.map { |order| order.vendor_total(self) }.sum
     end
 
     def last_month_sales
-      orders.where(payment_state: :paid).where(completed_at: 1.month.ago.beginning_of_month..1.month.ago.end_of_month).map { |order| order.vendor_total(self) }.sum
+      orders.paid.last_month.map { |order| order.vendor_total(self) }.sum
     end
 
     def last_12_mos_sales
-      orders.where(payment_state: :paid).where(completed_at: 12.months.ago.beginning_of_month..Time.current.end_of_month).map { |order| order.vendor_total(self) }.sum
+      orders.paid.last_12_mos.map { |order| order.vendor_total(self) }.sum
     end
 
     def commission_total
