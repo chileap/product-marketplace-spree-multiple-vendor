@@ -3,7 +3,7 @@
 <%= order_form.fields_for :line_items, line_item do |item_form| %>
   <div class="d-table-row shopping-cart-item">
     <div class="d-table-cell align-middle shopping-cart-item-image" data-hook="cart_item_image">
-      <%= link_to variant.product.vendor.name, spree.vendor_path(variant.product.vendor) %>
+      <%= link_to variant.product.vendor.name, spree.shop_path(variant.product.vendor.slug) %>
       <%= link_to product_image(variant), spree.product_path(variant.product) %>
     </div>
     <div class="d-table-cell shopping-cart-item-description" data-hook="cart_item_description">

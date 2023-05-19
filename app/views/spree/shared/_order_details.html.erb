@@ -75,7 +75,7 @@
           <div class="checkout-confirm-order-details-line-items-line-item-name d-table-cell align-middle py-3 py-sm-4">
             <div class="d-flex align-items-lg-center">
               <div class="checkout-confirm-order-details-line-items-line-item-name-image" data-hook="order_item_image">
-                <%= link_to item.vendor.name, spree.vendor_path(item.vendor) %>
+                <%= link_to item.vendor.name, spree.shop_path(item.vendor.slug) %>
                 <%= link_to product_image(item.variant), spree.product_path(item.product) %>
               </div>
               <div class="d-flex flex-column mt-2 mt-lg-0" data-hook="order_item_description">
