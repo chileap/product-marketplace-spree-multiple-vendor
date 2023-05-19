@@ -71,10 +71,10 @@ module Spree
     has_many :users, through: :vendor_users, class_name: Spree.user_class.to_s
     belongs_to :country, class_name: 'Spree::Country', optional: true
 
-    belongs_to :bill_address, foreign_key: :bill_address_id, class_name: 'Spree::Address', optional: true
+    belongs_to :bill_address, class_name: 'Spree::Address', optional: true
     alias_attribute :billing_address, :bill_address
 
-    belongs_to :ship_address, foreign_key: :ship_address_id, class_name: 'Spree::Address', optional: true
+    belongs_to :ship_address, class_name: 'Spree::Address', optional: true
     alias_attribute :shipping_address, :ship_address
 
     accepts_nested_attributes_for :ship_address, :bill_address
