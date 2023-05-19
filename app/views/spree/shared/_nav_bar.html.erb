@@ -1,5 +1,4 @@
 <ul id="nav-bar" class="nav align-items-center d-flex flex-nowrap justify-content-end navbar-right">
-  <% binding.pry %>
   <% if try_spree_current_user && current_spree_user.vendors.present? %>
     <li>
       <%= link_to shop_path(current_spree_user.vendors.first) do %>
