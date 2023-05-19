@@ -1,8 +1,7 @@
 module Spree
   class ShopsController < Spree::StoreController
     load_and_authorize_resource class: Spree::Vendor, only: %i[onboarding]
-
-    layout 'spree/layouts/application'
+    layout :get_layout
 
     def index; end
 
@@ -45,7 +44,33 @@ module Spree
       end
     end
 
+    def create_product
+      @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @product = Spree::Product.new(product_params)
+      @product.vendor_id = @shop.id
+      @product.store_ids = [current_store.id]
+      if @product.save
+        flash[:success] = 'Product created successfully'
+        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'shipping')
+      else
+        flash[:error] = @product.errors.full_messages.join(', ')
+        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'products')
+      end
+    end
+
     private
+
+    def get_layout
+      if %w[onboarding].include?(action_name)
+        'spree/layouts/application'
+      else
+        'spree/layouts/spree_application'
+      end
+    end
+
+    def product_params
+      params.require(:product).permit(permitted_product_attributes)
+    end
 
     def shop_params
       params.require(:vendor).permit(:name, :slug, :email, :about_us, :notification_email, :logo, :country_id, :state_id, :city, :address1, :address2, :zip, :phone, :fax, :active)

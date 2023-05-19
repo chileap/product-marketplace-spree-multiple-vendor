@@ -1,6 +1,6 @@
 <div class="container-fluid py-5">
   <div class="step-app" id="onboarding-form">
-    <ol class="step-steps subway w-100 list-unstyled pb-xs-5 pt-lg-0 pt-xs-5">
+    <ol class="step-steps subway w-100 list-unstyled pb-xs-5">
       <li data-step-target="step1" class="subway__stop <%= 'done' if @shop.persisted? %> <%= 'subway__stop--active' if params[:screen_type].blank? || params[:screen_type] == 'preferences' %>">
         <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'preferences') : onboarding_path %>" class="subway__stop__link">
           <div class="subway__stop__dot"></div>
@@ -9,7 +9,7 @@
           </div>
         </a>
       </li>
-      <li data-step-target="step2" class="subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'products' %>">
+      <li data-step-target="step2" class="subway__stop <%= 'done' if @shop.products.present? %> <%= 'subway__stop--active' if params[:screen_type] == 'products' %>">
         <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'products') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? %>">
           <div class="subway__stop__dot"></div>
           <div class="subway__stop__title d-none d-md-block">
@@ -17,7 +17,7 @@
           </div>
         </a>
       </li>
-      <li data-step-target="step3" class="subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'shipping' %>">
+      <li data-step-target="step3" class="d-none subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'shipping' %>">
         <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'shipping') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.products.present? %>">
           <div class="subway__stop__dot"></div>
           <div class="subway__stop__title d-none d-md-block">
@@ -25,7 +25,7 @@
           </div>
         </a>
       </li>
-      <li data-step-target="step4" class="subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'billing' %>">
+      <li data-step-target="step4" class="d-none subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'billing' %>">
         <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'billing') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.shipping_address.present? %>">
           <div class="subway__stop__dot"></div>
           <div class="subway__stop__title d-none d-md-block">
@@ -37,88 +37,10 @@
 
     <div class="step-content py-5">
       <div class="step-tab-panel <%= 'active' if params[:screen_type].blank? || params[:screen_type] == 'preferences' %>" data-step="step1">
-        <div class="row">
-          <div class="col-md-12 mx-auto">
-            <div class="heading pt-3 pb-5">
-              <h1 class="text-heading-01 text-center mb-2 ">Shop preferences</h1>
-              <p class="text-body-01 text-center">
-                Let's get started! Tell us about you and your shop.
-              </p>
-            </div>
-
-            <% http_method = @shop.new_record? ? :post : :put %>
-            <%= simple_form_for @shop, url: @shop.persisted? ? update_shop_path(@shop) : create_shop_path, method: http_method do |f| %>
-              <div class="card mb-xs-2 mb-md-0">
-                <div class="card-body p-md-4 p-lg-6">
-                  <div class="row mb-xs-2 mb-md-4">
-                    <div class="col-md-3 col-lg-2">
-                      <label class="strong align-with-btn" for="onboard-shop-currency">
-                        Shop Name
-                        <span class="text-blue" aria-hidden="true">&nbsp;*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-4 has-validation" data-ui="currency-container">
-                      <%= f.input :name, label: false %>
-                    </div>
-                    <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-currency-help">
-                      Don’t sweat it! You can just draft a name now and change it later. We find sellers often draw inspiration from what they sell, their style, pretty much anything goes.
-                    </div>
-                  </div>
-                  <div class="row mb-xs-2 mb-md-4">
-                    <div class="col-md-3 col-lg-2">
-                      <label class="strong align-with-btn" for="onboard-shop-language">
-                        Shop language
-                        <span class="text-blue" aria-hidden="true">&nbsp;*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-4 has-validation">
-                      <%= f.input :shop_locale, as: :select, label: false, collection: supported_locales_options %>
-                    </div>
-                    <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-language-help">
-                      The default language you'll use to describe your items. Choose carefully! You cannot change this once you save it, but may add other languages later.
-                    </div>
-                  </div>
-                  <div class="row mb-xs-2 mb-md-4">
-                    <div class="col-md-3 col-lg-2">
-                      <label class="strong align-with-btn" for="address-country">
-                        Shop country
-
-                        <span class="text-blue" aria-hidden="true">&nbsp;*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-4">
-                      <%= f.input :country_id, as: :select, label: false, collection: all_countries.map{|country| [country.name, country.id]} %>
-                    </div>
-                    <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-country-help">
-                      Tell us where your shop’s based. Don’t see your country? We may not be available there right now, but stay tuned.
-                    </div>
-                  </div>
-                  <div class="row mb-xs-2 mb-md-4">
-                    <div class="col-md-3 col-lg-2">
-                      <label class="strong align-with-btn" for="onboard-shop-currency">
-                        Shop currency
-                        <span class="text-blue" aria-hidden="true">&nbsp;*</span>
-                      </label>
-                    </div>
-                    <div class="col-md-4 has-validation" data-ui="currency-container">
-                      <%= f.input :shop_currency, as: :select, label: false, collection: supported_currency_options %>
-                    </div>
-                    <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-currency-help">
-                      The currency you'll use to price your items. Shoppers in other countries will automatically see prices in their local currency.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="d-flex justify-content-center py-4">
-                <%= f.submit "Save and Continue", class: "btn btn-outline-primary" %>
-              </div>
-            <% end %>
-          </div>
-        </div>
+        <%= render partial: "spree/shops/preferences" %>
       </div>
       <div class="step-tab-panel <%= 'active' if params[:screen_type] == 'products' %>" data-step="step2">
-        ...
+        <%= render partial: "spree/shops/products" %>
       </div>
       <div class="step-tab-panel" data-step="step3">
         ...

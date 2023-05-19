@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-md-12 mx-auto">
+    <div class="heading pt-3 pb-5">
+      <h1 class="text-heading-01 text-center mb-2 ">Shop preferences</h1>
+      <p class="text-body-01 text-center">
+        Let's get started! Tell us about you and your shop.
+      </p>
+    </div>
+
+    <% http_method = @shop.new_record? ? :post : :put %>
+    <%= simple_form_for @shop, url: @shop.persisted? ? update_shop_path(@shop) : create_shop_path, method: http_method do |f| %>
+      <div class="card mb-xs-2 mb-md-0">
+        <div class="card-body p-md-4 p-lg-6">
+          <div class="row mb-xs-2 mb-md-4">
+            <div class="col-md-3 col-lg-2">
+              <label class="strong align-with-btn" for="onboard-shop-currency">
+                Shop Name
+                <span class="text-blue" aria-hidden="true">&nbsp;*</span>
+              </label>
+            </div>
+            <div class="col-md-4 has-validation" data-ui="currency-container">
+              <%= f.input :name, label: false %>
+            </div>
+            <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-currency-help">
+              Don’t sweat it! You can just draft a name now and change it later. We find sellers often draw inspiration from what they sell, their style, pretty much anything goes.
+            </div>
+          </div>
+          <div class="row mb-xs-2 mb-md-4">
+            <div class="col-md-3 col-lg-2">
+              <label class="strong align-with-btn" for="onboard-shop-language">
+                Shop language
+                <span class="text-blue" aria-hidden="true">&nbsp;*</span>
+              </label>
+            </div>
+            <div class="col-md-4 has-validation">
+              <%= f.input :shop_locale, as: :select, label: false, collection: supported_locales_options %>
+            </div>
+            <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-language-help">
+              The default language you'll use to describe your items. Choose carefully! You cannot change this once you save it, but may add other languages later.
+            </div>
+          </div>
+          <div class="row mb-xs-2 mb-md-4">
+            <div class="col-md-3 col-lg-2">
+              <label class="strong align-with-btn" for="address-country">
+                Shop country
+
+                <span class="text-blue" aria-hidden="true">&nbsp;*</span>
+              </label>
+            </div>
+            <div class="col-md-4">
+              <%= f.input :country_id, as: :select, label: false, collection: all_countries.map{|country| [country.name, country.id]} %>
+            </div>
+            <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-country-help">
+              Tell us where your shop’s based. Don’t see your country? We may not be available there right now, but stay tuned.
+            </div>
+          </div>
+          <div class="row mb-xs-2 mb-md-4">
+            <div class="col-md-3 col-lg-2">
+              <label class="strong align-with-btn" for="onboard-shop-currency">
+                Shop currency
+                <span class="text-blue" aria-hidden="true">&nbsp;*</span>
+              </label>
+            </div>
+            <div class="col-md-4 has-validation" data-ui="currency-container">
+              <%= f.input :shop_currency, as: :select, label: false, collection: supported_currency_options %>
+            </div>
+            <div class="col-md-4 offset-md-1 offset-lg-2 d-sm-none d-md-block text-sm text-gray" id="onboard-shop-currency-help">
+              The currency you'll use to price your items. Shoppers in other countries will automatically see prices in their local currency.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center py-4">
+        <%= f.submit "Save and Continue", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

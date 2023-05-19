@@ -285,3 +285,13 @@
     font-size: font-px-to-rem(18px);
   }
 }
+
+.select2 {
+  width: 100% !important;
+  @include media-breakpoint-up(sm) {
+    width: 100% !important;
+  }
+  @include media-breakpoint-up(md) {
+    width: 100% !important;
+  }
+}
