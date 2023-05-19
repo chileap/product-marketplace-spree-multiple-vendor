@@ -1,14 +1,24 @@
-<h1>All Shops in <%= @local_country&.name %></h1>
+<div class="container-fluid">
+  <div class="row py-5">
+    <div class="col-12">
+      <h1>All Shops in <%= @local_country&.name %></h1>
 
-<% if @shops.present? %>
-  <% @shops.each do |shop| %>
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><%= shop.name %></h5>
-        <%= link_to 'View Shop', shop %>
-      </div>
+      <% if @shops.present? %>
+        <div class="row py-5">
+          <% @shops.each do |shop| %>
+            <div class="col-md-3 px-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title"><%= shop.name %></h5>
+                  <%= link_to 'View Shop', shop_path(shop.slug) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>There are no shops in <%= @local_country&.name %></p>
+      <% end %>
     </div>
-  <% end %>
-<% else %>
-  <p>There are no shops in <%= @local_country&.name %></p>
-<% end %>
+  </div>
+</div>

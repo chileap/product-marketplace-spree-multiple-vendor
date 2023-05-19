@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_055326) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_19_093541) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -1470,8 +1470,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_055326) do
     t.string "state_name"
     t.string "zipcode"
     t.string "phone"
+    t.bigint "bill_address_id"
+    t.bigint "ship_address_id"
+    t.string "shop_locale", default: "en"
+    t.string "shop_currency", default: "USD"
+    t.index ["bill_address_id"], name: "index_spree_vendors_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_vendors_on_deleted_at"
     t.index ["name"], name: "index_spree_vendors_on_name", unique: true
+    t.index ["ship_address_id"], name: "index_spree_vendors_on_ship_address_id"
+    t.index ["shop_currency"], name: "index_spree_vendors_on_shop_currency"
+    t.index ["shop_locale"], name: "index_spree_vendors_on_shop_locale"
     t.index ["slug"], name: "index_spree_vendors_on_slug", unique: true
     t.index ["status"], name: "index_spree_vendors_on_status"
   end
@@ -1554,4 +1562,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_055326) do
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_payment_sources", "spree_payment_methods", column: "payment_method_id"
   add_foreign_key "spree_payment_sources", "spree_users", column: "user_id"
+  add_foreign_key "spree_vendors", "spree_addresses", column: "bill_address_id"
+  add_foreign_key "spree_vendors", "spree_addresses", column: "ship_address_id"
 end

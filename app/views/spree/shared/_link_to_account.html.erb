@@ -49,7 +49,7 @@
 
   <% if spree_current_user.vendors.blank? %>
     <li class="ms-0">
-      <%= link_to spree.edit_user_path(spree_current_user), class: 'dropdown-item menu-item' do %>
+      <%= link_to spree.sell_path, class: 'dropdown-item menu-item' do %>
         <div class="wt-icon">
           <i class="bi bi-shop icon"></i>
         </div>

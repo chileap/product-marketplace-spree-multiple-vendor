@@ -76,12 +76,18 @@ Rails.application.routes.draw do
       get '/your/profile/addresses', to: 'profile#addresses', as: :user_addresses
       get '/your/profile/orders', to: 'profile#orders', as: :user_orders
 
+      post '/your/shops/:slug/onboarding/create_products', to: 'shops#create_product', as: :create_product
+      get '/your/shops/:slug/onboarding/products/:product_slug', to: 'shops#edit_product', as: :edit_product_onboarding
+
       put '/profile_picture', to: 'users#update_profile_picture', as: :profile_picture
       get '/your/orders/:id', to: 'orders#show', as: :your_order
       get '/your/orders', to: 'orders#index', as: :your_orders
-      get '/your/shops/:slug/onboarding/screener/:screen_type', to: 'shops#welcome_screener', as: :welcome_screener
-      get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :onboarding
+      get '/your/shops/onboarding', to: 'shops#onboarding', as: :onboarding
+      get '/your/shops/:slug/onboarding/:screen_type', to: 'shops#onboarding', as: :shop_onboarding
+      get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :welcome_onboarding
       get '/your/shops/:slug', to: 'shops#show', as: :your_shop
+      put '/your/shops/:slug', to: 'shops#update', as: :update_shop
+      post '/your/shops', to: 'shops#create', as: :create_shop
       get '/help', to: 'static_pages#help', as: :help
       get '/about', to: 'static_pages#about', as: :about
       get '/affiliates', to: 'static_pages#affiliates', as: :affiliates

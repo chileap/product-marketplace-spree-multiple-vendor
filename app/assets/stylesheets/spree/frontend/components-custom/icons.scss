@@ -103,3 +103,46 @@
 .h-20 {
   height: 5rem;
 }
+
+.sparkle-left {
+  width: 73px;
+  right: 95%;
+  top: 95%;
+  position: absolute;
+  animation-duration: .5s;
+  animation-delay: .5s;
+  animation-name: onboard_sparkle;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  animation-iteration-count: 3.5;
+}
+
+.sparkle-right-large {
+  width: 46px;
+  left: 100%;
+  bottom: 100%;
+  position: absolute;
+  animation-duration: .5s;
+  animation-delay: 1s;
+  animation-name: onboard_sparkle;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  animation-iteration-count: 3.5;
+}
+
+.vertical-align-top {
+  vertical-align: top !important;
+}
+
+.sparkle-right-small {
+  width: 31px;
+  left: 95%;
+  bottom: 100%;
+  position: absolute;
+  animation-duration: .5s;
+  animation-delay: .75s;
+  animation-name: onboard_sparkle;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  animation-iteration-count: 3.5;
+}

@@ -1,5 +1,6 @@
-import jquery from 'jquery';
-window.$ = window.jQuery = jquery;
+import $ from 'jquery';
+import select2 from 'select2';
+window.$ = window.jQuery = $;
 
 import * as bootstrap from "bootstrap"
 window.bootstrap = bootstrap;
@@ -28,6 +29,7 @@ import "./frontend/views/spree/products/cart_form"
 import "./frontend/views/spree/products/description"
 import "./frontend/views/spree/products/index"
 import "./frontend/views/spree/products/price_filters"
+import "./frontend/views/spree/products/product_form"
 import "./frontend/views/spree/users/show"
 import "./frontend/views/spree/shared/carousel"
 import "./frontend/views/spree/shared/carousel/single"
@@ -93,3 +95,10 @@ Spree.setCountry = function (country) {
 
   Turbo.visit(window.location.pathname + queryString, { action: 'replace' })
 }
+
+select2($);
+
+Spree.ready(function() {
+  $('.select2').select2();
+});
+

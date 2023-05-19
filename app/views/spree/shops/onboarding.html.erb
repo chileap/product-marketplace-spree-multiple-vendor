@@ -1,0 +1,50 @@
+<div class="container-fluid py-5">
+  <div class="step-app" id="onboarding-form">
+    <ol class="step-steps subway w-100 list-unstyled pb-xs-5">
+      <li data-step-target="step1" class="subway__stop <%= 'done' if @shop.persisted? %> <%= 'subway__stop--active' if params[:screen_type].blank? || params[:screen_type] == 'preferences' %>">
+        <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'preferences') : onboarding_path %>" class="subway__stop__link">
+          <div class="subway__stop__dot"></div>
+          <div class="subway__stop__title d-none d-md-block">
+            Shop preferences
+          </div>
+        </a>
+      </li>
+      <li data-step-target="step2" class="subway__stop <%= 'done' if @shop.products.present? %> <%= 'subway__stop--active' if params[:screen_type] == 'products' %>">
+        <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'products') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? %>">
+          <div class="subway__stop__dot"></div>
+          <div class="subway__stop__title d-none d-md-block">
+            Stock your shop
+          </div>
+        </a>
+      </li>
+      <li data-step-target="step3" class="d-none subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'shipping' %>">
+        <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'shipping') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.products.present? %>">
+          <div class="subway__stop__dot"></div>
+          <div class="subway__stop__title d-none d-md-block">
+            How you'll get paid
+          </div>
+        </a>
+      </li>
+      <li data-step-target="step4" class="d-none subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'billing' %>">
+        <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'billing') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.shipping_address.present? %>">
+          <div class="subway__stop__dot"></div>
+          <div class="subway__stop__title d-none d-md-block">
+            Set up billing
+          </div>
+        </a>
+      </li>
+    </ol>
+
+    <div class="step-content py-5">
+      <div class="step-tab-panel <%= 'active' if params[:screen_type].blank? || params[:screen_type] == 'preferences' %>" data-step="step1">
+        <%= render partial: "spree/shops/preferences" %>
+      </div>
+      <div class="step-tab-panel <%= 'active' if params[:screen_type] == 'products' %>" data-step="step2">
+        <%= render partial: "spree/shops/products" %>
+      </div>
+      <div class="step-tab-panel" data-step="step3">
+        ...
+      </div>
+    </div>
+  </div>
+</div>
