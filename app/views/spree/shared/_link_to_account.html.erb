@@ -1,9 +1,9 @@
-<% if try_spree_current_user %>
+<% if current_spree_user %>
   <li class="ms-0">
-    <%= link_to spree.user_profile_path(spree_current_user), class: 'dropdown-item menu-item' do %>
+    <%= link_to spree.user_profile_path(current_spree_user), class: 'dropdown-item menu-item' do %>
       <div class="wt-icon">
-        <% if spree_current_user.profile_picture %>
-          <%= image_tag(main_app.cdn_image_url(spree_current_user.profile_picture.attachment), class: 'h-10 w-10 rounded-pill') %>
+        <% if current_spree_user.profile_picture %>
+          <%= image_tag(main_app.cdn_image_url(current_spree_user.profile_picture.attachment), class: 'h-10 w-10 rounded-pill') %>
         <% else %>
           <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
         <% end %>
