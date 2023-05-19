@@ -1,7 +1,8 @@
 <ul id="nav-bar" class="nav align-items-center d-flex flex-nowrap justify-content-end navbar-right">
-  <% if try_spree_current_user && spree_current_user.vendors.present? %>
+  <% binding.pry %>
+  <% if try_spree_current_user && current_spree_user.vendors.present? %>
     <li>
-      <%= link_to shop_path(spree_current_user.vendors.first) do %>
+      <%= link_to shop_path(current_spree_user.vendors.first) do %>
         <%= icon(name: 'store', classes: 'd-inline-block', width: 24, height: 24) %>
       <% end %>
     </li>
@@ -11,8 +12,8 @@
     <li>
       <div class="dropdown navbar-right-dropdown nav-link">
         <button id="account-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" class="navbar-right-dropdown-toggle dropdown-toggle account-icon" aria-label="<%= Spree.t('nav_bar.show_user_menu') %>">
-          <% if spree_current_user.profile_picture %>
-            <%= image_tag(main_app.cdn_image_url(spree_current_user.profile_picture.attachment), class: 'h-8 w-8 rounded-pill') %>
+          <% if current_spree_user.profile_picture %>
+            <%= image_tag(main_app.cdn_image_url(current_spree_user.profile_picture.attachment), class: 'h-8 w-8 rounded-pill') %>
           <% else %>
             <%= icon(name: 'person', classes: 'd-inline-block', width: 24, height: 24) %>
           <% end %>

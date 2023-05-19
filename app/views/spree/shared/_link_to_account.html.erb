@@ -10,10 +10,10 @@
       </div>
       <div class="ms-3 wt-flex-grow-xs-1">
         <h4 class="text-title-01 m-xs-0 text-capitalize" aria-label="View your profile">
-          <% if try_spree_current_user.first_name.present? %>
-            <%= try_spree_current_user.first_name %> <%= try_spree_current_user.last_name %>
+          <% if current_spree_user.first_name.present? %>
+            <%= current_spree_user.first_name %> <%= current_spree_user.last_name %>
           <% else %>
-            <%= try_spree_current_user.email %>
+            <%= current_spree_user.email %>
           <% end %>
         </h4>
         <p class="text-caption m-xs-0" aria-hidden="true">View your profile</p>
@@ -47,7 +47,7 @@
     <% end %>
   </li>
 
-  <% if spree_current_user.vendors.blank? %>
+  <% unless current_spree_user.vendors.any? %>
     <li class="ms-0">
       <%= link_to spree.sell_path, class: 'dropdown-item menu-item' do %>
         <div class="wt-icon">
@@ -62,7 +62,7 @@
     </li>
   <% end %>
 
-  <% if spree.respond_to?(:admin_dashboard_path) && (try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
+  <% if spree.respond_to?(:admin_dashboard_path) && (current_spree_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
     <li class="ms-0">
       <%= link_to spree.admin_dashboard_path(locale: nil), class: 'dropdown-item menu-item', target: "_blank" do %>
         <div class="wt-icon">
