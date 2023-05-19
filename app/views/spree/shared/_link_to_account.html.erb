@@ -62,9 +62,9 @@
     </li>
   <% end %>
 
-  <% if spree.respond_to?(:admin_orders_path) && (try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
+  <% if spree.respond_to?(:admin_dashboard_path) && (try_spree_current_user.has_spree_role?(:admin)  || spree_current_user.vendors.any?) %>
     <li class="ms-0">
-      <%= link_to spree.admin_orders_path(locale: nil), class: 'dropdown-item menu-item', target: "_blank" do %>
+      <%= link_to spree.admin_dashboard_path(locale: nil), class: 'dropdown-item menu-item', target: "_blank" do %>
         <div class="wt-icon">
           <i class="bi bi-shield-lock icon"></i>
         </div>
