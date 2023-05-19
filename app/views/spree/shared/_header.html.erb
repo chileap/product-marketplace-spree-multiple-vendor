@@ -1,5 +1,5 @@
 <%# leaving #spree-header div for legacy support  %>
-<% cache spree_menu_cache_key('header') do %>
+<% cache spree_menu_cache_key("user-#{current_spree_user&.id}-header") do %>
   <div id="spree-header">
     <header id="header" class="d-flex flex-md-column align-items-center header-spree border-bottom pt-2">
       <div class="container-fluid header-spree-fluid">

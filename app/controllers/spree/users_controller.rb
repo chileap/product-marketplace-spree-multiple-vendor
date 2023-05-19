@@ -10,7 +10,7 @@ class Spree::UsersController < Spree::StoreController
   end
 
   def show
-    load_object
+    @user = Spree.user_class.friendly.find(params[:slug])
     @orders = @user.orders.for_store(current_store).complete.order('completed_at desc')
   end
 

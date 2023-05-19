@@ -5,36 +5,41 @@
       <div class="col-1">
         <span class="position-relative d-inline-block">
           <span class="d-inline-flex h-20 w-20 align-items-center justify-content-center rounded-pill bg-gray-500">
-            <% if spree_current_user.profile_picture.present? %>
-              <%= image_tag(main_app.cdn_image_url(spree_current_user.profile_picture.attachment), class: 'h-20 w-20 rounded-pill') %>
+            <% if @user.profile_picture.present? %>
+              <%= image_tag(main_app.cdn_image_url(@user.profile_picture.attachment), class: 'h-20 w-20 rounded-pill') %>
             <% else %>
               <span class="text-2xl font-medium leading-none text-white">
-                <%= "#{spree_current_user.first_name&.first(1)&.upcase}#{spree_current_user.last_name&.first(1)&.upcase}" %>
+                <%= "#{@user.first_name&.first(1)&.upcase}#{@user.last_name&.first(1)&.upcase}" %>
               </span>
             <% end %>
           </span>
-          <span class="position-absolute top-80 start-80 translate-middle rounded-2 border-2 border-white">
-            <button id="profile-picture-btn" type="button" class="d-block h-10 w-10 rounded-pill border d-flex align-items-center justify-content-center bg-white">
-              <%= icon(name: 'camera', classes: 'd-inline-block', width: 18, height: 18) %>
-            </button>
 
-            <%= form_with(model: spree_current_user, url: spree.profile_picture_path, method: :put, local: true, class: 'd-none') do |f| %>
-              <%= f.file_field :profile_picture, class: 'd-none', onchange: 'this.form.submit();' %>
-            <% end %>
-          </span>
+          <% if try_spree_current_user && try_spree_current_user == @user %>
+            <span class="position-absolute top-80 start-80 translate-middle rounded-2 border-2 border-white">
+              <button id="profile-picture-btn" type="button" class="d-block h-10 w-10 rounded-pill border d-flex align-items-center justify-content-center bg-white">
+                <%= icon(name: 'camera', classes: 'd-inline-block', width: 18, height: 18) %>
+              </button>
+
+              <%= form_with(model: @user, url: spree.profile_picture_path, method: :put, local: true, class: 'd-none') do |f| %>
+                <%= f.file_field :profile_picture, class: 'd-none', onchange: 'this.form.submit();' %>
+              <% end %>
+            </span>
+          <% end %>
         </span>
       </div>
 
       <div class="col-11">
         <div class="d-flex flex-column justify-content-center h-100">
           <p class="text-heading-01 text-black mb-1 text-capitalize">
-            <%= spree_current_user.first_name %> <%= spree_current_user.last_name %>
+            <%= @user.first_name %> <%= @user.last_name %>
           </p>
           <p class="text-body-01 text-gray mb-1">
-            <%= spree_current_user.email %>
+            <%= @user.email %>
           </p>
 
-          <%= link_to 'Edit public profile', edit_user_profile_path, class: "text-decoration-underline text-secondary" %>
+          <% if try_spree_current_user && try_spree_current_user == @user %>
+            <%= link_to 'Edit public profile', edit_user_profile_path, class: "text-decoration-underline text-secondary" %>
+          <% end %>
         </div>
       </div>
     </div>
