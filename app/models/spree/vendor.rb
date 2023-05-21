@@ -58,7 +58,7 @@ module Spree
     validates :notification_email, email: true, allow_blank: true
 
     with_options dependent: :destroy do
-      has_one :cover_image, as: :viewable, dependent: :destroy, class_name: 'Spree::VendorImage'
+      has_one :cover_image, as: :viewable, dependent: :destroy, class_name: 'Spree::VendorCoverImage'
       has_one :image, as: :viewable, dependent: :destroy, class_name: 'Spree::VendorImage'
       has_many :commissions, class_name: 'Spree::OrderCommission'
       has_many :vendor_users

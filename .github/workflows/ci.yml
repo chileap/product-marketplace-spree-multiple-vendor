@@ -55,4 +55,4 @@ jobs:
         run: |
           bin/rails db:test:prepare
           bin/rails test
-          bin/rails spec
+          bin/rails rspec
