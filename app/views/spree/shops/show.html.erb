@@ -1,15 +1,554 @@
-<div class="container-fluid py-4">
-  <h1><%= @shop.name %></h1>
+<% self.title = @shop.name %>
 
-  <% if @shop.products.present? %>
-    <%= render 'spree/shared/products', products: @shop.products %>
-  <% else %>
-    <div class="col-md-6 mx-auto text-center py-5">
-      <span class="d-flex justify-content-center">
-        <%= icon name: "shopping", width: 150, height: 150 %>
-      </span>
-      <h2>No products</h2>
-      <p>There are no products in this shop</p>
+<div class="shop-home">
+  <div>
+    <div class="mb-xs-4 shop-home-header mb-lg-0">
+      <div class="position-relative">
+        <div data-appears-component-name="shop_home_branding_section">
+          <div data-module="branding" class="branding-container position-relative appears-ready">
+            <div data-no-banner="" class="w-100 bg-orange-tint p-xs-1 p-lg-4"></div>
+            <span class="edge fill-orange-tint edge--ratio-none" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 48" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                <path
+                  d="M786 48h-41l-14-3-14-1-24-3-26-1-18-1-12-1h-7l-16-1-11-1h-57l-30-1-17-2-26-1h-30l-16-1-21 2h-7l-26 1h-26l-13-1-14-1-19-2-22-1-9-1h-19l-14-1h-26l-7-1-8-1-12 5-22-2-17-1-16-1-11-1H86l-24-8-15-2-2-4-24-5L0 0h1400l-28 13-9 7-20 2-13 8h-6l-20 2-23-5h-19l-35 4-10 2-9-1-30 1-14 2-18 1-14-2h-8l-17-2h-12l-28-2-26 2-12 1-22 2-23 4-13 1-13-1h-13l-22 3h-1l-19 1h-44l-38 2-17 1h-2l-11 1-5 1z"
+                ></path>
+              </svg>
+            </span>
+            <span class="edge fill-orange-tint edge--ratio-slice" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 48" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+                <path d="M786 48h-41l-14-3-14-1-24-3-26-1-18-1-12-1h-7l-16-1-11-1h-57l-30-1-17-2-26-1h-30l-16-1-21 2h-7l-26 1h-26l-13-1-14-1-19-2-22-1-9-1h-19l-14-1h-26l-7-1-8-1-12 5-22-2-17-1-16-1-11-1H86l-24-8-15-2-2-4-24-5L0 0h1400l-28 13-9 7-20 2-13 8h-6l-20 2-23-5h-19l-35 4-10 2-9-1-30 1-14 2-18 1-14-2h-8l-17-2h-12l-28-2-26 2-12 1-22 2-23 4-13 1-13-1h-13l-22 3h-1l-19 1h-44l-38 2-17 1h-2l-11 1-5 1z"></path>
+              </svg>
+            </span>
+
+            <div class="w-100 p-xs-2 p-lg-1 p-xl-0"></div>
+          </div>
+        </div>
+        <div class="d-sm-block d-md-none">
+          <div data-module="branding-buttons" class="position-absolute end-0 z-index-2 center-follow-shop-button pr-xs-2 pr-md-4 pl-xs-2 pl-md-4">
+            <div class="body-max-width">
+              <div class="z-index-2 mb-xs-1 mb-lg-0">
+                <div data-action="follow-shop-button-container" class="d-md-flex align-items-center attached">
+                  <input type="hidden" class="id" name="user_id" value="782751849" />
+                  <button class="inline-overlay-trigger favorite-shop-action btn btn-sm btn-secondary bg-white shadow-sm d-md-flex align-items-center pl-lg-9 pr-lg-9 is-disabled">
+                    <span class="shop-icon" data-not-following-icon="">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path
+                          d="M12,21C10.349,21,2,14.688,2,9,2,5.579,4.364,3,7.5,3A6.912,6.912,0,0,1,12,5.051,6.953,6.953,0,0,1,16.5,3C19.636,3,22,5.579,22,9,22,14.688,13.651,21,12,21ZM7.5,5C5.472,5,4,6.683,4,9c0,4.108,6.432,9.325,8,10,1.564-.657,8-5.832,8-10,0-2.317-1.472-4-3.5-4-1.979,0-3.7,2.105-3.721,2.127L11.991,8.1,11.216,7.12C11.186,7.083,9.5,5,7.5,5Z"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span class="shop-icon d-none text-brick" data-following-icon="">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M16.5,3A6.953,6.953,0,0,0,12,5.051,6.912,6.912,0,0,0,7.5,3C4.364,3,2,5.579,2,9c0,5.688,8.349,12,10,12S22,14.688,22,9C22,5.579,19.636,3,16.5,3Z"></path>
+                      </svg>
+                    </span>
+                    <span data-following-message="" class="ml-xs-1 d-none">Following shop</span>
+                    <span data-not-following-message="" class="ml-xs-1">Follow shop</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-sm btn-primary shadow-sm mr-xs-1" href="/shop/ChileapKH/edit?ref=edit_trust_header">
+              <span class="shop-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <polygon points="4.583 17.193 4 19.967 6.704 19.315 17.916 8.182 15.794 6.061 4.583 17.193"></polygon>
+                  <path d="M19.683,5l-0.707-.707a1,1,0,0,0-1.414,0L16.855,5l2.121,2.121,0.707-.707A1,1,0,0,0,19.683,5Z"></path>
+                </svg>
+              </span>
+              <span class="nudge-t-1">Edit shop</span>
+            </a>
+          </div>
+          <div
+            data-editable-img="shop-icon"
+            class="shop-icon shop-home-max-icon-width shop-home-small-icon-width d-md-flex justify-content-center end-0 position-absolute z-index-1 shop-icon-center start-0"
+          >
+            <img
+              class="shop-icon-external rounded d-block b-xs"
+              srcset="
+                https://www.etsy.com/images/avatars/default_shop_icon_500x500.png 500w,
+                https://www.etsy.com/images/avatars/default_shop_icon_280x280.png 280w,
+                https://www.etsy.com/images/avatars/default_shop_icon_180x180.png 180w,
+                https://www.etsy.com/images/avatars/default_shop_icon_75x75.png    75w
+              "
+              src="https://www.etsy.com/images/avatars/default_shop_icon_180x180.png"
+              sizes="(min-width: 900px) 18vw, 30vw"
+              alt=""
+            />
+          </div>
+        </div>
+        <div data-module="branding-buttons" class="d-xs-none d-md-block position-absolute bottom-0 pl-lg-6">
+          <a class="btn btn-sm btn-primary rounded-pill shadow-sm mr-xs-1" href="/shop/ChileapKH/edit?ref=edit_trust_header">
+            <span class="shop-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <polygon points="4.583 17.193 4 19.967 6.704 19.315 17.916 8.182 15.794 6.061 4.583 17.193"></polygon>
+                <path d="M19.683,5l-0.707-.707a1,1,0,0,0-1.414,0L16.855,5l2.121,2.121,0.707-.707A1,1,0,0,0,19.683,5Z"></path>
+              </svg>
+            </span>
+            <span class="nudge-t-1">Edit shop</span>
+          </a>
+        </div>
+        <div aria-hidden="true" aria-disabled="true" data-favorite-shops-removed-alert="" class="alert alert--fixed-bottom alert--fixed-floating position-fixed alert--success-01 animated animated--is-hidden">
+          <div class="d-md-flex align-items-center">
+            <p class="text-body-01 text-left-xs">
+              Removed from <b><a class="text-white" href="https://www.etsy.com/people/kapqmw2dhn6zh1af?tab=shops&amp;ref=shop_home_confirmation_shop_fave" target="_blank" data-remove-shop-follow-toast-link="">Favorites</a></b>
+            </p>
+          </div>
+        </div>
+
+        <div class="alert alert-fixed-bottom alert-fixed-floating position-fixed alert-success animated animated--is-hidden align-items-center d-md-flex justify-content-space-between">
+          <div class="d-md-flex align-items-center">
+            <div class="rounded-circle-xs flex-none p-xs-1 bg-white text-black mr-xs-2">
+              <span class="shop-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9.057,20.471L2.293,13.707a1,1,0,0,1,1.414-1.414l5.236,5.236,11.3-13.18a1,1,0,1,1,1.518,1.3Z"></path></svg>
+              </span>
+            </div>
+            <div class="d-md-flex flex-xs-column max-w-100">
+              <p class="text-body-01 text-left-xs line-height-tight nudge-b-4">Saved to <b>Favorites</b></p>
+              <div class="d-md-flex align-items-center text-caption">
+                <span class="shop-icon text-white icon-sm" data-follow-shop-toast-icon-public="">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path
+                      d="M12 2a10 10 0 1010 10A10.012 10.012 0 0012 2zM9 18.883v.528a7.938 7.938 0 01-4.94-8.351l3.385 3.385a2.967 2.967 0 001.649 4.4L9 18.883zM17.5 15c.168 0 .335-.017.5-.05V15a.992.992 0 00.927.985A7.999 7.999 0 0112 20c-.216 0-.427-.016-.639-.032l1.254-2.5-.015.006a2.969 2.969 0 00-.08-3.11A2.988 2.988 0 008 13.78V11h1a1 1 0 001-1V9a1 1 0 001-1 1 1 0 100-2H6.726A7.9 7.9 0 0114 4.263V6a1 1 0 002 0v-.918a8.047 8.047 0 012 1.649V7h-1a1 1 0 100 2h2.411c.13.326.24.66.326 1H17a2.556 2.556 0 00-2 2.5 2.5 2.5 0 002.5 2.5z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="shop-icon text-white icon-sm d-none" data-follow-shop-toast-icon-private="">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M17 10V7A5 5 0 007 7v3H5v8a2 2 0 002 2h10a2 2 0 002-2v-8h-2zm-4 7a1 1 0 01-2 0v-4a1 1 0 012 0v4zm2-7H9V7a2.935 2.935 0 013-3 2.935 2.935 0 013 3v3z"></path>
+                  </svg>
+                </span>
+                <p data-follow-shop-toast-text-public="" class="ml-xs-1 nudge-t-1">Public</p>
+                <p data-follow-shop-toast-text-private="" class="ml-xs-1 nudge-t-1 d-none">Private</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <a class="btn btn-primary btn--light btn-sm" href="https://www.etsy.com/people/kapqmw2dhn6zh1af?tab=shops&amp;ref=shop_home_confirmation_shop_fave" data-shop-follow-toast-link="" target="_blank">
+              <h3 class="text-title-01">View favorite shops</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="body-max-width pt-xs-5 pt-lg-0 pr-lg-4 pl-lg-6">
+        <div class="trust-signals pl-lg-0 pr-lg-0 no-banner">
+          <div class="w-100 d-md-flex align-items-center">
+            <div class="shop-home-header-container w-100 mb-xs-3 mt-xs-3 mb-md-4 mt-md-4 d-md-flex align-items-center justify-content-space-between">
+              <div class="max-w-100 row pr-lg-5 w-100 d-initial-md-down align-items-center">
+                <div class="col-xs-12 d-md-flex pr-lg-4 flex-xs-column flex-md-row align-items-center center-md-down">
+                  <div data-editable-img="shop-icon" class="d-xs-none d-md-block shop-home-max-icon-width shop-home-small-icon-width position-relative d-inline-block">
+                    <img
+                      class="shop-icon-external rounded d-block b-xs"
+                      srcset="
+                        https://www.etsy.com/images/avatars/default_shop_icon_500x500.png 500w,
+                        https://www.etsy.com/images/avatars/default_shop_icon_280x280.png 280w,
+                        https://www.etsy.com/images/avatars/default_shop_icon_180x180.png 180w,
+                        https://www.etsy.com/images/avatars/default_shop_icon_75x75.png    75w
+                      "
+                      src="https://www.etsy.com/images/avatars/default_shop_icon_180x180.png"
+                      sizes="(min-width: 900px) 18vw, 30vw"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="shop-home-header-info shop-info pl-lg-3 d-inline-block vertical-align-top text-truncate-x">
+                    <div class="shop-name-and-title-container mb-xs-1 d-flex-md-down center-md-down">
+                      <h1 class="text-heading-01 text-truncate">ChileapKH</h1>
+                      <p data-in-modal-editable-text="title" data-endpoint="DataPost" data-key="headline" class="text-caption d-xs-none d-md-block wrap break-all"></p>
+                    </div>
+
+                    <div class="shop-info">
+                      <div class="shop-location d-md-flex mb-xs-1 center-md-down">
+                        <div class="d-md-flex text-truncate align-items-center">
+                          <span class="shop-location text-caption text-gray line-height-tight wrap" data-in-modal-editable-text="user_location" data-endpoint="DataPost" data-key="user_location">Phnom Penh, Cambodia</span>
+                        </div>
+                      </div>
+
+                      <div class="shop-sales-reviews d-md-flex flex-wrap align-items-center center-md-down"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-sm-none d-md-block shop-owner col-xs-3 col-lg-2 pl-lg-0 pr-lg-0 text-center flex-shrink-lg-0">
+                <div>
+                  <div class="img-container" data-editable-img="user-avatar">
+                    <a href="/people/kapqmw2dhn6zh1af?ref=shop_home_header" title="Chileap Chhin">
+                      <img src="https://i.etsystatic.com/iusa/5dea35/100317803/iusa_75x75.100317803_egb4.jpg?version=0" class="rounded-circle user-avatar-external" alt="Chileap Chhin" />
+                      <p>Chileap Chhin</p>
+                    </a>
+                  </div>
+                </div>
+                <p>
+                  <a
+                    rel="nofollow"
+                    href="https://www.etsy.com/messages/new?with_id=782751849&amp;referring_id=43072070&amp;referring_type=shop&amp;recipient_id=782751849"
+                    class="btn btn-sm  btn-icon btn-transparent is-disabled contact-action convo-overlay-trigger inline-overlay-trigger"
+                    role="button"
+                  >
+                    <span class="shop-icon icon-md pe-1 d-flex align-items-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path
+                          d="M21,4H3C2.447,4,2,4.447,2,5v12c0,0.553,0.447,1,1,1h8.649l4.726,3.781C16.556,21.926,16.777,22,17,22 c0.147,0,0.296-0.032,0.434-0.099C17.779,21.734,18,21.385,18,21v-3h3c0.553,0,1-0.447,1-1V5C22,4.447,21.553,4,21,4z M18.086,6 L12,10.733L5.914,6H18.086z M17,16h-1v1v1.919l-3.375-2.7C12.447,16.077,12.228,16,12,16H4V7.045l7.386,5.744 C11.566,12.93,11.783,13,12,13s0.434-0.07,0.614-0.211L20,7.045V16H17z"
+                        ></path>
+                      </svg>
+                    </span>
+
+                    Contact
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
+    <div class="position-relative center-follow-shop-button d-xs-none d-md-block">
+      <div class="body-max-width mx-3">
+        <div class="z-index-2 mb-xs-1 mb-lg-0">
+          <div data-action="follow-shop-button-container" class="d-flex align-items-center attached">
+            <input type="hidden" class="id" name="user_id" value="782751849" />
+            <button class="inline-overlay-trigger favorite-shop-action btn btn-sm btn-secondary bg-white shadow-sm d-md-flex align-items-center">
+              <span class="shop-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M12,21C10.349,21,2,14.688,2,9,2,5.579,4.364,3,7.5,3A6.912,6.912,0,0,1,12,5.051,6.953,6.953,0,0,1,16.5,3C19.636,3,22,5.579,22,9,22,14.688,13.651,21,12,21ZM7.5,5C5.472,5,4,6.683,4,9c0,4.108,6.432,9.325,8,10,1.564-.657,8-5.832,8-10,0-2.317-1.472-4-3.5-4-1.979,0-3.7,2.105-3.721,2.127L11.991,8.1,11.216,7.12C11.186,7.083,9.5,5,7.5,5Z"
+                  ></path>
+                </svg>
+              </span>
+              <span class="shop-icon text-brick">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M16.5,3A6.953,6.953,0,0,0,12,5.051,6.912,6.912,0,0,0,7.5,3C4.364,3,2,5.579,2,9c0,5.688,8.349,12,10,12S22,14.688,22,9C22,5.579,19.636,3,16.5,3Z"></path>
+                </svg>
+              </span>
+              <span data-following-message="" class="ml-xs-1 d-none">Following shop</span>
+              <span data-not-following-message="" class="ml-xs-1">Follow shop</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="body-max-width pr-xs-2 pr-md-4 pl-xs-2 pl-md-4"></div>
+  </div>
+  <div class="body-max-width pr-xs-2 pr-md-4 pl-xs-2 pl-md-4">
+    <div data-offset="0.01">
+      <span class="appears-ready">
+        <div class="pl-xs-0 pr-xs-0 no-focus-outline" id="items" data-region="items" tabindex="-1">
+          <div class="mb-xs-1 mb-lg-0 pl-xs-0 pr-xs-0">
+            <div class="d-md-flex w-100 pb-xs-2 pb-lg-0">
+              <div class="show-xs w-100 max-w-100 hide-lg pl-xs-0" id="listing-search-container">
+                <div data-region="search-items" class="search-items d-inline-block w-100 input-prepend input-prepend-icon input-append input-append-icon">
+                  <form action="/shop/ChileapKH/search" method="GET">
+                    <button
+                      type="button"
+                      class="btn btn-transparent btn-icon btn-sm position-absolute end-0 mt-xs-1 z-index-9 animated animated--is-hidden search-close-btn-margin-right"
+                      data-action="clear-search"
+                      aria-label="Clear search"
+                    >
+                      <span class="screen-reader-only"></span>
+                      <span class="shop-icon icon--smaller nudge-t-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <path d="M13.414,12l6.293-6.293a1,1,0,0,0-1.414-1.414L12,10.586,5.707,4.293A1,1,0,0,0,4.293,5.707L10.586,12,4.293,18.293a1,1,0,1,0,1.414,1.414L12,13.414l6.293,6.293a1,1,0,0,0,1.414-1.414Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="input-btn-group">
+                      <input id="646838fb9d87b" type="text" class="input input-btn-group__input pr-xs-7 text-truncate" name="search_query" placeholder="Search items" aria-label="Search items" value="" />
+
+                      <button type="submit" class="btn input-btn-group__btn" value="Search" aria-label="Search">
+                        <span class="shop-icon nudge-b-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18ZM10,4a6,6,0,1,0,6,6A6.007,6.007,0,0,0,10,4Z"></path>
+                            <path d="M21,22a1,1,0,0,1-.707-0.293l-4-4a1,1,0,0,1,1.414-1.414l4,4A1,1,0,0,1,21,22Z"></path>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-md-flex flex-wrap flex-xs-column flex-m
+            -row justify-content-space-between align-items-baseline pl-xs-0 pr-xs-0 pb-lg-2">
+              <div class="flex-lg-1 d-md-block pl-lg-0">
+                <h2 class="text-title-02 conform-lower-heading">Items</h2>
+              </div>
+
+              <div class="flex-lg-2 pl-xs-2 pl-lg-1" data-region="current-search-subheader"></div>
+
+              <div class="flex-lg-2 justify-content-flex-end align-self-stretch d-md-flex order-lg-4">
+                <div data-section-dropdown-container="" class="show-xs flex-grow-xs-1 hide-lg pb-xs-2 pl-xs-0">
+                  <div class="section-dropdown">
+                    <div
+                      class="menu w-100"
+                      data-menu=""
+                      id="section-menu"
+                      data-hide-trigger-on-open="false"
+                      data-animate-in="true"
+                      data-close-on-select="true"
+                      data-contain-focus="false"
+                      data-open-direction-vert="bottom"
+                      data-open-direction-horiz="left"
+                      data-open-direction-force="false"
+                      data-menu-type="option"
+                    >
+                      <button type="button" class="menu__trigger btn btn--outline w-100" aria-haspopup="true" aria-expanded="false" data-menu-trigger="">
+                        <span class="menu__trigger__label text-truncate">All (0)</span>
+                        <span class="shop-icon menu__trigger__caret">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polygon points="16.5 10 12 16 7.5 10 16.5 10"></polygon></svg>
+                        </span>
+                      </button>
+
+                      <div role="menu" class="menu__body" data-menu-body="">
+                        <button type="button" role="menuitemradio" class="menu__item is-selected" tabindex="-1" data-section-id="0" aria-checked="true">
+                          All (0)
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div data-sort-container="" class="pb-xs-2 pb-lg-0">
+                  <div data-sort-container="" class="pb-xs-2 pb-lg-0">
+                    <div class="menu" data-menu="" data-menu-type="option" data-open-direction-horiz="right" data-dropdown-uid="sortItems0">
+                      <button type="button" class="menu__trigger btn btn--icon btn--transparent" aria-haspopup="true" aria-expanded="false" data-menu-trigger="">
+                        <div class="d-xs-none d-md-block">
+                          <span class="menu__trigger__label">Sort: Most Recent</span>
+                          <span class="shop-icon menu__trigger__caret">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polygon points="16.5 10 12 16 7.5 10 16.5 10"></polygon></svg>
+                          </span>
+                        </div>
+                        <span class="menu__trigger__label hide-lg">
+                          <span class="shop-icon" aria-label="Sort">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                              <path
+                                d="M16 20.414l3.707-3.707a1 1 0 00-1.414-1.414L17 16.586V6a1 1 0 00-2 0v10.586l-1.293-1.293a1 1 0 10-1.414 1.414L16 20.414zM9 18V7.414l1.293 1.293a1 1 0 001.414-1.414L8 3.586 4.293 7.293a1 1 0 001.414 1.414L7 7.414V18a1 1 0 102 0z"
+                              ></path>
+                            </svg>
+                          </span>
+                        </span>
+                      </button>
+                      <div role="menu" class="menu__body" data-menu-body="">
+                        <button type="button" role="menuitemradio" class="menu__item d-none" tabindex="-1" data-sort-param="relevance">
+                          Relevance
+                        </button>
+                        <button type="button" role="menuitemradio" class="menu__item is-selected" tabindex="-1" data-sort-param="date_desc" aria-selected="true">
+                          Most Recent
+                        </button>
+                        <button type="button" role="menuitemradio" class="menu__item" tabindex="-1" data-sort-param="price_asc">
+                          Lowest Price
+                        </button>
+                        <button type="button" role="menuitemradio" class="menu__item" tabindex="-1" data-sort-param="price_desc">
+                          Highest Price
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex-lg">
+          <div class="d-xs-none d-md-block pl-xs-0 shop-home-wider-sections mr-lg-4 pr-xs-0">
+            <div class="pb-xs-3">
+              <div data-region="search-items" class="search-items d-inline-block w-100 input-prepend input-prepend-icon input-append input-append-icon">
+                <form action="/shop/ChileapKH/search" method="GET">
+                  <button
+                    type="button"
+                    class="btn btn--transparent btn--icon btn-sm position-absolute end-0 mt-xs-1 z-index-9 animated animated--is-hidden search-close-btn-margin-right"
+                  >
+                    <span class="screen-reader-only"></span>
+                    <span class="shop-icon icon--smaller nudge-t-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M13.414,12l6.293-6.293a1,1,0,0,0-1.414-1.414L12,10.586,5.707,4.293A1,1,0,0,0,4.293,5.707L10.586,12,4.293,18.293a1,1,0,1,0,1.414,1.414L12,13.414l6.293,6.293a1,1,0,0,0,1.414-1.414Z"></path>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="input-btn-group">
+                    <input id="646838fb9d6ff" type="text" class="input input-btn-group__input pr-xs-7 text-truncate" name="search_query" placeholder="Search items" aria-label="Search items" value="" />
+
+                    <button type="submit" class="btn input-btn-group__btn" value="Search" aria-label="Search">
+                      <span class="shop-icon nudge-b-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <path d="M10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18ZM10,4a6,6,0,1,0,6,6A6.007,6.007,0,0,0,10,4Z"></path>
+                          <path d="M21,22a1,1,0,0,1-.707-0.293l-4-4a1,1,0,0,1,1.414-1.414l4,4A1,1,0,0,1,21,22Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div data-section-selector="" class="tab-container mb-xs-6">
+              <ul class="tab flex-column bb-xs-none vertical-tabs" aria-orientation="vertical" role="tablist" aria-label="Sections" data-tab-list="" data-animate="false">
+                <button aria-selected="true" class="tab__item ml-md-0 mr-md-0 justify-content-space-between is-selected" role="tab" data-tab="" data-section-id="0">
+                  <span class="break-word mr-xs-2">All</span>
+                  <span class="mr-md-2">0</span>
+                </button>
+              </ul>
+            </div>
+            <div class="request-custom-order-button"></div>
+            <div class="contact-shop-owner-button">
+              <a
+                rel="nofollow"
+                href="https://www.etsy.com/messages/new?with_id=782751849&amp;referring_id=43072070&amp;referring_type=shop&amp;recipient_id=782751849"
+                class="btn btn-secondary w-100 btn-multi-line is-disabled contact-action convo-overlay-trigger inline-overlay-trigger"
+                role="button"
+                data-to_username="kapqmw2dhn6zh1af"
+                data-to_user_id="782751849"
+                data-to_user_display_name="Chileap Chhin (kapqmw2dhn6zh1af) from ChileapKH"
+                data-referring_type="shop"
+                data-referring_id="43072070"
+                data-subject=""
+                data-message=""
+                aria-label="Contact shop owner"
+              >
+                <span class="shop-icon icon--smaller vertical-align-middle nudge-b-1 mr-xs-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path
+                      d="M21 4H3a1 1 0 00-1 1v12a1 1 0 001 1h8.649l4.726 3.781A1 1 0 0018 21v-3h3a1 1 0 001-1V5a1 1 0 00-1-1zm-2.204 3.981l-6.182 4.807a1.001 1.001 0 01-1.229 0L5.204 7.982a1 1 0 111.228-1.58l4.955 3.853.613.478 5.569-4.33a1 1 0 011.227 1.578z"
+                    ></path>
+                  </svg>
+                </span>
+
+                Contact shop owner
+              </a>
+            </div>
+
+            <div class="mt-lg-5 pt-lg-2 bt-xs-1">
+              <div class="pt-xs-3"><a rel="nofollow" href="/shop/ChileapKH/sold" class="">0 Sales</a></div>
+              <div class="pt-xs-3">0 Admirers</div>
+            </div>
+
+            <div></div>
+            <div class="mt-xs-4"></div>
+            &nbsp;
+          </div>
+
+          <div class="pr-xs-0 pl-xs-0 shop-home-wider-items pb-xs-5">
+            <div class="spinner spinner--02 d-none" aria-live="assertive" data-items-pagination-loading-spinner="" aria-hidden="true">
+              <span class="shop-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle fill="transparent" cx="24" cy="24" r="21"></circle></svg>
+              </span>
+              Loading
+            </div>
+
+            <div data-listings-container-wrapper="" class="animated">
+              <div data-empty-listings-container="">
+                <div class="empty-state">
+                  <img src="https://www.etsy.com/images/shop/illo_no_items.png" srcset="https://www.etsy.com/images/shop/illo_no_items.png 1x, https://www.etsy.com/images/shop/illo_no_items@2x.png 2x" />
+                  <div class="prose">
+                    No items listed at this time
+                  </div>
+                </div>
+              </div>
+
+              <div class="">
+                <h3 data-all-items-header="" class="d-none conform-lower-heading pb-xs-2" aria-hidden="true">All Items</h3>
+              </div>
+
+              <div data-listings-container="" class="">
+                <div data-appears-component-name="shop_home_listing_grid" data-offset="0.01">
+                  <div class="responsive-listing-grid grid grid--block justify-content-flex-start mb-xs-3 appears-ready"></div>
+                </div>
+              </div>
+
+              <div class="alert alert--error-01 alert--fixed-bottom alert--fixed-floating animated animated--is-hidden" data-items-pagination-failure-alert="" aria-hidden="true">
+                <button class="btn btn--transparent btn--icon btn--transparent-flush-top btn--transparent-flush-right float-right" data-items-pagination-failure-alert-close="">
+                  <span class="shop-icon text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path d="M13.414,12l6.293-6.293a1,1,0,0,0-1.414-1.414L12,10.586,5.707,4.293A1,1,0,0,0,4.293,5.707L10.586,12,4.293,18.293a1,1,0,1,0,1.414,1.414L12,13.414l6.293,6.293a1,1,0,0,0,1.414-1.414Z"></path>
+                    </svg>
+                  </span>
+                </button>
+                <p class="text-body-01 line-height-tight">Oops! Something went wrong. Please try again.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-lg-none"></div>
+        </div>
+      </span>
+    </div>
+    <div class="shop-owner-small-screens d-sm-flex d-md-none bt-xs">
+      <div class="pl-xs-1 pr-xs-1 pl-lg-0 pr-lg-0">
+        <div class="p-xs-2">
+          <div class="d-table w-100">
+            <div class="d-table-cell vertical-align-middle pr-xs-2">
+              <img src="https://i.etsystatic.com/iusa/5dea35/100317803/iusa_75x75.100317803_egb4.jpg?version=0" class="rounded-circle" alt="Chileap Chhin" />
+            </div>
+            <div class="d-table-cell vertical-align-middle w-100">
+              <p class="text-gray">Contact shop owner</p>
+              <p class="larger-name text-body-01">Chileap Chhin</p>
+            </div>
+            <div class="d-table-cell vertical-align-middle w-100">
+              <a
+                rel="nofollow"
+                href="https://www.etsy.com/messages/new?with_id=782751849&amp;referring_id=43072070&amp;referring_type=shop&amp;recipient_id=782751849"
+                class="is-disabled text-gray contact-action convo-overlay-trigger inline-overlay-trigger"
+                role="button"
+                data-to_username="kapqmw2dhn6zh1af"
+                data-to_user_id="782751849"
+                data-to_user_display_name="Chileap Chhin (kapqmw2dhn6zh1af) from ChileapKH"
+                data-referring_type="shop"
+                data-referring_id="43072070"
+                data-subject=""
+                data-message=""
+                aria-label="Contact shop owner"
+              >
+                <span class="shop-icon icon--base-xs">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path
+                      d="M21 4H3a1 1 0 00-1 1v12a1 1 0 001 1h8.649l4.726 3.781A1 1 0 0018 21v-3h3a1 1 0 001-1V5a1 1 0 00-1-1zm-2.204 3.981l-6.182 4.807a1.001 1.001 0 01-1.229 0L5.204 7.982a1 1 0 111.228-1.58l4.955 3.853.613.478 5.569-4.33a1 1 0 011.227 1.578z"
+                    ></path>
+                  </svg>
+                </span>
+                <span class="screen-reader-only">
+                  Contact shop owner
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div data-region="reviews"></div>
+
+    <div data-appears-component-name="shop_home_policies_section">
+      <div class="shop-policies-section no-focus-outline bt-xs bt-lg-none border-darker appears-ready" id="policies" tabindex="-1">
+        <div class="pl-xs-1 pr-xs-1 pl-lg-0 pr-lg-0">
+          <div class="row bt-lg pl-xs-0 pr-xs-0 pt-xs-3 mb-xs-1 pt-lg-6 mb-lg-2 border-darker">
+            <div class="col-lg-3 p-xs-0 mb-xs-4">
+              <h4 class="text-title-02">Shop policies</h4>
+              <div class="text-caption text-gray">
+                <span class="d-inline-block">Last updated on</span>
+                <span class="d-inline-block"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-9 mb-xs-2 mb-lg-4 bt-xs bt-lg-none pl-xs-0 pr-xs-0 pt-xs-2 pt-lg-0">
+              <div class="max-width-760px"></div>
+            </div>
+
+            <div class="shop-policies-section p-xs-0 col-lg-12 grid" data-region="returns-and-exchanges">
+              <div class="col-lg-3 bt-xs bt-lg-none pt-xs-4 pl-xs-0 pr-xs-0">
+                <h3 class="text-title-01">Returns &amp; exchanges</h3>
+              </div>
+              <div class="col-lg-9 pl-xs-0 pr-xs-0 bt-lg pt-xs-4">
+                <div class="grid pl-xs-0">
+                  <div class="col-lg-8 p-xs-0">
+                    <div class="pb-xs-2 text-gray prose">
+                      See item details for return and exchange eligibility.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

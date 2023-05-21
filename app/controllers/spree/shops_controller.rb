@@ -7,6 +7,7 @@ module Spree
 
     def show
       @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @products = @shop.products.page(params[:page]).per(12)
     end
 
     def search

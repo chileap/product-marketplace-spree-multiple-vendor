@@ -18,13 +18,19 @@
       options_for_select(vendor_status_options, selected: @vendor.status),
       {}, class: 'select2', required: :required %>
   <% end %>
-  <% if Spree.version.to_f >= 3.6 %>
-    <%= f.field_container :image do %>
-      <%= f.label :image %>
-      <%= f.file_field :image %>
-      <%= image_tag main_app.url_for(@vendor.image.url(:small)) if @vendor.image %>
-    <% end %>
+
+  <%= f.field_container :image do %>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <%= image_tag main_app.url_for(@vendor.image.url(:small)) if @vendor.image %>
   <% end %>
+
+  <%= f.field_container :cover_image do %>
+    <%= f.label :cover_image %>
+    <%= f.file_field :cover_image %>
+    <%= image_tag main_app.url_for(@vendor.cover_image.url(:large)) if @vendor.cover_image %>
+  <% end %>
+
   <%= f.field_container :commission_rate do %>
     <%= f.label :commission_rate %>
     <%= f.number_field :commission_rate, step: '0.01', class: 'form-control' %>

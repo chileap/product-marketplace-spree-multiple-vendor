@@ -1,0 +1,80 @@
+.shop-home-header {
+  background-color: #fafafa;
+}
+
+.edge {
+  vertical-align: middle;
+}
+
+.animated--is-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.animated--is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.animated {
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in;
+}
+
+.trust-signals .shop-icon-external.rounded {
+  width: 120px;
+}
+
+.b-xs {
+  border: 1px solid rgba(34,34,34,.15) !important;
+}
+
+.trust-signals .text-truncate-x {
+  text-overflow: ellipsis !important;
+  min-width: 0 !important;
+}
+
+.trust-signals .user-avatar-external {
+  width: 60px;
+  height: 60px;
+}
+
+.trust-signals span.shop-location {
+  height: 18px;
+  line-height: 18px;
+}
+
+.center-follow-shop-button .favorite-shop-action {
+  color: $font-color;
+  position: absolute;
+  bottom: 20px !important;
+  left: 15% !important;
+  border-radius: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &:before {
+    background: unset;
+    background-color: rgba(0,0,0,0);
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0);
+  }
+
+  &:after, &:before {
+    content: "";
+    background: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transform: rotate(0.0001deg);
+    -webkit-backface-visibility: hidden;
+    transform: scaleX(1) scaleY(1) perspective(1px);
+  }
+}

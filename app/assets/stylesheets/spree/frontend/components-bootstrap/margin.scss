@@ -154,7 +154,7 @@
 }
 
 .pt-xs-5 {
-  @include media-breakpoint-down(xs) {
+  @include media-breakpoint-down(sm) {
     padding-top: 3rem !important;
   }
 }
@@ -180,5 +180,41 @@
 .mb-md-5 {
   @include media-breakpoint-up(md) {
     margin-bottom: 3rem !important;
+  }
+}
+
+.pr-lg-4 {
+  @include media-breakpoint-up(md) {
+    padding-right: 1.5rem !important;
+  }
+}
+
+.pr-lg-6 {
+  @include media-breakpoint-up(md) {
+    padding-right: 4rem !important;
+  }
+}
+
+.pl-lg-3 {
+  @include media-breakpoint-up(md) {
+    padding-left: 1rem !important;
+  }
+}
+
+.pl-lg-4 {
+  @include media-breakpoint-up(md) {
+    padding-left: 1.5rem !important;
+  }
+}
+
+.pl-lg-6 {
+  @include media-breakpoint-up(md) {
+    padding-left: 4rem !important;
+  }
+}
+
+.pl-lg-9 {
+  @include media-breakpoint-up(md) {
+    padding-left: 7rem !important;
   }
 }

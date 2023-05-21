@@ -257,3 +257,18 @@ a.btn {
   }
 }
 
+.btn.btn-transparent {
+  color: #222;
+
+  &:before, &:after {
+    background: unset;
+    background-color: rgba(0,0,0,0);
+    transform: scaleX(0.7) scaleY(0.7) perspective(1px);
+    border-width: 2px;
+    border-style: solid;
+  }
+}
+
+.nudge-b-1 {
+  bottom: 1px !important;
+}

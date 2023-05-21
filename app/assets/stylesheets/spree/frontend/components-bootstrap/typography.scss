@@ -58,6 +58,14 @@ p {
 
 .text-caption {
   font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.text-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  min-width: 0 !important;
 }
 
 .text-title-01  {
