@@ -63,6 +63,9 @@ module Spree
       has_many :commissions, class_name: 'Spree::OrderCommission'
       has_many :vendor_users
 
+      has_many :favorite_vendors, class_name: 'Spree::FavoriteVendor'
+      has_many :fav_users, through: :favorites, class_name: Spree.user_class.to_s
+
       SpreeMultiVendor::Config[:vendorized_models].uniq.compact.each do |model|
         has_many model.pluralize.to_sym
       end
