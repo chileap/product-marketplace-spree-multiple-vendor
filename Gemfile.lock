@@ -633,7 +633,7 @@ GEM
     spree_sample (4.5.2)
       ffaker (~> 2.9)
       spree_core (>= 4.5.2)
-    spring (4.1.0)
+    spring (4.1.1)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
