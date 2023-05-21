@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_spree_favorite_vendors_on_user_id    (user_id)
-#  index_spree_favorite_vendors_on_vendor_id  (vendor_id)
+#  index_spree_favorite_vendors_on_user_id                (user_id)
+#  index_spree_favorite_vendors_on_user_id_and_vendor_id  (user_id,vendor_id) UNIQUE
+#  index_spree_favorite_vendors_on_vendor_id              (vendor_id)
 #
 # Foreign Keys
 #
@@ -20,8 +21,8 @@
 #
 module Spree
   class FavoriteVendor < Spree::Base
-    belongs_to :vendor, class_name: 'Spree::Vendor', foreign_key: :vendor_id, required: true
-    belongs_to :user, class_name: 'Spree::User', foreign_key: :user_id, required: true
+    belongs_to :vendor, class_name: 'Spree::Vendor', inverse_of: :favorite_vendors
+    belongs_to :user, class_name: 'Spree::User', inverse_of: :favorite_vendors
 
     validates :vendor_id, uniqueness: { scope: :user_id }
 

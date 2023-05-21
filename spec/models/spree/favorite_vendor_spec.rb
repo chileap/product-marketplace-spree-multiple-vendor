@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_spree_favorite_vendors_on_user_id    (user_id)
-#  index_spree_favorite_vendors_on_vendor_id  (vendor_id)
+#  index_spree_favorite_vendors_on_user_id                (user_id)
+#  index_spree_favorite_vendors_on_user_id_and_vendor_id  (user_id,vendor_id) UNIQUE
+#  index_spree_favorite_vendors_on_vendor_id              (vendor_id)
 #
 # Foreign Keys
 #
@@ -22,8 +23,8 @@ require 'rails_helper'
 
 RSpec.describe Spree::FavoriteVendor, type: :model do
   describe 'associations' do
-    it { is_expected.to belong_to(:vendor).class_name('Spree::Vendor').with_foreign_key(:vendor_id) }
-    it { is_expected.to belong_to(:user).class_name('Spree::User').with_foreign_key(:user_id) }
+    it { is_expected.to belong_to(:vendor).class_name('Spree::Vendor').without_validating_presence }
+    it { is_expected.to belong_to(:user).class_name('Spree::User').without_validating_presence }
   end
 
   describe 'validations' do

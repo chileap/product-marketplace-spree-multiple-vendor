@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_spree_favorite_vendors_on_user_id    (user_id)
-#  index_spree_favorite_vendors_on_vendor_id  (vendor_id)
+#  index_spree_favorite_vendors_on_user_id                (user_id)
+#  index_spree_favorite_vendors_on_user_id_and_vendor_id  (user_id,vendor_id) UNIQUE
+#  index_spree_favorite_vendors_on_vendor_id              (vendor_id)
 #
 # Foreign Keys
 #
