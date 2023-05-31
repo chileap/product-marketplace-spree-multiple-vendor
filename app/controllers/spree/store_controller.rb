@@ -79,6 +79,7 @@ module Spree
     def current_spree_vendor
       return unless try_spree_current_user
       return unless try_spree_current_user.respond_to?(:vendors)
+
       try_spree_current_user.vendors.first
     end
 

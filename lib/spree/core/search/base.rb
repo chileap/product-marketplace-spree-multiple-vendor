@@ -27,6 +27,10 @@ module Spree
           end
         end
 
+        def respond_to_missing?(method_name, include_private = false)
+          @properties.key?(method_name) || super
+        end
+
         protected
 
         def extended_base_scope
@@ -86,14 +90,14 @@ module Spree
 
         # method should return new scope based on base_scope
         def get_products_conditions_for(base_scope, query)
-          unless query.blank?
+          if query.present?
             base_scope = base_scope.like_any([:name, :description], [query])
           end
           base_scope
         end
 
         def get_products_option_values_conditions(base_scope, option_value_ids)
-          unless option_value_ids.blank?
+          if option_value_ids.present?
             base_scope = base_scope.joins(variants: :option_values).where(spree_option_values: { id: option_value_ids })
           end
           base_scope

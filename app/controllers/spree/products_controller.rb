@@ -54,7 +54,7 @@ module Spree
     def load_product
       @product = current_store.products.for_user(try_spree_current_user).friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      if try_spree_current_user && try_spree_current_user.vendors.any?
+      if try_spree_current_user&.vendors&.any?
         @product = current_spree_vendor.products.friendly.find(params[:id])
       end
     end

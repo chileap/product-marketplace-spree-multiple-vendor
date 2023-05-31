@@ -4,7 +4,7 @@ module Spree
     include InlineSvg::ActionView::Helpers
 
     def shop_member?(shop)
-      try_spree_current_user && try_spree_current_user.vendors.present? && (try_spree_current_user.vendors.ids).include?(shop.id)
+      try_spree_current_user&.vendors&.ids&.include?(shop.id)
     end
 
     def country_presentation(country_iso)
@@ -259,7 +259,7 @@ module Spree
       if width.present? && height.present?
         inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: "#{width}px*#{height}px"
       else
-        inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: "100% * 100%"
+        inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: '100% * 100%'
       end
     end
 
