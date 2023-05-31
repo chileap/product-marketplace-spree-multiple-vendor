@@ -275,3 +275,11 @@
     }
   }
 }
+
+.checkout-confirm-order-details-line-items-line-item-download {
+  border-top: 1px solid #e2e2e2;
+}
+
+.checkout-confirm-order-details-line-items-line-item:last-child .checkout-confirm-order-details-line-items-line-item-download {
+  border-bottom: 1px solid #e2e2e2;
+}

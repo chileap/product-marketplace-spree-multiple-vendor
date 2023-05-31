@@ -86,5 +86,6 @@ Spree::Core::Engine.append_routes do
     get '/help', to: 'static_pages#help', as: :help
     get '/about', to: 'static_pages#about', as: :about
     get '/affiliates', to: 'static_pages#affiliates', as: :affiliates
+    get '/your/orders/:id/digitals/:token', to: 'digitals#download', as: 'dowload_digital'
   end
 end

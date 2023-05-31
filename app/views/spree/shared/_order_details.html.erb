@@ -69,6 +69,8 @@
         <p class="d-table-cell pb-1">
           <%= Spree.t(:total) %>
         </p>
+        <p class="d-table-cell pb-1">
+        </p>
       </div>
       <% @order.line_items.each do |item| %>
         <div class="checkout-confirm-order-details-line-items-line-item w-100 d-table-row" data-hook="order_details_line_item_row">
@@ -111,6 +113,17 @@
           <div class="checkout-confirm-order-details-line-items-line-item-total d-none d-lg-table-cell align-middle py-4" data-hook="order_item_total">
             <div><%= item.display_total.to_s %></div>
           </div>
+
+          <% if item.digital_links.present? %>
+            <div class="checkout-confirm-order-details-line-items-line-item-download d-none d-lg-table-cell align-middle py-4" data-hook="order_item_download">
+              <div>
+                <% item.digital_links.each do |digital_link| %>
+                  <%= link_to Spree.t(:download), spree.dowload_digital_url(@order, digital_link.token), class: 'btn btn-primary btn-sm' %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+
         </div>
       <% end %>
     </div>
