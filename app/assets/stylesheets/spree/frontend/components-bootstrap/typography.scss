@@ -58,6 +58,14 @@ p {
 
 .text-caption {
   font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.text-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  min-width: 0 !important;
 }
 
 .text-title-01  {
@@ -69,4 +77,16 @@ p {
   font-family: 'Nanum Myeongjo', 'Noto Serif', serif;
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.text-brick {
+  color: #a61a2e !important;
+}
+
+.text-smaller {
+  font-size: 80%;
+}
+
+.text-gray-lighter {
+  color: #595959;
 }

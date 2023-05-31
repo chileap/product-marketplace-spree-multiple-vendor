@@ -1,0 +1,118 @@
+<div class="shop-banner">
+  <div class="mb-xs-4 shop-home-header mb-lg-0">
+    <div class="position-relative">
+      <div>
+        <% if @shop.cover_image.present? %>
+          <div class="branding-container position-relative appears-ready">
+            <div class="w-100 img-container position-relative">
+              <div class="cover-photo-wrap position-relative height-aspect-ratio-4-1 overflow-hidden d-flex justify-content-center fill-min-height">
+                <%= image_tag main_app.cdn_image_url(@shop.cover_image.try(:attachment)), class: 'position-absolute d-block fill-min-height w-100' %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="branding-container position-relative appears-ready">
+            <div class="w-100 bg-orange-tint p-xs-1 p-lg-4"></div>
+            <span class="edge fill-orange-tint edge--ratio-slice" aria-hidden="true">
+              <%= icon name: 'border-edge-ratio' %>
+            </span>
+            <div class="w-100 p-xs-2 p-lg-1 p-xl-0"></div>
+          </div>
+        <% end %>
+      </div>
+      <% if shop_member?(@shop) %>
+        <div data-module="branding-buttons" class="d-sm-none d-md-block position-absolute bottom-0 ps-lg-6">
+          <a class="btn btn-sm btn-primary rounded-pill shadow-sm mr-xs-1" href="/shop/ChileapKH/edit?ref=edit_trust_header">
+            <span class="shop-icon">
+              <%= icon name: 'edit-outline', width: 24, height: 24 %>
+            </span>
+            <span class="nudge-t-1">Edit shop</span>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <div class="body-max-width pt-xs-5 pt-lg-0 pe-lg-4 ps-lg-4">
+      <div class="trust-signals ps-lg-0 pe-lg-0 no-banner">
+        <div class="w-100 d-md-flex align-items-center">
+          <div class="shop-home-header-container w-100 mb-xs-3 mt-xs-3 mb-md-4 mt-md-4 d-md-flex align-items-center justify-content-between">
+            <div class="max-w-100 row pe-lg-5 w-100 d-initial-md-down align-items-center">
+              <div class="col-xs-12 d-md-flex pe-lg-4 flex-xs-column flex-md-row align-items-center center-md-down">
+                <div data-editable-img="shop-icon" class="d-sm-none d-md-block shop-home-max-icon-width shop-home-small-icon-width position-relative d-inline-block">
+                  <% if @shop.image.present? %>
+                    <%= image_tag main_app.cdn_image_url(@shop.image.try(:attachment)), class: 'shop-icon-external rounded d-block b-xs' %>
+                  <% else %>
+                    <%= image_tag 'noimage/default-shop-icon.png', class: 'shop-icon-external rounded d-block' %>
+                  <% end %>
+                </div>
+
+                <div class="shop-home-header-info shop-info ps-lg-3 d-inline-block vertical-align-top text-truncate-x">
+                  <div class="shop-name-and-title-container mb-xs-1 d-flex-md-down center-md-down">
+                    <h1 class="text-heading-01 text-truncate"><%= @shop.name %></h1>
+                    <p data-in-modal-editable-text="title" data-endpoint="DataPost" data-key="headline" class="text-caption d-sm-none d-md-block wrap break-all"></p>
+                  </div>
+
+                  <div class="shop-info">
+                    <div class="shop-location d-md-flex mb-xs-1 center-md-down">
+                      <div class="d-md-flex text-truncate align-items-center">
+                        <span class="shop-location text-caption text-gray line-height-tight wrap" data-in-modal-editable-text="user_location" data-endpoint="DataPost" data-key="user_location">
+                          <%= @shop.city %>, <% @shop.country.name %>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="shop-sales-reviews d-md-flex flex-wrap align-items-center center-md-down"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-sm-none d-md-block shop-owner col-xs-3 col-lg-2 ps-lg-0 pe-lg-0 text-center flex-shrink-lg-0">
+              <div>
+                <div class="img-container" data-editable-img="user-avatar">
+                  <a href="<%= user_profile_path(@shop.users.first.slug) %>" title="<%= @shop.users.first.full_name %>">
+                    <% if @shop.users.first.profile_picture.present? %>
+                      <%= image_tag(main_app.cdn_image_url(@shop.users.first.profile_picture.try(:attachment)), class: 'rounded-circle user-avatar-external') %>
+                    <% else %>
+                      <%= image_tag 'noimage/avatar.png', class: "rounded-circle user-avatar-external" %>
+                    <% end %>
+                    <p><%= @shop.users.first.full_name %></p>
+                  </a>
+                </div>
+              </div>
+              <p>
+                <a rel="nofollow" href="#" class="btn btn-sm  btn-icon btn-transparent is-disabled contact-action convo-overlay-trigger inline-overlay-trigger" role="button">
+                  <span class="shop-icon icon-md pe-1 d-flex align-items-center">
+                    <i class="bi bi-chat-square-text icon-sm"></i>
+                  </span>
+
+                  Contact
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="position-relative center-follow-shop-button d-sm-none d-md-block">
+    <div class="body-max-width mx-3">
+      <div class="z-index-2 mb-xs-1 mb-lg-0">
+        <div class="d-flex align-items-center attached">
+          <button class="inline-overlay-trigger favorite-shop-action btn btn-sm btn-secondary bg-white shadow-sm d-md-flex align-items-center">
+            <% if try_spree_current_user && try_spree_current_user.favorite_vendors.present? && try_spree_current_user.favorite_vendors.include?(@shop.id) %>
+              <span class="shop-icon text-brick">
+                <i class="bi bi-heart-fill icon-sm"></i>
+              </span>
+              <span class="ms-xs-1 d-none">Following shop</span>
+            <% else %>
+              <span class="shop-icon">
+                <i class="bi bi-heart icon-sm"></i>
+              </span>
+              <span class="ms-xs-1">Follow shop</span>
+              <% end %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

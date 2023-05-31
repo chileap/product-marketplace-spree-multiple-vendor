@@ -1,15 +1,153 @@
-<div class="container-fluid py-4">
-  <h1><%= @shop.name %></h1>
+<% self.title = @shop.name %>
+<% permitted_params = permitted_products_params %>
+<div class="shop-home">
+  <%= render partial: 'spree/shops/components/shop_banner' %>
 
-  <% if @shop.products.present? %>
-    <%= render 'spree/shared/products', products: @shop.products %>
-  <% else %>
-    <div class="col-md-6 mx-auto text-center py-5">
-      <span class="d-flex justify-content-center">
-        <%= icon name: "shopping", width: 150, height: 150 %>
+  <div class="body-max-width pe-xs-2 pe-md-4 ps-xs-2 ps-md-4">
+    <div data-offset="0.01">
+      <span class="appears-ready">
+        <div class="ps-xs-0 pe-xs-0 no-focus-outline" id="items">
+          <div class="mb-xs-1 mb-lg-0 ps-xs-0 pe-xs-0">
+            <div class="d-md-flex w-100 pb-xs-2 pb-lg-0">
+              <div class="d-sm-block w-100 max-w-100 d-md-none ps-xs-0" id="listing-search-container">
+                <div data-region="search-items" class="search-items d-inline-block w-100 input-prepend input-prepend-icon input-append input-append-icon">
+                  <form action="/shop/ChileapKH/search" method="GET">
+                    <button type="button" class="btn btn-transparent btn-icon btn-sm position-absolute end-0 mt-xs-1 z-index-9 animated animated--is-hidden search-close-btn-margin-right">
+                      <span class="screen-reader-only"></span>
+                      <span class="shop-icon icon--smaller nudge-t-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <path d="M13.414,12l6.293-6.293a1,1,0,0,0-1.414-1.414L12,10.586,5.707,4.293A1,1,0,0,0,4.293,5.707L10.586,12,4.293,18.293a1,1,0,1,0,1.414,1.414L12,13.414l6.293,6.293a1,1,0,0,0,1.414-1.414Z"></path>
+                        </svg>
+                      </span>
+                    </button>
+                    <div class="input-group">
+                      <input id="646838fb9d87b" type="text" class="form-control pe-xs-7 text-truncate" name="search_query" placeholder="Search items" aria-label="Search items" value="" />
+
+                      <button type="submit" class="btn input-btn-group__btn" value="Search" aria-label="Search">
+                        <span class="shop-icon nudge-b-1">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18ZM10,4a6,6,0,1,0,6,6A6.007,6.007,0,0,0,10,4Z"></path>
+                            <path d="M21,22a1,1,0,0,1-.707-0.293l-4-4a1,1,0,0,1,1.414-1.414l4,4A1,1,0,0,1,21,22Z"></path>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-md-flex flex-wrap flex-xs-column flex-md-row justify-content-between align-items-baseline ps-xs-0 pe-xs-0 pb-lg-2">
+              <div class="flex-lg-1 d-md-block ps-lg-0">
+                <h2 class="text-title-02 conform-lower-heading">Items</h2>
+              </div>
+
+              <div class="flex-lg-2 ps-xs-2 ps-lg-1"></div>
+
+              <div class="flex-lg-2 justify-content-flex-end align-self-stretch d-md-flex order-lg-4">
+                <div class="pb-xs-2 pb-lg-0">
+                  <div class="pb-xs-2 pb-lg-0">
+                    <%= render 'spree/products/sort_desktop', permitted_params: permitted_params %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-md-flex">
+          <div class="d-sm-none d-md-block ps-xs-0 shop-home-wider-sections me-lg-4 pe-xs-0">
+            <div class="pb-3">
+              <div data-region="search-items" class="search-items d-inline-block w-100 input-prepend input-prepend-icon input-append input-append-icon">
+                <form action="/shops/chileap-chhin/search" method="GET">
+                  <div class="input-group">
+                    <input type="text" class="form-control pe-xs-7 text-truncate" name="search_query" placeholder="Search items" aria-label="Search items" value="" />
+
+                    <button type="submit" class="btn btn-outline-primary" value="Search" aria-label="Search">
+                      <span class="shop-icon nudge-b-1">
+                        <i class="bi bi-search icon-sm"></i>
+                      </span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div data-section-selector="" class="tab-container mb-xs-6">
+              <ul class="ps-0 tab flex-column bb-xs-none vertical-tabs" aria-orientation="vertical" role="tablist" aria-label="Sections" data-tab-list="" data-animate="false">
+                <button aria-selected="true" class="tab__item ms-md-0 me-md-0 justify-content-between is-selected" role="tab" data-tab="" data-section-id="0">
+                  <span class="break-word mr-xs-2">All</span>
+                  <span class="mr-md-2"><%= @products.total_count %></span>
+                </button>
+              </ul>
+            </div>
+            <div class="request-custom-order-button"></div>
+            <div class="contact-shop-owner-button">
+              <a rel="nofollow" href="<%= user_profile_path(@shop.users.first.slug) %>" class="btn btn-outline-secondary w-100 btn-multi-line is-disabled contact-action convo-overlay-trigger inline-overlay-trigger" role="button">
+                <span class="shop-icon icon--smaller vertical-align-middle nudge-b-1 mr-xs-1">
+                  <i class="bi bi-envelope-fill"></i>
+                </span>
+
+                Contact shop owner
+              </a>
+            </div>
+
+            <div class="my-5 pt-2 bt-xs-1">
+              <div class="pt-3">
+                <a rel="nofollow" href="#" class="">0 Sales</a>
+              </div>
+              <div class="pt-3">0 Admirers</div>
+            </div>
+          </div>
+
+          <div class="pe-xs-0 ps-xs-0 shop-home-wider-items pb-xs-5">
+            <% if @products.present? %>
+              <%= render 'spree/shared/products', products: @products %>
+            <% else %>
+              <div class="animated">
+                <div>
+                  <div class="empty-state">
+                    <img src="https://www.etsy.com/images/shop/illo_no_items.png" srcset="https://www.etsy.com/images/shop/illo_no_items.png 1x, https://www.etsy.com/images/shop/illo_no_items@2x.png 2x" />
+                    <div class="prose">
+                      No items listed at this time
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
       </span>
-      <h2>No products</h2>
-      <p>There are no products in this shop</p>
     </div>
-  <% end %>
+
+    <div class="pb-5">
+      <div class="shop-policies-section no-focus-outline bt-xs bt-lg-none appears-ready" id="policies" tabindex="-1">
+        <div class="ps-xs-1 pe-xs-1 ps-lg-0 pe-lg-0">
+          <div class="row bt-lg ps-xs-0 pe-xs-0 pt-xs-3 mb-xs-1 pt-6 mb-2">
+            <div class="col-lg-3 p-xs-0 mb-4">
+              <h4 class="text-title-02">Shop policies</h4>
+              <div class="text-caption text-gray">
+                <span class="d-inline-block">Last updated on</span>
+                <span class="d-inline-block"></span>
+              </div>
+            </div>
+
+            <div class="shop-policies-section p-xs-0 col-lg-12 row" data-region="returns-and-exchanges">
+              <div class="col-lg-3 bt-xs bt-lg-none pt-4 ps-xs-0 pe-xs-0">
+                <h3 class="text-title-01">Returns &amp; exchanges</h3>
+              </div>
+              <div class="col-lg-9 ps-xs-0 pe-xs-0 bt-lg pt-4">
+                <div class="row ps-xs-0">
+                  <div class="col-lg-8 p-xs-0">
+                    <div class="pb-xs-2 text-gray prose">
+                      See item details for return and exchange eligibility.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

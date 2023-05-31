@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_19_093541) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_21_124615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -285,6 +285,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_093541) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.index ["variant_id"], name: "index_spree_digitals_on_variant_id"
+  end
+
+  create_table "spree_favorite_vendors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vendor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "vendor_id"], name: "index_spree_favorite_vendors_on_user_id_and_vendor_id", unique: true
+    t.index ["user_id"], name: "index_spree_favorite_vendors_on_user_id"
+    t.index ["vendor_id"], name: "index_spree_favorite_vendors_on_vendor_id"
+  end
+
+  create_table "spree_favorte_vendors", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "vendor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_spree_favorte_vendors_on_user_id"
+    t.index ["vendor_id"], name: "index_spree_favorte_vendors_on_vendor_id"
   end
 
   create_table "spree_gateways", force: :cascade do |t|
@@ -1558,6 +1577,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_19_093541) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "spree_favorite_vendors", "spree_users", column: "user_id"
+  add_foreign_key "spree_favorite_vendors", "spree_vendors", column: "vendor_id"
+  add_foreign_key "spree_favorte_vendors", "spree_users", column: "user_id"
+  add_foreign_key "spree_favorte_vendors", "spree_vendors", column: "vendor_id"
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_payment_sources", "spree_payment_methods", column: "payment_method_id"

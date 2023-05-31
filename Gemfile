@@ -30,7 +30,12 @@ group :development, :test do
 
   gem 'listen'
 
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'faker'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
   # monitoring
   gem 'bullet'

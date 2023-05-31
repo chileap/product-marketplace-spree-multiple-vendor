@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="not-found-page text-center d-flex flex-column justify-content-center align-items-center">
+    <h1 class="display-1 text-primary">500</h1>
+    <p>Opps, Something went wrong</p>
+    <p><strong><%= Spree.t(:internal_server_error) %></strong></p>
+    <p><%= Spree.t(:get_back_to_the) %> <%= link_to current_store.url, spree.root_url %></p>
+  </div>
+</div>

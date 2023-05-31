@@ -51,7 +51,7 @@
     }
   }
   &--empty {
-    padding: 0 0 100% / $photo-width-to-height-ratio 0;
+    padding: 0 0 calc(100% / $photo-width-to-height-ratio) 0;
     background: $light-background;
     & > * {
       display: none !important;
@@ -67,7 +67,7 @@
       &-single {
         &--visible {
           & ~ & {
-            margin-top: $single-gap-md / 2;
+            margin-top: calc($single-gap-md / 2);
           }
 
           .modal-dialog--zoom & ~ & {

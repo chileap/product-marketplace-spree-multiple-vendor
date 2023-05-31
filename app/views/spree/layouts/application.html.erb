@@ -9,7 +9,14 @@
   </head>
   <body class="d-flex flex-column main-body <%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
     <div class="main">
-      <%= render partial: 'spree/shared/main_header' %>
+      <div id="spree-header">
+        <header id="header" class="d-flex flex-md-column align-items-center main-header-spree border-bottom pt-2">
+          <%= render partial: 'spree/shared/main_header' %>
+
+          <%= yield :side_header %>
+        </header>
+      </div>
+
       <div id="overlay" class="overlay hide-on-esc"></div>
 
       <div data-hook class="row">

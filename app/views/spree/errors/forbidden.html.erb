@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="not-found-page text-center d-flex flex-column justify-content-center align-items-center">
+    <h1 class="display-1 text-primary">403</h1>
+    <p>Access Denied</p>
+    <p><strong><%= Spree.t(:unauthorized) %></strong></p>
+    <p><%= Spree.t(:get_back_to_the) %> <%= link_to current_store.url, spree.root_url %></p>
+  </div>
+</div>

@@ -1,12 +1,14 @@
 module Spree
   class ShopsController < Spree::StoreController
-    load_and_authorize_resource class: Spree::Vendor, only: %i[onboarding]
+    load_and_authorize_resource class: Spree::Vendor, only: [:onboarding, :create]
     layout :get_layout
 
     def index; end
 
     def show
       @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @searcher = build_searcher(params.merge(include_images: true, current_store: current_store, current_vendor: @shop, show_discontinued: true))
+      @products = @searcher.retrieve_products
     end
 
     def search
@@ -18,6 +20,23 @@ module Spree
 
     def onboarding
       @shop = Spree::Vendor.find_by(slug: params[:slug]) || spree_current_user.vendors.pending.first || Spree::Vendor.new
+
+      if @shop.persisted? && @shop.products.empty?
+        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'products')
+      elsif @shop.persisted? && @shop.products.present? && @shop.shipping_methods.empty?
+        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'shipping')
+      elsif @shop.persisted? && @shop.products.present? && @shop.shipping_methods.present? && @shop.payment_methods.empty?
+        redirect_to spree.shop_onboarding_path(@shop.slug, screen_type: 'payment')
+      elsif @shop.persisted? && @shop.products.present? && @shop.shipping_methods.present? && @shop.payment_methods.present?
+        redirect_to spree.shop_path(@shop.slug)
+      else
+        @shop = Spree::Vendor.find_by(slug: params[:slug]) || spree_current_user.vendors.pending.first || Spree::Vendor.new
+      end
+    end
+
+    def onboarding_update
+      @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @screen_type = params[:screen_type]
     end
 
     def create
@@ -46,9 +65,16 @@ module Spree
 
     def create_product
       @shop = Spree::Vendor.find_by(slug: params[:slug])
-      @product = Spree::Product.new(product_params)
+      @product = Spree::Product.new(product_params.except(:variant_images, :variant_images_files))
       @product.vendor_id = @shop.id
       @product.store_ids = [current_store.id]
+
+      if product_params[:variant_images_files].present?
+        product_params[:variant_images_files].each do |image|
+          @product.images.build(attachment: image)
+        end
+      end
+
       if @product.save
         flash[:success] = 'Product created successfully'
         redirect_to spree.shop_path(@shop.slug)
@@ -61,7 +87,7 @@ module Spree
     private
 
     def get_layout
-      if %w[onboarding].include?(action_name)
+      if %w[onboarding onboarding_update].include?(action_name)
         'spree/layouts/application'
       else
         'spree/layouts/spree_application'
@@ -69,7 +95,7 @@ module Spree
     end
 
     def product_params
-      params.require(:product).permit(permitted_product_attributes)
+      params.require(:product).permit(permitted_product_attributes, variant_images: [], variant_images_files: [])
     end
 
     def shop_params

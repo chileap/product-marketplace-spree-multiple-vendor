@@ -17,7 +17,16 @@
           <% end %>
         </div>
       <% else %>
-        <p>There are no shops in <%= @local_country&.name %></p>
+        <div class="row py-5">
+          <div class="col-6 mx-auto text-center">
+            <%= icon name: 'shop', width: 150, height: 150 %>
+            <p class="text-xl py-4">Sorry, we couldn't find any shops in <%= @local_country&.name %></p>
+            <%= link_to root_path, class: "d-flex justify-content-center align-items-center" do %>
+              <i class="bi bi-arrow-left-short icon-md"></i>
+              <span>Back to home</span>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

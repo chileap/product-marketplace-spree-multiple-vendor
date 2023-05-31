@@ -25,12 +25,12 @@
   }
   &-images {
     & > .product-details-thumbnails {
-      width: (1 / 7) * 100%;
+      width: calc((1 / 7) * 100%);
       flex: 0 1 auto;
-      margin-right: $grid-gutter-width / 2;
+      margin-right: calc($grid-gutter-width / 2);
       & + .product-details-single {
         @include media-breakpoint-up(sm) {
-          margin-left: $grid-gutter-width / 2;
+          margin-left: calc($grid-gutter-width / 2);
         }
 
         @include media-breakpoint-up(lg) {
@@ -40,7 +40,7 @@
       }
     }
     & > .product-details-single {
-      width: (6 / 7) * 100%;
+      width: calc((6 / 7) * 100%);
       flex: 1 1 auto;
       // It's simpler to use a desktop-first approach here to counter container gutters and make the carousel edge-to-edge on xs.
       @include media-breakpoint-down(xs) {

@@ -32,7 +32,7 @@ module ProductMall
       end
     end
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
@@ -60,5 +60,7 @@ module ProductMall
       require "#{Rails.root}/lib/cloud_flare_middleware"
       config.middleware.insert_before(0, Rack::CloudFlareMiddleware)
     end
+
+    config.exceptions_app = self.routes
   end
 end

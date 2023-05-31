@@ -12,7 +12,7 @@
       <div class="carousel-caption">
         <h2>I’m ready to shop. Where do I begin?</h2>
         <p>
-          Visit <%= link_to 'product-mall.herokuapp.com', root_path %> to start exploring.
+          Visit <%= link_to ENV.fetch('APP_HOST'), root_path %> to start exploring.
         </p>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <h2>How do I become an Product Mall Seller?</h2>
         <p>
           If you want to sell your handmade, vintage or craft items on Product Mall, check that they fit within our Seller Policy.
-          Then, visit <%= link_to 'product-mall.herokuapp.com/sell', sell_path %> to set up your shop. It only takes 20 cents and your imagination to set up a global business.
+          Then, visit <%= link_to "#{ENV.fetch('APP_HOST')}/sell", sell_path %> to set up your shop. It only takes 20 cents and your imagination to set up a global business.
         </p>
       </div>
     </div>

@@ -8,6 +8,24 @@
   }
 }
 
+.shop-icon {
+  display: inline-block;
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+}
+
+.icon-sm {
+  font-size: .75rem;
+  height: 20px !important;
+  width: 20px !important;
+}
+
+.icon-md {
+  font-size: 1.5rem;
+}
+
 .w-4 {
   width: 1rem;
 }

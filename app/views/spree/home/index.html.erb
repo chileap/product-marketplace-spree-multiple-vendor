@@ -3,7 +3,7 @@
     <div class="col-12 py-md-3 py-sm-2">
       <h1 class="text-center">
         <%= Spree.t(:welcome_back) %>
-        <%= link_to spree_current_user.first_name || spree_current_user.email, user_profile_path(spree_current_user), class: "ps-1 text-decoration-underline text-uppercase" %>!
+        <%= link_to spree_current_user.first_name || spree_current_user.email, user_profile_path(spree_current_user), class: "ps-1 text-decoration-underline text-capitalize" %>!
       </h1>
     </div>
   <% end %>

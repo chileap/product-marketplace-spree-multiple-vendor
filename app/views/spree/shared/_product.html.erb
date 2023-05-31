@@ -3,6 +3,11 @@
   <% cache [common_product_cache_keys, product] do %>
     <%= plp_and_carousel_image(product, image_class) %>
     <div>
+      <% if product.status != 'active' %>
+        <div class="product-component-status">
+          <%= product.status.capitalize %>
+        </div>
+      <% end %>
       <div class="product-component-name" title="<%= product.name %>">
         <%= product.name %>
       </div>
