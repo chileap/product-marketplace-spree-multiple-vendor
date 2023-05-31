@@ -109,7 +109,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_in_redirect(resource_or_scope)
-    stored_location_for(resource_or_scope) || account_path
+    stored_location_for(resource_or_scope) || spree.user_account_path
   end
 
   def redirect_to_checkout_or_account_path(resource)
@@ -118,7 +118,7 @@ class Spree::UserRegistrationsController < Devise::RegistrationsController
     if resource_path == spree.checkout_state_path(:address)
       respond_with resource, location: spree.checkout_state_path(:address)
     else
-      respond_with resource, location: spree.account_path
+      respond_with resource, location: resource_path
     end
   end
 end

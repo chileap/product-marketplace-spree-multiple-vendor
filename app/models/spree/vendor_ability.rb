@@ -26,6 +26,10 @@ class Spree::VendorAbility
       apply_vendor_permissions
       apply_vendor_settings_permissions
       apply_state_changes_permissions
+    elsif user.persisted?
+      can :create, Spree::Vendor
+      can :onboarding, Spree::Vendor
+      can :onboarding_update, Spree::Vendor
     end
   end
 
@@ -139,8 +143,9 @@ class Spree::VendorAbility
 
   def apply_vendor_permissions
     can :manage, Spree::Vendor, id: @vendor_ids
-    cannot :index, Spree::Vendor
-    cannot :create, Spree::Vendor
+    can :index, Spree::Vendor
+    can :create, Spree::Vendor
+    can :onboarding, Spree::Vendor
   end
 
   def apply_vendor_settings_permissions

@@ -3,6 +3,10 @@ module Spree
     include BaseHelper
     include InlineSvg::ActionView::Helpers
 
+    def shop_member?(shop)
+      try_spree_current_user && try_spree_current_user.vendors.present? && (try_spree_current_user.vendors.ids).include?(shop.id)
+    end
+
     def country_presentation(country_iso)
       Spree::Country.find_by(iso: country_iso)&.name || country_iso
     end
@@ -251,8 +255,12 @@ module Spree
       return image.alt if image.alt.present?
     end
 
-    def icon(name:, classes: '', width:, height:)
-      inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: "#{width}px*#{height}px"
+    def icon(name:, classes: '', width: '', height: '')
+      if width.present? && height.present?
+        inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: "#{width}px*#{height}px"
+      else
+        inline_svg_tag "#{name}.svg", class: "spree-icon #{classes}", size: "100% * 100%"
+      end
     end
 
     def price_filter_values

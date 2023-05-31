@@ -11,6 +11,10 @@ module Spree::UserDecorator
     base.validates_associated :profile_picture
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def should_generate_new_friendly_id?

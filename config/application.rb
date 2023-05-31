@@ -60,5 +60,7 @@ module ProductMall
       require "#{Rails.root}/lib/cloud_flare_middleware"
       config.middleware.insert_before(0, Rack::CloudFlareMiddleware)
     end
+
+    config.exceptions_app = self.routes
   end
 end

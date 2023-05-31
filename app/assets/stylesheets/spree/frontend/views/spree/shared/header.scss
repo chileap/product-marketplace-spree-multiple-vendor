@@ -1,36 +1,10 @@
-body.spree-body {
-  padding-top: $spree-header-mobile-height;
-
-  @include media-breakpoint-up(sm) {
-    padding-top: $spree-header-tablet-height;
-  }
-  @include media-breakpoint-up(xl) {
-    padding-top: $spree-header-desktop-height;
-  }
-}
-
-.main-body {
-  padding-top: 65px;
-}
-
 .main-header-spree {
   background: $header-background;
   color: $header-font-color;
   border-color: $global-border-style !important;
-  position: fixed;
-  top: 0;
   width: 100%;
-  z-index: 16;
+  height: 155px;
 
-  @include media-breakpoint-up(xl) {
-    z-index: 4;
-
-    &.above-overlay {
-      z-index: 6;
-    }
-  }
-
-  height: 65px;
   &-fluid {
     max-width: $spree-header-max-width;
     &-logo {
@@ -79,19 +53,7 @@ body.spree-body {
   background: $header-background;
   color: $header-font-color;
   border-color: $global-border-style !important;
-  position: fixed;
-  top: 0;
   width: 100%;
-  z-index: 16;
-
-  @include media-breakpoint-up(xl) {
-    z-index: 4;
-
-    &.above-overlay {
-      z-index: 6;
-    }
-  }
-
   height: $spree-header-mobile-height;
   &-fluid {
     max-width: $spree-header-max-width;

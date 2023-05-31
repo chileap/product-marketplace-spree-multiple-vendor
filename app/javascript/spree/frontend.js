@@ -43,6 +43,7 @@ import "./frontend/views/spree/shared/quantity_select"
 import "./frontend/turbo_scroll_fix"
 import "./frontend/main_nav_bar"
 import "./frontend/login"
+import "./frontend/views/spree/shops/onboarding"
 
 Spree.routes.api_tokens = Spree.localizedPathFor('api_tokens')
 Spree.routes.ensure_cart = Spree.localizedPathFor('ensure_cart')

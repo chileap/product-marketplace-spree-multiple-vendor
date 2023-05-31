@@ -1,5 +1,7 @@
 require File.expand_path('../../../lib/spree_frontend', __FILE__)
 
+require './lib/spree/core/search/base'
+
 Rails.application.config.after_initialize do
   Spree::Backend::Config[:admin_show_version] = false
   Spree.config do |config|

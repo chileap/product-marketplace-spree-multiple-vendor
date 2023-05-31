@@ -4,7 +4,7 @@
       <%= Spree.t(:delivery_information) %>
     </div>
     <dl>
-      <% if order.has_step?("address") %>
+      <% if order.has_step?("address") && order.ship_address.present? %>
         <div data-hook="order-ship-address">
           <dt class="text-uppercase">
             <%= Spree.t(:shipping_address) %>

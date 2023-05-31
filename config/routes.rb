@@ -54,6 +54,9 @@ Spree::Core::Engine.append_routes do
 
     get '/pages/:slug', to: 'cms_pages#show', as: :page
 
+    get '/404', to: 'errors#not_found'
+    get '/500', to: 'errors#internal_server'
+    get '/422', to: 'errors#unprocessable'
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
     get '/unauthorized', to: 'errors#unauthorized', as: :unauthorized
 
@@ -75,7 +78,7 @@ Spree::Core::Engine.append_routes do
     get '/your/orders/:id', to: 'orders#show', as: :your_order
     get '/your/orders', to: 'orders#index', as: :your_orders
     get '/your/shops/onboarding', to: 'shops#onboarding', as: :onboarding
-    get '/your/shops/:slug/onboarding/:screen_type', to: 'shops#onboarding', as: :shop_onboarding
+    get '/your/shops/:slug/onboarding/:screen_type', to: 'shops#onboarding_update', as: :shop_onboarding
     get '/your/shops/:slug/onboarding', to: 'shops#onboarding', as: :welcome_onboarding
     get '/your/shops/:slug', to: 'shops#show', as: :your_shop
     put '/your/shops/:slug', to: 'shops#update', as: :update_shop

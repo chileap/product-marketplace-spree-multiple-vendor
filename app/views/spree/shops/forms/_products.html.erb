@@ -1,0 +1,231 @@
+<div class="p-4">
+  <% if @shop.products.present? %>
+    <div class="d-flex justify-content-center p-4 animated animated--appear-02">
+      <div class="col-lg-5 vertical-align-middle p-4 order-lg-2 flex-lg-2">
+        <div class="d-flex justify-content-center" data-region="listing-container" data-listing-id="1458810396" data-batch="">
+          <div class="col-xs-12 d-flex justify-content-center">
+            <div class="position-relative d-inline-block">
+              <a href="<%= edit_product_onboarding_path(@shop, @shop.products.first.slug) %>" class="card__link">
+                <div class="card card--contained">
+                  <div class="card__inner">
+                    <label class="edit_listing btn btn btn--primary btn--light btn--icon">
+                      <span class="icon icon--base-xs">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                          <path d="M4.583 17.193L4 19.967l2.704-.652L17.916 8.182l-2.122-2.12-11.211 11.13zM19.683 5l-.707-.707a1 1 0 00-1.414 0L16.855 5l2.12 2.121.708-.707a1 1 0 000-1.414z"></path>
+                        </svg>
+                      </span>
+                    </label>
+
+                    <% if @shop.products.first.images.present? %>
+                      <%= image_tag main_app.cdn_image_url(@shop.products.first.images.first.url(:large)) %>
+                    <% else %>
+                      <%= image_tag 'noimage/plp.png' %>
+                    <% end %>
+                    <div class="p-2">
+                      <p class="text-caption text-truncate">
+                        <%= @shop.products.first.name %>
+                      </p>
+                      <p class="text-caption text-truncate text-gray">
+                        <%= @shop.name %>
+                      </p>
+                      <p class="text-title-01 mt-1">
+                        <%= @shop.products.first.display_price %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 d-flex align-items-center text-center-xs text-left-lg pb-xs-2 order-lg-1 flex-lg-1 mt-xs-6">
+        <div>
+          <h2 class="text-heading-01 pb-xs-2">
+            Great job on your first listing!
+          </h2>
+          <div class="text-body-01">
+            You're one step closer to your first sale. Consider adding a few more listings (five's a good start). This gives buyers more chances to find your shop.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <%= link_to 'Save and Continues', your_shop_path(@shop.slug), class: "btn btn-outline-primary" %>
+      </div>
+    </div>
+
+  <% elsif @shop.persisted? %>
+    <% @product = Spree::Product.new %>
+
+    <div class="mb-3">
+      <h2 class="mb-1">
+        Create a Product
+      </h2>
+      <p class="text-gray">
+        Add some photos and details about your item. Fill out what you can for now—you’ll be able to edit this later.
+      </p>
+    </div>
+
+    <%= simple_form_for @product, url: create_product_path(@shop.slug), html: { multipart: true } do |f|  %>
+      <div class="card card-no-radius my-4">
+        <div class="card-body">
+          <div class="mb-3">
+            <h2 class="mb-1">
+              Photos
+            </h2>
+            <p class="text-smaller text-gray-lighter">
+              Add as many as you can so buyers can see every detail.
+            </p>
+          </div>
+          <div class="row mb-2">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :photos %>
+              <p class="text-smaller text-gray-lighter d-sm-none d-md-block mb-2">
+                Use up to ten photos to show your item's most important qualities.
+              </p>
+
+              <p class="text-smaller text-gray-lighter mb-2">
+                Tips:
+              </p>
+
+              <ul class="text-smaller text-gray-lighter list-style-disc">
+                <li>Use natural light and no flash.</li>
+                <li>Include a common object for scale.</li>
+                <li>Show the item being held, worn, or used.</li>
+                <li>Shoot against a clean, simple background.</li>
+
+                <li>Add photos to your variations so buyers can see all their options.</li>
+              </ul>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <div class="row upload__box">
+                <div class="col-3">
+                  <div class="card placeholder-button">
+                    <div class="card-img-wrap">
+                      <div class="placeholder placeholder-square">
+                        <div class="placeholder-content placeholder-listing-card-image">
+                          <div class="placeholder placeholder-square w-100"></div>
+                        </div>
+                      </div>
+                      <div class="position-absolute top-0 start-0 w-100 h-100">
+                        <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                          <div class="text-center">
+                            <span class="shop-icon icon-larger text-black mb-xs-1">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <circle cx="12" cy="13" r="3"></circle>
+                                <path d="M20,6H16V5a1,1,0,0,0-1-1H9A1,1,0,0,0,8,5V6H4A1,1,0,0,0,3,7V19a1,1,0,0,0,1,1H20a1,1,0,0,0,1-1V7A1,1,0,0,0,20,6ZM12,18a5,5,0,1,1,5-5A5.006,5.006,0,0,1,12,18Z"></path>
+                              </svg>
+                            </span>
+                            <div class="text-black">Add a photo</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="position-absolute top-0 start-0 h-100 w-100" id="listing-photo-uploader">
+                      <%= f.file_field :variant_images, multiple: true, class: "file-upload" %>
+                      <div class="photo-focus h-100 w-100 top-0 position-absolute"></div>
+                    </div>
+                  </div>
+
+                  <div class="d-none" id="variant_images_files"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-no-radius">
+        <div class="card-body">
+          <div class="mb-3">
+            <h2 class="mb-1">
+              Product details
+            </h2>
+            <p class="text-gray">
+              Tell the world all about your item and why they’ll love it.
+            </p>
+          </div>
+          <div class="row mb-2">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :name %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                Include keywords that buyers would use to search for your item.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :name, label: false %>
+            </div>
+          </div>
+
+          <div class="row py-3">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :taxon_ids, "Category", class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                Choose a category that best fits your item.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.select :taxon_ids, options_from_collection_for_select(current_store.taxons, :id, :pretty_name, @product&.taxon_ids), { include_hidden: true },  class: 'select2 form-control',   multiple: true,  data: { autocomplete_url_value: 'taxons_api_v2',  autocomplete_return_attr_value: 'pretty_name',  autocomplete_multiple_value: true } %>
+            </div>
+          </div>
+
+          <div class="row mb-1">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :description, class: "strong mb-xs-1" %>
+              <div class="d-sm-none d-md-block">
+                <p class="text-sm text-gray mb-2">
+                  Start with a brief overview that describes your item’s finest features.
+                  Shoppers will only see the first few lines of your description at first, so make it count!
+                </p>
+                <p class="text-sm text-gray">
+                  Not sure what else to say? Shoppers also like hearing about your process, and the story behind this item.
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :description, label: false, as: :text, input_html: { rows: 10 } %>
+            </div>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :price, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                Pricing your items right helps them sell. Learn how to price for success.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :price, label: false %>
+            </div>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :shipping_category, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                Pricing your items right helps them sell. Learn how to price for success.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.field_container :shipping_category do %>
+                <%= f.collection_select(:shipping_category_id, Spree::ShippingCategory.order(:name), :id, :name, { selected: @product.shipping_category_id }, { class: 'select2 w-100' }) %>
+                <%= f.error_message_on :shipping_category_id %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between px-4 py-3 position-fixed bottom-0 z-99 bg-white border-top w-100 start-0">
+        <p class="d-flex text-smaller align-items-center">
+          <strong>This listing isn't active yet.</strong> It will be available to shoppers once you open your shop.
+        </p>
+
+        <%= f.submit "Save and Continue", class: "btn btn-outline-primary" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

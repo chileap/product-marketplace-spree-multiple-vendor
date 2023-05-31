@@ -21,6 +21,7 @@ module Spree
     helper_method :title
     helper_method :title=
     helper_method :accurate_title
+    helper_method :current_spree_vendor
 
     skip_before_action :verify_authenticity_token, only: :ensure_cart, raise: false
 
@@ -73,6 +74,12 @@ module Spree
     # this is a hook for subclasses to provide title
     def accurate_title
       current_store.seo_title
+    end
+
+    def current_spree_vendor
+      return unless try_spree_current_user
+      return unless try_spree_current_user.respond_to?(:vendors)
+      try_spree_current_user.vendors.first
     end
 
     def config_locale
