@@ -114,7 +114,7 @@
             <div><%= item.display_total.to_s %></div>
           </div>
 
-          <% if item.digital_links.present? %>
+          <% if item.digital_links.present? && @order.payment_state == 'paid' %>
             <div class="checkout-confirm-order-details-line-items-line-item-download d-none d-lg-table-cell align-middle py-4" data-hook="order_item_download">
               <div>
                 <% item.digital_links.each do |digital_link| %>
