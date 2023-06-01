@@ -28,7 +28,7 @@ module Spree
         Rails.logger.error I18n.t('spree.api.v2.digitals.missing_file')
       end
 
-      redirect_to spree.your_order_path(params[:id]), status: :not_found, flash: { error: I18n.t('spree.api.v2.digitals.unauthorized') }
+      redirect_to spree.your_order_path(params[:id]), status: :unauthorized, flash: { error: I18n.t('spree.api.v2.digitals.unauthorized') }
     end
 
     private

@@ -9,7 +9,6 @@ Rails.application.config.after_initialize do
   end
 
   SpreeMultiVendor::Config[:vendorized_models] = %w[product variant stock_location shipping_method line_item]
+  Spree::Frontend::Config = Spree::Frontend::Configuration.new
+  Spree.user_class = 'Spree::User'
 end
-
-Spree::Frontend::Config = Spree::Frontend::Configuration.new
-Spree.user_class = 'Spree::User'
