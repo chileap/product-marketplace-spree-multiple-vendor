@@ -138,7 +138,7 @@
         </div>
       </div>
 
-      <div class="card card-no-radius">
+      <div class="card card-no-radius my-4">
         <div class="card-body">
           <div class="mb-3">
             <h2 class="mb-1">
@@ -172,6 +172,25 @@
             </div>
           </div>
 
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :shipping_category, 'Type', class: "strong mb-xs-1", required: true %>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <div class="row">
+                <% Spree::ShippingCategory.order(name: :desc).each do |shipping_category| %>
+                  <div class="col-6 col-md-4 d-flex align-items-start">
+                    <%= f.radio_button :shipping_category_id, shipping_category.id, checked: @product.shipping_category_id, class: "mt-1", data: { name: shipping_category.name } %>
+                    <label for="product_shipping_category_id_<%= shipping_category.id %>" class="radio-label ms-3">
+                      <%= shipping_category.name %>
+                      <p class="text-smaller text-gray-lighter">A tangible item that you will ship to buyers.</p>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
           <div class="row mb-1">
             <div class="col-sm-4 col-lg-3">
               <%= f.label :description, class: "strong mb-xs-1" %>
@@ -189,31 +208,105 @@
               <%= f.input :description, label: false, as: :text, input_html: { rows: 10 } %>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="card card-no-radius my-4">
+        <div class="card-body">
+          <div class="mb-3">
+            <h2 class="mb-1">
+              Inventory and pricing
+            </h2>
+          </div>
 
           <div class="row py-4">
             <div class="col-sm-4 col-lg-3">
               <%= f.label :price, class: "strong mb-xs-1" %>
               <p class="text-sm text-gray d-sm-none d-md-block">
-                Pricing your items right helps them sell. Learn how to price for success.
+                Remember to factor in the costs of materials, labor, and other business expenses. If you offer free shipping, make sure to include the cost of shipping so it doesn't eat into your profits.
               </p>
             </div>
             <div class="col-sm-8 col-lg-9 px-3">
-              <%= f.input :price, label: false %>
+              <div class="input-group mb-3 w-100">
+                <span class="input-group-text"><%= @shop.shop_currency %></span>
+                <%= f.input :price, label: false, as: :numeric %>
+              </div>
             </div>
           </div>
 
           <div class="row py-4">
             <div class="col-sm-4 col-lg-3">
-              <%= f.label :shipping_category, class: "strong mb-xs-1" %>
+              <%= f.label :quantity, class: "strong mb-xs-1" %>
               <p class="text-sm text-gray d-sm-none d-md-block">
-                Pricing your items right helps them sell. Learn how to price for success.
+                For quantities greater than one, this products will renew automatically until it sells out.
               </p>
             </div>
             <div class="col-sm-8 col-lg-9 px-3">
-              <%= f.field_container :shipping_category do %>
-                <%= f.collection_select(:shipping_category_id, Spree::ShippingCategory.order(:name), :id, :name, { selected: @product.shipping_category_id }, { class: 'select2 w-100' }) %>
-                <%= f.error_message_on :shipping_category_id %>
-              <% end %>
+              <%= f.input :quantity, label: false, as: :numeric %>
+            </div>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :master_sku, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                SKUs are for your use only—buyers won’t see them. If you don’t use SKUs, leave this field blank.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :sku, label: false %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-no-radius my-4 shipping-panel">
+        <div class="card-body">
+          <div class="mb-3">
+            <h2 class="mb-1">
+              Shipping
+            </h2>
+            <p>
+              Set your shipping fees and processing times.
+            </p>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :price, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                Remember to factor in the costs of materials, labor, and other business expenses. If you offer free shipping, make sure to include the cost of shipping so it doesn't eat into your profits.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <div class="input-group mb-3 w-100">
+                <span class="input-group-text"><%= @shop.shop_currency %></span>
+                <%= f.input :price, label: false, as: :numeric %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :quantity, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                For quantities greater than one, this products will renew automatically until it sells out.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :quantity, label: false, as: :numeric %>
+            </div>
+          </div>
+
+          <div class="row py-4">
+            <div class="col-sm-4 col-lg-3">
+              <%= f.label :master_sku, class: "strong mb-xs-1" %>
+              <p class="text-sm text-gray d-sm-none d-md-block">
+                SKUs are for your use only—buyers won’t see them. If you don’t use SKUs, leave this field blank.
+              </p>
+            </div>
+            <div class="col-sm-8 col-lg-9 px-3">
+              <%= f.input :sku, label: false %>
             </div>
           </div>
         </div>

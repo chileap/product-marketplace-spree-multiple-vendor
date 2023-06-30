@@ -45,21 +45,39 @@ function ImgUpload() {
       const newFileInput = $(this).clone();
       newFileInput.attr('name', 'product[variant_images_files][]');
       $('#variant_images_files').append(newFileInput);
-
     });
   });
 
   $('body').on('click', ".upload__img-close", function (e) {
     var file = $(this).parent().data("file");
+
+
     for (var i = 0; i < imgArray.length; i++) {
       if (imgArray[i].name === file) {
         imgArray.splice(i, 1);
         break;
       }
     }
+    $('#variant_images_files').find(`[data-file="${file}"]`).attr('name', 'product[variant_images_files_remove][]');
     $(this).parent().parent().remove();
   });
 }
 Spree.ready(function() {
   ImgUpload();
+
+  if ($('input[name="product[shipping_category_id]"]')) {
+    if ($('input[name="product[shipping_category_id]"]:checked').data('name') == 'Default' || $('input[name="product[shipping_category_id]"]:checked').data('name') == 'Physical') {
+      $('.shipping-panel').removeClass('d-none');
+    } else {
+      $('.shipping-panel').addClass('d-none');
+    }
+
+    $('input[name="product[shipping_category_id]"]').on('change', function(e) {
+      if (e.target.dataset.name == 'Default' || e.target.dataset.name == 'Physical') {
+        $('.shipping-panel').removeClass('d-none');
+      } else {
+        $('.shipping-panel').addClass('d-none');
+      }
+    });
+  }
 });

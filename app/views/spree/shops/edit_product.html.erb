@@ -1,0 +1,55 @@
+<%= content_for :side_header do %>
+  <ol class="step-steps subway w-100 list-unstyled py-3">
+    <li data-step-target="step1" class="subway__stop <%= 'done' if @shop.persisted? %>">
+      <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'preferences') : onboarding_path %>" class="subway__stop__link">
+        <div class="subway__stop__dot"></div>
+        <div class="subway__stop__title d-none d-md-block">
+          Shop preferences
+        </div>
+      </a>
+    </li>
+    <li data-step-target="step2" class="subway__stop <%= 'done' if @shop.products.present? %> subway__stop--active">
+      <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'products') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? %>">
+        <div class="subway__stop__dot"></div>
+        <div class="subway__stop__title d-none d-md-block">
+          Stock your shop
+        </div>
+      </a>
+    </li>
+    <li data-step-target="step3" class="subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'shipping' %>">
+      <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'shipping') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.products.present? %>">
+        <div class="subway__stop__dot"></div>
+        <div class="subway__stop__title d-none d-md-block">
+          How you'll get paid
+        </div>
+      </a>
+    </li>
+    <li data-step-target="step4" class="subway__stop <%= 'subway__stop--active' if params[:screen_type] == 'billing' %>">
+      <a href="<%= @shop.persisted? ? shop_onboarding_path(slug: @shop&.slug, screen_type: 'billing') : '#' %>" class="subway__stop__link <%= 'disabled' unless @shop.persisted? && @shop.shipping_address.present? %>">
+        <div class="subway__stop__dot"></div>
+        <div class="subway__stop__title d-none d-md-block">
+          Set up billing
+        </div>
+      </a>
+    </li>
+  </ol>
+<% end %>
+
+<div class="pb-5">
+  <div class="step-app" id="onboarding-form">
+    <div class="step-content py-2">
+      <div class="step-tab-panel" data-step="step1">
+        <%= render partial: "spree/shops/forms/preferences" %>
+      </div>
+      <div class="step-tab-panel active" data-step="step2">
+        <%= render partial: "spree/shops/forms/edit_products", locals: { product: @product } %>
+      </div>
+      <div class="step-tab-panel" data-step="step3">
+        <%= render partial: "spree/shops/forms/shipping" %>
+      </div>
+      <div class="step-tab-panel" data-step="step4">
+        <%= render partial: "spree/shops/forms/payment" %>
+      </div>
+    </div>
+  </div>
+</div>

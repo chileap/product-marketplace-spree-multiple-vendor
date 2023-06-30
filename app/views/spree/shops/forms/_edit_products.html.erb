@@ -1,0 +1,340 @@
+<div class="p-4">
+  <div class="mb-3">
+    <h2 class="mb-1">
+      Edit a Product
+    </h2>
+    <p class="text-gray">
+      Add some photos and details about your item. Fill out what you can for now—you’ll be able to edit this later.
+    </p>
+  </div>
+
+  <%= simple_form_for @product, url: update_product_path(@shop.slug, @product.slug), method: :put, html: { multipart: true } do |f|  %>
+    <div class="card card-no-radius my-4">
+      <div class="card-body">
+        <div class="mb-3">
+          <h2 class="mb-1">
+            Photos
+          </h2>
+          <p class="text-smaller text-gray-lighter">
+            Add as many as you can so buyers can see every detail.
+          </p>
+        </div>
+        <div class="row mb-2">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :photos %>
+            <p class="text-smaller text-gray-lighter d-sm-none d-md-block mb-2">
+              Use up to ten photos to show your item's most important qualities.
+            </p>
+
+            <p class="text-smaller text-gray-lighter mb-2">
+              Tips:
+            </p>
+
+            <ul class="text-smaller text-gray-lighter list-style-disc">
+              <li>Use natural light and no flash.</li>
+              <li>Include a common object for scale.</li>
+              <li>Show the item being held, worn, or used.</li>
+              <li>Shoot against a clean, simple background.</li>
+
+              <li>Add photos to your variations so buyers can see all their options.</li>
+            </ul>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <div class="row upload__box">
+              <div class="col-3">
+                <div class="card placeholder-button">
+                  <div class="card-img-wrap">
+                    <div class="placeholder placeholder-square">
+                      <div class="placeholder-content placeholder-listing-card-image">
+                        <div class="placeholder placeholder-square w-100"></div>
+                      </div>
+                    </div>
+                    <div class="position-absolute top-0 start-0 w-100 h-100">
+                      <div class="d-flex justify-content-center align-items-center w-100 h-100">
+                        <div class="text-center">
+                          <span class="shop-icon icon-larger text-black mb-xs-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                              <circle cx="12" cy="13" r="3"></circle>
+                              <path d="M20,6H16V5a1,1,0,0,0-1-1H9A1,1,0,0,0,8,5V6H4A1,1,0,0,0,3,7V19a1,1,0,0,0,1,1H20a1,1,0,0,0,1-1V7A1,1,0,0,0,20,6ZM12,18a5,5,0,1,1,5-5A5.006,5.006,0,0,1,12,18Z"></path>
+                            </svg>
+                          </span>
+                          <div class="text-black">Add a photo</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="position-absolute top-0 start-0 h-100 w-100" id="listing-photo-uploader">
+                    <%= f.file_field :variant_images, multiple: true, class: "file-upload" %>
+                    <div class="photo-focus h-100 w-100 top-0 position-absolute"></div>
+                  </div>
+                </div>
+
+                <div class="d-none" id="variant_images_files">
+                  <% if @product.images.present? %>
+                    <% @product.images.each_with_index do |image, index| %>
+                      <input type="hidden" name="product[existed_variant_images][][id]" value="<%= image.id %>" data-number="<%= index %>" data-file="image-<%= image.id %>">
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+
+              <% if @product.images.present? %>
+                <% @product.images.each_with_index do |image, index| %>
+                  <div class="upload__img-box">
+                    <div data-number="<%= index %>" data-file="image-<%= image.id %>" class="img-bg">
+                      <%= image_tag main_app.cdn_image_url(image.attachment) %>
+                      <div class="upload__img-close"></div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-no-radius my-4">
+      <div class="card-body">
+        <div class="mb-3">
+          <h2 class="mb-1">
+            Product details
+          </h2>
+          <p class="text-gray">
+            Tell the world all about your item and why they’ll love it.
+          </p>
+        </div>
+        <div class="row mb-2">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :name %>
+            <p class="text-sm text-gray d-sm-none d-md-block">
+              Include keywords that buyers would use to search for your item.
+            </p>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <%= f.input :name, label: false %>
+          </div>
+        </div>
+
+        <div class="row py-3">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :taxon_ids, "Category", class: "strong mb-xs-1" %>
+            <p class="text-sm text-gray d-sm-none d-md-block">
+              Choose a category that best fits your item.
+            </p>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <%= f.select :taxon_ids, options_from_collection_for_select(current_store.taxons, :id, :pretty_name, @product&.taxon_ids), { include_hidden: true },  class: 'select2 form-control',   multiple: true,  data: { autocomplete_url_value: 'taxons_api_v2',  autocomplete_return_attr_value: 'pretty_name',  autocomplete_multiple_value: true } %>
+          </div>
+        </div>
+
+        <div class="row py-4">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :shipping_category, 'Type', class: "strong mb-xs-1", required: true %>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <div class="row">
+              <% Spree::ShippingCategory.order(name: :desc).each do |shipping_category| %>
+                <div class="col-6 col-md-4 d-flex align-items-start">
+                  <%= f.radio_button :shipping_category_id, shipping_category.id, checked: @product.shipping_category_id == shipping_category.id, class: "mt-1", data: { name: shipping_category.name } %>
+                  <label for="product_shipping_category_id_<%= shipping_category.id %>" class="radio-label ms-3">
+                    <%= shipping_category.name %>
+                    <p class="text-smaller text-gray-lighter">A tangible item that you will ship to buyers.</p>
+                  </label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :description, class: "strong mb-xs-1" %>
+            <div class="d-sm-none d-md-block">
+              <p class="text-sm text-gray mb-2">
+                Start with a brief overview that describes your item’s finest features.
+                Shoppers will only see the first few lines of your description at first, so make it count!
+              </p>
+              <p class="text-sm text-gray">
+                Not sure what else to say? Shoppers also like hearing about your process, and the story behind this item.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <%= f.input :description, label: false, as: :text, input_html: { rows: 10 } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-no-radius my-4">
+      <div class="card-body">
+        <div class="mb-3">
+          <h2 class="mb-1">
+            Inventory and pricing
+          </h2>
+        </div>
+
+        <div class="row py-4">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :price, class: "strong mb-xs-1" %>
+            <p class="text-sm text-gray d-sm-none d-md-block">
+              Remember to factor in the costs of materials, labor, and other business expenses. If you offer free shipping, make sure to include the cost of shipping so it doesn't eat into your profits.
+            </p>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <div class="input-group mb-3 w-100">
+              <span class="input-group-text"><%= @shop.shop_currency %></span>
+              <%= f.input :price, label: false, as: :numeric %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row py-4">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :quantity, class: "strong mb-xs-1" %>
+            <p class="text-sm text-gray d-sm-none d-md-block">
+              For quantities greater than one, this products will renew automatically until it sells out.
+            </p>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <%= f.input :quantity, label: false, as: :numeric %>
+          </div>
+        </div>
+
+        <div class="row py-4">
+          <div class="col-sm-4 col-lg-3">
+            <%= f.label :master_sku, class: "strong mb-xs-1" %>
+            <p class="text-sm text-gray d-sm-none d-md-block">
+              SKUs are for your use only—buyers won’t see them. If you don’t use SKUs, leave this field blank.
+            </p>
+          </div>
+          <div class="col-sm-8 col-lg-9 px-3">
+            <%= f.input :sku, label: false %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between px-4 py-3 position-fixed bottom-0 z-99 bg-white border-top w-100 start-0">
+      <p class="d-flex text-smaller align-items-center">
+        <strong>This listing isn't active yet.</strong> It will be available to shoppers once you open your shop.
+      </p>
+
+      <%= f.submit "Save and Continue", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="card card-no-radius my-4 shipping-panel">
+    <div class="card-body">
+      <div class="mb-3">
+        <h2 class="mb-1">
+          Shipping
+        </h2>
+        <p>
+          Set clear and realistic shipping expectations for shoppers by providing accurate processing time.
+        </p>
+      </div>
+
+      <% @shipping_method = Spree::ShippingMethod.new %>
+      <%= simple_form_for @shipping_method, url: create_shipping_method_path(@shop.slug) do |f| %>
+        <div class="row py-4">
+          <div class="col-sm-4 col-lg-3 pe-3">
+            <%= f.input :name %>
+          </div>
+          <div class="col-sm-4 col-lg-3">
+            <%= f.field_container :display_on do %>
+              <%= f.label :display_on, Spree.t(:display), class: "mb-2" %>
+              <%= select(:shipping_method, :display_on, Spree::ShippingMethod::DISPLAY.collect { |display| [Spree.t("admin.display_on.#{display}"), display.to_s] }, { selected: :both, include_blank: true }, { class: 'select2 form-control' }) %>
+              <%= f.error_message_on :display_on %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row py-3">
+          <div class="col-12 col-md-3 pe-3">
+            <div class="card mb-3 categories">
+              <div class="card-header">
+                <h5 class="card-title mb-0 h6">
+                  <%= Spree.t(:shipping_categories) %>
+                </h5>
+              </div>
+
+              <div class="card-body">
+                <%= f.field_container :categories do %>
+                  <% Spree::ShippingCategory.all.each do |category| %>
+                    <div class="checkbox">
+                      <%= label_tag do %>
+                        <%= check_box_tag('shipping_method[shipping_categories][]', category.id, @shipping_method.shipping_categories.include?(category)) %>
+                        <%= category.name %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <%= f.error_message_on :shipping_category_id %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-lg-3 pe-3">
+            <div class="card mb-3 tax_categories">
+              <div class="card-header">
+                <h5 class="card-title mb-0 h6">
+                  <%= Spree.t(:tax_category) %>
+                </h5>
+              </div>
+
+              <div class="card-body">
+                <%= f.field_container :categories do %>
+                  <%= f.select :tax_category_id, @tax_categories.map { |tc| [tc.name, tc.id] }, { include_blank: true }, class: "select2" %>
+                  <%= f.error_message_on :tax_category_id %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <div class="card mb-3">
+              <div class="card-header">
+                <h5 class="card-title mb-0 h6">
+                  <%= Spree.t(:zones) %>
+                </h5>
+              </div>
+
+              <div class="card-body">
+                <%= f.field_container :zones do %>
+                  <% shipping_method_zones = @shipping_method.zones.to_a %>
+                  <% Spree::Zone.all.each do |zone| %>
+                    <div class="checkbox">
+                      <%= label_tag do %>
+                        <%= check_box_tag('shipping_method[zones][]', zone.id, shipping_method_zones.include?(zone)) %>
+                        <span class="text-uppercase"><%= zone.name %></span>
+                        <br />
+                        <% zone.zone_members.each do |zone_member| %>
+                          <small class="badge badge-pill bg-info"><%= zone_member.zoneable.name %></small>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <%= f.error_message_on :zone_id %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div data-hook="admin_shipping_method_form_calculator_fields" class="col-12 col-lg-6 pe-3">
+            <%= render partial: 'spree/shops/forms/calculator_fields', locals: { f: f } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 d-flex justify-content-end">
+            <%= f.submit 'Save Shipping Profile', class: "btn btn-outline-primary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

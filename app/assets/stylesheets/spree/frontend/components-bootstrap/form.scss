@@ -63,3 +63,54 @@
   height: 26px;
 }
 
+input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+.input-group {
+  div {
+    margin-bottom: 0 !important;
+
+    input {
+      border-radius: 0;
+      border-top-right-radius: 0.375rem;
+      border-bottom-right-radius: 0.375rem;
+      border-left: 0;
+      &:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: #222;
+
+        &+span {
+          background-color: #222;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  span:first-child {
+    background-color: transparent;
+    border-right: 0 !important;
+  }
+
+  span:last-child {
+    background-color: transparent;
+    border-left: 0 !important;
+  }
+}
+
+.input-group:focus-within {
+  span:first-child {
+    border: 1px solid $primary;
+    border-right: 0;
+  }
+}
+
+.input-group:has(.form-control.is-valid ) {
+  span:first-child {
+    border: 1px solid #198754;
+    border-right: 0;
+  }
+}

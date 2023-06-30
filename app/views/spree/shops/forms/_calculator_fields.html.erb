@@ -1,0 +1,26 @@
+<div id="calculator_fields" data-hook class="card mb-3">
+  <div class="card-header">
+    <h5 class="card-title mb-0 h6">
+      <%= Spree.t(:calculator) %>
+    </h5>
+  </div>
+
+  <div id="preference-settings" data-hook class="card-body">
+    <div class="form-group">
+      <%= f.label(:calculator_type, Spree.t(:calculator), for: 'calc_type') %>
+      <%= f.select(:calculator_type, @calculators.map { |c| [c.description, c.name] }, {}, {id: 'calc_type', class: 'select2'}) %>
+    </div>
+    <% if !@shipping_method.new_record? %>
+      <div class="form-group">
+        <div class="calculator-settings">
+          <%= f.fields_for :calculator do |calculator_form| %>
+            <%= preference_fields @shipping_method.calculator, calculator_form %>
+          <% end %>
+        </div>
+        <% if @shipping_method.calculator.respond_to?(:preferences) %>
+          <span class="calculator-settings-warning info warning"><%= Spree.t(:calculator_settings_warning) %></span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

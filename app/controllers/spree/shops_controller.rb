@@ -3,6 +3,8 @@ module Spree
     load_and_authorize_resource class: Spree::Vendor, only: [:onboarding, :create]
     layout :get_layout
 
+    before_action :load_shipping_methods_data, only: [:onboarding, :onboarding_update, :edit_product, :create_product, :update_product]
+
     def index; end
 
     def show
@@ -65,7 +67,7 @@ module Spree
 
     def create_product
       @shop = Spree::Vendor.find_by(slug: params[:slug])
-      @product = Spree::Product.new(product_params.except(:variant_images, :variant_images_files))
+      @product = Spree::Product.new(product_params.except(:variant_images, :variant_images_files, :quantity))
       @product.vendor_id = @shop.id
       @product.store_ids = [current_store.id]
 
@@ -76,6 +78,11 @@ module Spree
       end
 
       if @product.save
+        if product_params[:quantity].present?
+          @stock_item = @shop.stock_locations.first.stock_item_or_create(@product.master)
+          @stock_item.set_count_on_hand(product_params[:quantity].to_i)
+        end
+
         flash[:success] = 'Product created successfully'
         redirect_to spree.shop_path(@shop.slug)
       else
@@ -84,10 +91,53 @@ module Spree
       end
     end
 
+    def edit_product
+      @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @product = Spree::Product.find_by(slug: params[:product_slug])
+    end
+
+    def update_product
+      @shop = Spree::Vendor.find_by(slug: params[:slug])
+      @product = Spree::Product.find_by(slug: params[:product_slug])
+
+      @product.assign_attributes(product_params.except(:variant_images, :variant_images_files, :quantity, :variant_images_files_remove))
+
+      if product_params[:variant_images_files].present?
+        product_params[:variant_images_files].each do |image|
+          @product.images.create!(attachment: image)
+        end
+      end
+
+      if product_params[:variant_images_files_remove].present?
+        product_params[:variant_images_files_remove].each do |image|
+          @product.images.find_by(id: image).destroy
+        end
+      end
+
+      if @product.save
+        if product_params[:quantity].present?
+          @stock_item = @shop.stock_locations.first.stock_item_or_create(@product.master)
+          @stock_item.set_count_on_hand(product_params[:quantity].to_i)
+        end
+
+        flash[:success] = 'Product updated successfully'
+        redirect_to spree.shop_path(@shop.slug)
+      else
+        flash[:error] = @product.errors.full_messages.join(', ')
+        redirect_to spree.edit_shop_product_path(@shop.slug, @product.slug)
+      end
+    end
+
     private
 
+    def load_shipping_methods_data
+      @available_zones = Spree::Zone.order(:name)
+      @tax_categories = Spree::TaxCategory.order(:name)
+      @calculators = Spree::ShippingMethod.calculators.sort_by(&:name)
+    end
+
     def get_layout
-      if %w[onboarding onboarding_update].include?(action_name)
+      if %w[onboarding onboarding_update edit_product update_product create_product].include?(action_name)
         'spree/layouts/application'
       else
         'spree/layouts/spree_application'
@@ -95,7 +145,7 @@ module Spree
     end
 
     def product_params
-      params.require(:product).permit(permitted_product_attributes, variant_images: [], variant_images_files: [])
+      params.require(:product).permit(permitted_product_attributes, :quantity, variant_images: [], variant_images_files: [], variant_images_files_remove: [])
     end
 
     def shop_params

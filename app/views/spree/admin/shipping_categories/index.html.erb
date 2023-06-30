@@ -1,0 +1,40 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::ShippingCategory) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_shipping_category), new_object_url, class: "btn-success", icon: 'add.svg' %>
+<% end if can? :create, Spree::ShippingCategory %>
+
+<% if @shipping_categories.any? %>
+<div class="table-responsive border rounded bg-white">
+  <table class="table">
+    <thead class="text-muted">
+      <tr data-hook="categories_header">
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:description) %></th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shipping_categories.each do |shipping_category| %>
+      <tr id="<%= spree_dom_id shipping_category %>" data-hook="category_row">
+        <td><%= shipping_category.name %></td>
+        <td><%= shipping_category.description %></td>
+        <td class="actions">
+          <span class="d-flex justify-content-end">
+            <%= link_to_edit(shipping_category, no_text: true) if can? :edit, shipping_category %>
+            <%= link_to_delete(shipping_category, no_text: true) if can? :edit, shipping_category %>
+          </span>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <div class="text-center no-objects-found m-5">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::ShippingCategory)) %>,
+    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::ShippingCategory %>!
+  </div>
+<% end %>

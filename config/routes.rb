@@ -72,7 +72,9 @@ Spree::Core::Engine.append_routes do
     get '/your/profile/orders', to: 'profile#orders', as: :user_orders
 
     post '/your/shops/:slug/onboarding/create_products', to: 'shops#create_product', as: :create_product
+    put '/your/shops/:slug/onboarding/products/:product_slug', to: 'shops#update_product', as: :update_product
     get '/your/shops/:slug/onboarding/products/:product_slug', to: 'shops#edit_product', as: :edit_product_onboarding
+    get '/your/shops/:slug/onboarding/create_shipping_method', to: 'shops#create_shipping_method', as: :create_shipping_method
 
     put '/profile_picture', to: 'users#update_profile_picture', as: :profile_picture
     get '/your/orders/:id', to: 'orders#show', as: :your_order
