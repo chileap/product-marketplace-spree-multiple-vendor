@@ -101,7 +101,7 @@ gem 'spree_emails', '~> 4.5'
 gem 'spree_backend', '~> 4.5'
 gem 'spree_gateway', '~> 3.10'
 gem 'spree_auth_devise', '~> 4.5'
-gem 'spree_i18n', '~> 5.1'
+gem 'spree_i18n', '~> 5.2'
 gem 'spree_multi_vendor', '~> 2.4.0'
 gem 'spree_dev_tools', require: false, group: %w[test development]
 
