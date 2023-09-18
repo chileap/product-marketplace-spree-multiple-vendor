@@ -7,7 +7,7 @@
     "@spree/dashboard": "^0.2.1",
     "bootstrap": "5.2.3",
     "bootstrap-icons": "^1.10.5",
-    "esbuild": "^0.17.18",
+    "esbuild": "^0.19.3",
     "jquery": "^3.7.0",
     "jquery-ui.autocomplete.match": "^1.0.2",
     "jquery.steps": "^1.1.4",
